@@ -1,0 +1,27 @@
+<h1>Listing person_relations</h1>
+
+<table>
+  <tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Relation status code</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @person_relations.each do |person_relation| %>
+  <tr>
+    <td><%= person_relation.from_id %></td>
+    <td><%= person_relation.to_id %></td>
+    <td><%= person_relation.relation_status_code %></td>
+    <td><%= link_to 'Show', person_relation %></td>
+    <td><%= link_to 'Edit', edit_person_relation_path(person_relation) %></td>
+    <td><%= link_to 'Destroy', person_relation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Person relation', new_person_relation_path %>

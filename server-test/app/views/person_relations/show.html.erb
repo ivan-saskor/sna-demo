@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>From:</b>
+  <%= @person_relation.from_id %>
+</p>
+
+<p>
+  <b>To:</b>
+  <%= @person_relation.to_id %>
+</p>
+
+<p>
+  <b>Relation status code:</b>
+  <%= @person_relation.relation_status_code %>
+</p>
+
+
+<%= link_to 'Edit', edit_person_relation_path(@person_relation) %> |
+<%= link_to 'Back', person_relations_path %>

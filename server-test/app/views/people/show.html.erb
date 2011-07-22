@@ -1,0 +1,121 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nick:</b>
+  <%= @person.nick %>
+</p>
+
+<p>
+  <b>Mood:</b>
+  <%= @person.mood %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @person.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @person.phone %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @person.password %>
+</p>
+
+<table>
+  <tr>
+    <td>
+      <b>Friends:</b>
+      <ul>
+        <% @person.friends.each do |person| %>
+          <li>
+            <%= person.nick %>
+            <%= link_to 'Show', person %>
+            <%= link_to 'Remove', remove_relation_path(@person, person), :confirm => 'Are you sure?'%>
+          </li>
+        <% end %>
+      </ul>
+      <select onchange="location = this.options[this.selectedIndex].value;">
+        <option>Add...</option>
+        <% @person.aliens.each do |person| %>
+          <option value="<%= add_friend_path(@person, person) %>"><%= person.nick %></option>
+        <% end %>
+      </select>
+    </td>
+    <td>
+      <b>Aliens:</b>
+      <ul>
+        <% @person.aliens.each do |person| %>
+          <li>
+            <%= person.nick %>
+            <%= link_to 'Show', person %>
+          </li>
+        <% end %>
+      </ul>
+    </td>
+    <td>
+      <b>Waiting for me:</b>
+      <ul>
+        <% @person.persons_waiting_for_me.each do |person| %>
+          <li>
+            <%= person.nick %>
+            <%= link_to 'Show', person %>
+            <%= link_to 'Remove', remove_relation_path(@person, person), :confirm => 'Are you sure?'%>
+          </li>
+        <% end %>
+      </ul>
+      <select onchange="location = this.options[this.selectedIndex].value;">
+        <option>Add...</option>
+        <% @person.aliens.each do |person| %>
+          <option value="<%= add_waiting_for_me_path(@person, person) %>"><%= person.nick %></option>
+        <% end %>
+      </select>
+    </td>
+    <td>
+      <b>Waiting for him:</b>
+      <ul>
+        <% @person.persons_waiting_for_him.each do |person| %>
+          <li>
+            <%= person.nick %>
+            <%= link_to 'Show', person %>
+            <%= link_to 'Remove', remove_relation_path(@person, person), :confirm => 'Are you sure?'%>
+          </li>
+        <% end %>
+      </ul>
+      <select onchange="location = this.options[this.selectedIndex].value;">
+        <option>Add...</option>
+        <% @person.aliens.each do |person| %>
+          <option value="<%= add_waiting_for_him_path(@person, person) %>"><%= person.nick %></option>
+        <% end %>
+      </select>
+    </td>
+    <td>
+      <b>Rejected:</b>
+      <ul>
+        <% @person.rejected_persons.each do |person| %>
+          <li>
+            <%= person.nick %>
+            <%= link_to 'Show', person %>
+            <%= link_to 'Remove', remove_relation_path(@person, person), :confirm => 'Are you sure?'%>
+          </li>
+        <% end %>
+      </ul>
+      <select onchange="location = this.options[this.selectedIndex].value;">
+        <option>Add...</option>
+        <% @person.aliens.each do |person| %>
+          <option value="<%= add_rejected_path(@person, person) %>"><%= person.nick %></option>
+        <% end %>
+      </select>
+    </td>
+  </tr>
+</table>
+<p>
+  
+</p>
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %> |
+<%= link_to 'Friends', person_friends_path(@person) %>
