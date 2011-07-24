@@ -15,6 +15,7 @@ enum Gender
 }
 enum VisibilityStatus
 {
+    Invisible,
     Offline,
     Online,
     ContactMe
@@ -29,10 +30,11 @@ class Person
                 String              Email;              //                  must be: NotNull and NotEmpty                           // Must be: unique in database
                 String              Password;           //                  must be: NotNull and NotEmpty
 
-                VisibilityStatus    VisibilityStatus;   //                  must be: NotNull
+                VisibilityStatus    VisibilityStatus;   //                  must be: NotNull and (notEqual(Invisible) if this != currentUser)
+                                                        //                                   and (notEqual(Offline)   it this == currentUser)
     calculated  Datetime            OfflineSince;       // can be: Null     must be: (Null    if this.VisibilityStatus == Offline)
                                                         //                       and (NotNull if this.VisibilityStatus != Offline)
-    
+
     calculated  FriendshipStatus    FriendshipStatus;   //                  must be: NotNull
     calculated  datetime            RejectedOn;         // can be: Null     must be: (Null    if this.FriendshipStatus == Rejected)
                                                         //                       and (NotNull if this.FriendshipStatus != Rejected)
@@ -43,7 +45,7 @@ class Person
 
                 date                BornOn;             // can be: Null
                 Gender              Gender;             // can be: Null
-                Gender[]            LookingForGenders;  // can be: Empty    must be: NotNull
+                Gender[]            LookingForGenders;  // can be: Empty    must be: NotNull                                        // JSON must be null if empty
 
                 string              Phone;              // can be: Empty    must be: NotNull
                 string              Description;        // can be: Empty    must be: NotNull
@@ -52,8 +54,8 @@ class Person
                 string              MainLocation;       // can be: Empty    must be: NotNull
 
                 Location            LastKnownLocation;  // can be: Null
-    calculated  integer             DistanceInMeters;   // can be: Null     must be: (Null                    if this.LastKnownLocation == NULL and currentUser.LastKnownLocation == NULL)
-                                                        //                       and (NotNull                 if this.LastKnownLocation != NULL or  currentUser.LastKnownLocation != NULL)
+    calculated  integer             DistanceInMeters;   // can be: Null     must be: (Null                    if this.LastKnownLocation == NULL or  currentUser.LastKnownLocation == NULL)
+                                                        //                       and (NotNull                 if this.LastKnownLocation != NULL and currentUser.LastKnownLocation != NULL)
                                                         //                       and (GreaterThanOrEqualTo(0) if NotNull)
 }
 
