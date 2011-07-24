@@ -1,26 +1,29 @@
 include ApiHelper
 
 class ApiController < ApplicationController
-  def data
+  before_filter :authenticate
 
-    user = Person.where(:email => params[:email], :password => params[:password]).first
+  def get_data
 
-    if user == nil
-      render :json => {'ErrorCode' => 101, 'ErrorMessage' => 'Invalid user data'}, :status => :unauthorized
-      return
-    end
+    search_results = Person.all.select{|p| p != @current_user}
+    persons = ([@current_user] + @current_user.friends + @current_user.persons_waiting_for_me + @current_user.persons_waiting_for_him + search_results).uniq
 
-    search_results = Person.all.select{|p| p != user}
-    persons = ([user] + user.friends + user.persons_waiting_for_me + user.persons_waiting_for_him + search_results).uniq
-
-    messages = Message.all.select{|m| m.from == user || m.to == user}
+    messages = Message.all.select{|m| m.from == @current_user || m.to == @current_user}
     
     render :json => {
-      'Persons' => format_persons(persons, user),
-      'User' => user.email,
+      'Persons' => format_persons(persons, @current_user),
+      'User' => @current_user.email,
       'SearchResults' => format_emails(search_results),
       'Messages' => format_messages(messages)
     }.to_json
+  end
+
+  def register_profile
+    render :text => 'abc', :status => :created
+  end
+
+  def update_profile
+    render :text => 'all ok', :status => :ok
   end
 
   private
