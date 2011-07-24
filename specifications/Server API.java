@@ -61,23 +61,23 @@ class Person
 
 class Profile
 {
-    VisibilityStatus    VisibilityStatus;       //                  must be: NotNull
+    VisibilityStatus    VisibilityStatus;
 
-    string              Nick;                   //                  must be: NotNull and NotEmpty
-    string              Mood;                   // can be: Empty    must be: NotNull
-    string              GravatarCode;           // can be: Null     must be: Null or NotEmpty
+    string              Nick;
+    string              Mood;
+    string              GravatarCode;
     
-    date                BornOn;                 // can be: Null
-    Gender              Gender;                 // can be: Null
-    Gender[]            LookingForGenders;      // can be: Empty    must be: NotNull
+    date                BornOn;
+    Gender              Gender;
+    Gender[]            LookingForGenders;
     
-    string              Phone;                  // can be: Empty    must be: NotNull
-    string              Description;            // can be: Empty    must be: NotNull
-    string              Ocupation;              // can be: Empty    must be: NotNull
-    string              Hoby;                   // can be: Empty    must be: NotNull
-    string              MainLocation;           // can be: Empty    must be: NotNull
+    string              Phone;
+    string              Description;
+    string              Ocupation;
+    string              Hoby;
+    string              MainLocation;
     
-    Location            LastKnownLocation;      // can be: Null
+    Location            LastKnownLocation;
 }
 class Message
 {
