@@ -5,9 +5,11 @@ SnaTest::Application.routes.draw do
 
   resources :people
 
-  #resources :api
+  match 'api/data/' => 'api#get_data'
 
-  match 'api/data/' => 'api#data'
+  match 'api/profile/' => 'api#register_profile', :via => :post
+  
+  match 'api/profile/' => 'api#update_profile', :via => :get
 
   match 'people/:id/friends' => 'people#friends', :as => :person_friends
 
@@ -20,6 +22,7 @@ SnaTest::Application.routes.draw do
   match 'people/:id/relations/:id2/add_waiting_for_me' => 'people#add_waiting_for_me', :as => :add_waiting_for_me
 
   match 'people/:id/relations/:id2/add_rejected' => 'people#add_rejected', :as => :add_rejected
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

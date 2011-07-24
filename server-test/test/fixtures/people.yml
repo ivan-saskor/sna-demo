@@ -1,13 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  nick: MyString
-  mood: MyString
-  email: MyString
-  phone: MyString
+  nick: nick1
+  mood: some mood 1
+  email: a
+  phone: 123123
+  password: a
 
 two:
-  nick: MyString
-  mood: MyString
-  email: MyString
-  phone: MyString
+  nick: nick2
+  mood: some mood 2
+  email: x
+  phone: 123231
+  password: y
