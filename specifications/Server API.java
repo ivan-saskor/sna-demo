@@ -35,7 +35,8 @@ class Person
     calculated  Datetime            OfflineSince;       // can be: Null     must be: (Null    if this.VisibilityStatus == Offline)
                                                         //                       and (NotNull if this.VisibilityStatus != Offline)
 
-    calculated  FriendshipStatus    FriendshipStatus;   //                  must be: NotNull
+    calculated  FriendshipStatus    FriendshipStatus;   //                  must be: NotNull and (   equal(Self) if this == currentUser)
+                                                        //                                   and (notEqual(Self) if this != currentUser)
     calculated  datetime            RejectedOn;         // can be: Null     must be: (Null    if this.FriendshipStatus == Rejected)
                                                         //                       and (NotNull if this.FriendshipStatus != Rejected)
     
@@ -59,7 +60,7 @@ class Person
                                                         //                       and (GreaterThanOrEqualTo(0) if NotNull)
 }
 
-class Profile
+class Profile // Constraints are defined in class Person
 {
     VisibilityStatus    VisibilityStatus;
 
