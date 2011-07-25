@@ -13,15 +13,21 @@
 
   <div class="field">
     <%= f.label :from_id %><br />
-    <%= f.text_field :from_id %>
+    <%= select 'person_relation', 'from_id', Person.all.collect{|p| [p.email, p.id]}%>
   </div>
   <div class="field">
     <%= f.label :to_id %><br />
-    <%= f.text_field :to_id %>
+    <%= select 'person_relation', 'to_id', Person.all.collect{|p| [p.email, p.id]}%>
   </div>
+
   <div class="field">
     <%= f.label :relation_status_code %><br />
-    <%= f.text_field :relation_status_code %>
+    <%= select 'person_relation', 'relation_status_code', ['Friend', 'WaitingForHim', 'Rejected'].collect{|status| [status, status]}%>
+  </div>
+
+  <div class="field">
+    <%= f.label :rejected_on %><br />
+    <%= f.text_field :rejected_on, :class => 'datetime-picker'%>
   </div>
   <div class="actions">
     <%= f.submit %>

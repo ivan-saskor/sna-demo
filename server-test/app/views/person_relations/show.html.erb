@@ -2,17 +2,22 @@
 
 <p>
   <b>From:</b>
-  <%= @person_relation.from_id %>
+  <%= @person_relation.from.email %>
 </p>
 
 <p>
   <b>To:</b>
-  <%= @person_relation.to_id %>
+  <%= @person_relation.to.email %>
 </p>
 
 <p>
   <b>Relation status code:</b>
   <%= @person_relation.relation_status_code %>
+</p>
+
+<p>
+  <b>Rejected on:</b>
+  <%= @person_relation.rejected_on %>
 </p>
 
 

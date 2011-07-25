@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110720215604) do
+ActiveRecord::Schema.define(:version => 20110724210204) do
 
   create_table "messages", :force => true do |t|
     t.string   "text"
@@ -30,6 +30,20 @@ ActiveRecord::Schema.define(:version => 20110720215604) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password"
+    t.string   "visibility_status"
+    t.string   "gravatar_code"
+    t.datetime "born_on"
+    t.string   "gender"
+    t.boolean  "looking_for_genders_male"
+    t.boolean  "looking_for_genders_female"
+    t.boolean  "looking_for_genders_other"
+    t.string   "description"
+    t.string   "occupation"
+    t.string   "hobby"
+    t.string   "main_location"
+    t.decimal  "last_known_location_latitude"
+    t.decimal  "last_known_location_longitude"
+    t.datetime "offline_since"
   end
 
   create_table "person_relations", :force => true do |t|
@@ -38,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20110720215604) do
     t.string   "relation_status_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "rejected_on"
   end
 
 end

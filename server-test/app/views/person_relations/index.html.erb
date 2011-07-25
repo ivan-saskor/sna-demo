@@ -5,6 +5,7 @@
     <th>From</th>
     <th>To</th>
     <th>Relation status code</th>
+    <th>Rejected on</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +13,10 @@
 
 <% @person_relations.each do |person_relation| %>
   <tr>
-    <td><%= person_relation.from_id %></td>
-    <td><%= person_relation.to_id %></td>
+    <td><%= person_relation.from.email %></td>
+    <td><%= person_relation.to.email %></td>
     <td><%= person_relation.relation_status_code %></td>
+    <td><%= person_relation.rejected_on %></td>
     <td><%= link_to 'Show', person_relation %></td>
     <td><%= link_to 'Edit', edit_person_relation_path(person_relation) %></td>
     <td><%= link_to 'Destroy', person_relation, :confirm => 'Are you sure?', :method => :delete %></td>
