@@ -1,3 +1,5 @@
+// NOTE: There should be no JSON field if value is null or empty
+
 enum FriendshipStatus
 {
     Self,
@@ -22,42 +24,42 @@ enum VisibilityStatus
 }
 class Location
 {
-    Decimal[3.4] Longitude;                             // must be: NotNull and InRange(-180.0000, +180.0000)
-    Decimal[2.4] Latitude;                              // must be: NotNull and InRange( -90.0000,  +90.0000)
+    Decimal[3.4] Longitude;                     //                  must be: NotNull and InRange(-180.0000, +180.0000)
+    Decimal[2.4] Latitude;                      //                  must be: NotNull and InRange( -90.0000,  +90.0000)
 }
 class Person
 {
-                String              Email;              //                  must be: NotNull and NotEmpty                           // Must be: unique in database
-                String              Password;           //                  must be: NotNull and NotEmpty
+    string              Email;                  //                  must be: NotNull and NotEmpty                           // Must be: unique in database
+    string              Password;               //                  must be: NotNull and NotEmpty
 
-                VisibilityStatus    VisibilityStatus;   //                  must be: NotNull and (notEqual(Invisible) if this != currentUser)
-                                                        //                                   and (notEqual(Offline)   it this == currentUser)
-    calculated  Datetime            OfflineSince;       // can be: Null     must be: (Null    if this.VisibilityStatus == Offline)
-                                                        //                       and (NotNull if this.VisibilityStatus != Offline)
+    VisibilityStatus    VisibilityStatus;       //                  must be: NotNull and (notEqual(Invisible) if this != currentUser)
+                                                //                                   and (notEqual(Offline)   it this == currentUser)
+    datetime            OfflineSince;           // can be: Null     must be: (Null    if this.VisibilityStatus == Offline)
+                                                //                       and (NotNull if this.VisibilityStatus != Offline)
 
-    calculated  FriendshipStatus    FriendshipStatus;   //                  must be: NotNull and (   equal(Self) if this == currentUser)
-                                                        //                                   and (notEqual(Self) if this != currentUser)
-    calculated  datetime            RejectedOn;         // can be: Null     must be: (Null    if this.FriendshipStatus == Rejected)
-                                                        //                       and (NotNull if this.FriendshipStatus != Rejected)
+    FriendshipStatus    FriendshipStatus;       //                  must be: NotNull and (   equal(Self) if this == currentUser)
+                                                //                                   and (notEqual(Self) if this != currentUser)
+    datetime            RejectedOn;             // can be: Null     must be: (Null    if this.FriendshipStatus == Rejected)
+                                                //                       and (NotNull if this.FriendshipStatus != Rejected)
     
-                string              Nick;               //                  must be: NotNull and NotEmpty
-                string              Mood;               // can be: Empty    must be: NotNull
-                string              GravatarCode;       // can be: Null     must be: Null or NotEmpty
+    string              Nick;                   //                  must be: NotNull and NotEmpty
+    string              Mood;                   // can be: Empty    must be: NotNull
+    string              GravatarCode;           // can be: Null     must be: Null or NotEmpty
 
-                date                BornOn;             // can be: Null
-                Gender              Gender;             // can be: Null
-                Gender[]            LookingForGenders;  // can be: Empty    must be: NotNull                                        // JSON must be null if empty
+    date                BornOn;                 // can be: Null
+    Gender              Gender;                 // can be: Null
+    Gender[]            LookingForGenders;      // can be: Empty    must be: NotNull
 
-                string              Phone;              // can be: Empty    must be: NotNull
-                string              Description;        // can be: Empty    must be: NotNull
-                string              Ocupation;          // can be: Empty    must be: NotNull
-                string              Hoby;               // can be: Empty    must be: NotNull
-                string              MainLocation;       // can be: Empty    must be: NotNull
+    string              Phone;                  // can be: Empty    must be: NotNull
+    string              Description;            // can be: Empty    must be: NotNull
+    string              Ocupation;              // can be: Empty    must be: NotNull
+    string              Hoby;                   // can be: Empty    must be: NotNull
+    string              MainLocation;           // can be: Empty    must be: NotNull
 
-                Location            LastKnownLocation;  // can be: Null
-    calculated  integer             DistanceInMeters;   // can be: Null     must be: (Null                    if this.LastKnownLocation == NULL or  currentUser.LastKnownLocation == NULL)
-                                                        //                       and (NotNull                 if this.LastKnownLocation != NULL and currentUser.LastKnownLocation != NULL)
-                                                        //                       and (GreaterThanOrEqualTo(0) if NotNull)
+    Location            LastKnownLocation;      // can be: Null
+    integer             DistanceInMeters;       // can be: Null     must be: (Null                    if this.LastKnownLocation == NULL or  currentUser.LastKnownLocation == NULL)
+                                                //                       and (NotNull                 if this.LastKnownLocation != NULL and currentUser.LastKnownLocation != NULL)
+                                                //                       and (GreaterThanOrEqualTo(0) if NotNull)
 }
 
 class Profile // Constraints are defined in class Person
@@ -95,14 +97,14 @@ class Message
 
 class Data
 {
-    string[]            NearbyPersonsEmails;    // must be: NotNull
+    string[]            NearbyPersonsEmails;    //                  must be: NotNull
 
-    Person[]            Persons;                // must be: NotNull and NotEmpty
-    Message[]           Messages;               // must be: NotNull
+    Person[]            Persons;                //                  must be: NotNull and NotEmpty
+    Message[]           Messages;               //                  must be: NotNull
 }
 class DataWithMessageIdentifier extends ApiData
 {
-    string              MessageId;              // must be: NotNull and NotEmpty    // Must be: unique in database
+    string              MessageId;              //                  must be: NotNull and NotEmpty    // Must be: unique in database
 }
 
 class Service
