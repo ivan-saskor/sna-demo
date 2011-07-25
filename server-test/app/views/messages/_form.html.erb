@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
+  <p>
+    <b>Id:</b>
+    <%= @message.id %>
+  </p>
   <div class="field">
     <%= f.label :text %><br />
     <%= f.text_field :text %>
@@ -25,11 +29,11 @@
   </div>
   <div class="field">
     <%= f.label :sent_on %><br />
-    <%= f.datetime_select :sent_on %>
+    <%= f.text_field :sent_on, :class => 'datetime-picker'%>
   </div>
   <div class="field">
     <%= f.label :read_on %><br />
-    <%= f.datetime_select :read_on %>
+    <%= f.text_field :read_on, :class => 'datetime-picker'%>
   </div>
   <div class="actions">
     <%= f.submit %>

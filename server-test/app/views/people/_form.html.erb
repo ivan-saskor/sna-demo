@@ -12,6 +12,22 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :visibility_status %><br />
+    <%= select 'person', 'visibility_status', ['Invisible', 'Offline', 'Online', 'ContactMe'].collect{|status| [status, status]}%>
+  </div>
+  <div class="field">
+    <%= f.label :offline_since %><br />
+    <%= f.text_field :offline_since, :class => 'datetime-picker'%>
+  </div>
+  <div class="field">
     <%= f.label :nick %><br />
     <%= f.text_field :nick %>
   </div>
@@ -20,17 +36,10 @@
     <%= f.text_field :mood %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
     <%= f.label :phone %><br />
     <%= f.text_field :phone %>
   </div>
- <div class="field">
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
-  </div>
+ 
   <div class="actions">
     <%= f.submit %>
   </div>

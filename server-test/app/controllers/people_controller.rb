@@ -96,10 +96,10 @@ class PeopleController < ApplicationController
   end
 
   def add_rejected
-    add_relation 'Rejected', params[:id], params[:id2], params[:id]
+    add_relation 'Rejected', params[:id], params[:id2], params[:id], params[:rejected_on]
   end
   
-  def add_relation relation_status, id, id2, id_to_show
+  def add_relation relation_status, id, id2, id_to_show, rejected_on=nil
     @person_to_show = Person.find(id_to_show)
     @person = Person.find(id)
     @person_relation = PersonRelation.new
@@ -107,6 +107,7 @@ class PeopleController < ApplicationController
     @person_relation.from = @person
     @person_relation.to = Person.find(id2)
     @person_relation.relation_status_code = relation_status
+    @person_relation.rejected_on = rejected_on
 
     respond_to do |format|
       if @person_relation.save

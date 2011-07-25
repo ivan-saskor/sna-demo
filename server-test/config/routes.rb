@@ -5,7 +5,7 @@ SnaTest::Application.routes.draw do
 
   resources :people
 
-  match 'api/data/' => 'api#get_data'
+  match 'api/data/' => 'api#get_data', :via => :get
 
   match 'api/profile/' => 'api#register_profile', :via => :post
   
