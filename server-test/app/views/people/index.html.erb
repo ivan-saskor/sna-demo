@@ -10,6 +10,10 @@
     <th>Phone</th>
     <th>Nick</th>
     <th>Mood</th>
+    <th>Description</th>
+    <th>Occupation</th>
+    <th>Hobby</th>
+    <th>Main location</th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,9 +26,13 @@
     <td><%= person.visibility_status %></td>
     <td><%= person.offline_since %></td>
     <td><%= person.validation_errors %></td>
+    <td><%= person.phone %></td>
     <td><%= person.nick %></td>
     <td><%= person.mood %></td>
-    <td><%= person.phone %></td>
+    <td><%= person.description %></td>
+    <td><%= person.occupation %></td>
+    <td><%= person.hobby %></td>
+    <td><%= person.main_location %></td>
     <td><%= link_to 'Show', person %></td>
     <td><%= link_to 'Edit', edit_person_path(person) %></td>
     <td><%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>
