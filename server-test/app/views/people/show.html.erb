@@ -139,7 +139,7 @@
           </li>
         <% end %>
       </ul>
-      <select onchange="location = this.options[this.selectedIndex].value + '?rejected_on=' + ($('rejected-on-textbox').value != '' ? $('rejected-on-textbox').value : dateFormat('isoDateTime'));">
+      <select onchange="location = this.options[this.selectedIndex].value + '?rejected_on=' + (jQuery('rejected-on-textbox').value != '' ? jQuery('rejected-on-textbox').value : dateFormat('isoDateTime'));">
         <option>Add...</option>
         <% @person.aliens.each do |person| %>
           <option value="<%= add_rejected_path(@person, person) %>"><%= person.nick %></option>
