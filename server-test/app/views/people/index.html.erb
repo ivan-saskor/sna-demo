@@ -6,14 +6,19 @@
     <th>Password</th>
     <th>Visibility status</th>
     <th>Offline since</th>
-    <th>Validation errors</th>
-    <th>Phone</th>
     <th>Nick</th>
     <th>Mood</th>
+    <th>Gravatar code</th>
+    <th>Born on</th>
+    <th>Gender</th>
+    <th>Looking for genders</th>
+    <th>Phone</th>
     <th>Description</th>
     <th>Occupation</th>
     <th>Hobby</th>
     <th>Main location</th>
+    <th>Last known location</th>
+    <th>Validation errors</th>
     <th></th>
     <th></th>
     <th></th>
@@ -25,14 +30,19 @@
     <td><%= person.password %></td>
     <td><%= person.visibility_status %></td>
     <td><%= person.offline_since %></td>
-    <td><%= person.validation_errors %></td>
-    <td><%= person.phone %></td>
     <td><%= person.nick %></td>
     <td><%= person.mood %></td>
+    <td><%= person.gravatar_code %></td>
+    <td><%= person.born_on %></td>
+    <td><%= person.gender %></td>
+    <td><%= person.looking_for_genders.join(' ') %></td>
+    <td><%= person.phone %></td>
     <td><%= person.description %></td>
     <td><%= person.occupation %></td>
     <td><%= person.hobby %></td>
     <td><%= person.main_location %></td>
+    <td><%= person.last_known_location_to_s %></td>
+    <td><%= person.validation_errors %></td>
     <td><%= link_to 'Show', person %></td>
     <td><%= link_to 'Edit', edit_person_path(person) %></td>
     <td><%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>

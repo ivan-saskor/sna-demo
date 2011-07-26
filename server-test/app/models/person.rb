@@ -20,6 +20,16 @@ class Person < ActiveRecord::Base
     return filter_persons 'WaitingForMe'
   end
 
+  def last_known_location
+    throw "Invalid last known location" unless self.last_known_location_latitude.nil? == self.last_known_location_longitude.nil?
+    
+    return self.last_known_location_latitude.nil? ? nil : {:latitude => self.last_known_location_latitude, :longitude => self.last_known_location_longitude}
+  end
+
+  def last_known_location_to_s
+    return self.last_known_location.nil? ? '' : "(#{self.last_known_location_latitude}, #{self.last_known_location_longitude})"
+  end
+
   def rejected_persons
     return filter_persons 'Rejected'
   end
@@ -56,7 +66,28 @@ class Person < ActiveRecord::Base
   def find_rejected_on person
     return person.find_normalized_relation(self).nil? ? nil : person.find_normalized_relation(self)[:rejected_on]
   end
-  
+
+  def calculate_distance lat_1, lng_1, lat_2, lng_2
+    r = 6371
+    d_lat = (lat_2 - lat_1)/180 * Math::PI
+    d_lng = (lng_2 - lng_1)/180 * Math::PI
+    lat_1 = lat_1/180 * Math::PI
+    lat_2 = lat_2/180 * Math::PI
+
+    a = Math::sin(d_lat/2) * Math::sin(d_lat/2) +
+        Math::sin(d_lng/2) * Math::sin(d_lng/2) * Math::cos(lat_1) * Math::cos(lat_2);
+    c = 2 * Math::atan2(Math.sqrt(a), Math::sqrt(1-a));
+    d = r * c;
+    return d.round
+  end
+
+  def find_distance_from person
+    return 0 if person == self
+    return nil if person.last_known_location.nil? || self.last_known_location.nil?
+    
+    return calculate_distance person.last_known_location_latitude, person.last_known_location_longitude, self.last_known_location_latitude, self.last_known_location_longitude
+  end
+
   def normalized_relations
     results = []
     self.to_relations.each { |r| results << normalize_relation(r) }
@@ -98,23 +129,28 @@ class Person < ActiveRecord::Base
   def validation_errors
     person = self
     result = []
+    #throw person.gender
     
-    result << "Invalid email" unless !person.email.nil? && !person.email.empty?
-    result << "Invalid password" unless !person.password.nil? && !person.password.empty?
-    result << "Invalid visibility status" unless ['Invisible', 'Offline', 'Online', 'ContactMe'].include?(person.visibility_status)
-    result << "Invalid OfflineSince" unless (!person.offline_since.nil? && (person.visibility_status == 'Offline' || person.visibility_status == 'Invisible')) ||
-                                        (person.offline_since.nil? && person.visibility_status != 'Offline' && person.visibility_status != 'Invisible')
-    result << "Invalid nick" unless !person.nick.nil? && !person.nick.empty?
-    result << "Invalid mood" unless !person.mood.nil?
-    result << "Invalid gravatar code" unless person.gravatar_code.nil? || !person.gravatar_code.empty?
-    result << "Invalid born on" unless person.born_on.nil? || !person.born_on.empty?
-    result << "Invalid gender" unless person.gender.nil? || ['Male', 'Female', 'Other'].include?(person.gender)
+    result << "Invalid email"               unless !person.email.nil? && !person.email.empty?
+    result << "Invalid password"            unless !person.password.nil? && !person.password.empty?
+    result << "Invalid visibility status"   unless ['Invisible', 'Offline', 'Online', 'ContactMe'].include?(person.visibility_status)
+    result << "Invalid offline since"       unless person.offline_since.nil? || person.offline_since.acts_like?(:time)
+    result << "Invalid offline since"       unless (!person.offline_since.nil? && (person.visibility_status == 'Offline' || person.visibility_status == 'Invisible')) ||
+                                                    (person.offline_since.nil? && person.visibility_status != 'Offline' && person.visibility_status != 'Invisible')
+    result << "Invalid nick"                unless !person.nick.nil? && !person.nick.empty?
+    result << "Invalid mood"                unless !person.mood.nil?
+    result << "Invalid gravatar code"       unless person.gravatar_code.nil? || !person.gravatar_code.empty?
+    result << "Invalid born on"             unless person.born_on.nil? || person.born_on.acts_like?(:date)
+    result << "Invalid gender"              unless person.gender.nil? || ['Male', 'Female', 'Other'].include?(person.gender)
     result << "Invalid looking for genders" unless !person.looking_for_genders.nil? && person.looking_for_genders.all? {|g| ['Male', 'Female', 'Other'].include?(g)}
-    result << "Invalid phone" unless !person.phone.nil?
-    result << "Invalid description" unless !person.description.nil?
-    result << "Invalid ocupation" unless !person.occupation.nil?
-    result << "Invalid hobby" unless !person.hobby.nil?
-    result << "Invalid main location" unless !person.main_location.nil?
+    result << "Invalid phone"               unless !person.phone.nil?
+    result << "Invalid description"         unless !person.description.nil?
+    result << "Invalid ocupation"           unless !person.occupation.nil?
+    result << "Invalid hobby"               unless !person.hobby.nil?
+    result << "Invalid main location"       unless !person.main_location.nil?
+    result << "Invalid last known location" unless person.last_known_location_latitude.nil? == person.last_known_location_longitude.nil?
+    result << "Invalid last known location latitude" unless person.last_known_location_latitude.nil? || person.last_known_location_latitude >= -90 && person.last_known_location_latitude <= 90 && person.last_known_location_latitude == person.last_known_location_latitude.round(4)
+    result << "Invalid last known location longitude" unless person.last_known_location_longitude.nil? || person.last_known_location_longitude >= -180 && person.last_known_location_longitude <= 180 && person.last_known_location_longitude == person.last_known_location_longitude.round(4)
 
     return result
   end
@@ -132,6 +168,9 @@ class Person < ActiveRecord::Base
 
     result << "Invalid Rejected_on" unless (!rejected_on.nil? && friendship_status == 'Rejected') ||
                                         (rejected_on.nil? && friendship_status != 'Rejected')
+
+    result << "Invalid distance" unless current_user.find_distance_from(self).nil? || current_user.find_distance_from(self) >= 0
+    
     return result
   end
 end
