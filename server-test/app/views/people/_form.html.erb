@@ -36,12 +36,30 @@
     <%= f.text_field :mood %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.label :gravatar_code %><br />
+    <%= f.text_field :gravatar_code %>
+  </div>
+  <div class="field">
+    <%= f.label :born_on %><br />
+    <%= f.text_field :born_on, :class => 'date-picker'%>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= select 'person', 'gender', ['Male', 'Female', 'Other'].collect{|g| [g, g]}, :include_blank => true %>
+  </div>
+  <div class="field">
+    <%= f.label :looking_for_genders %><br />
+    <%= f.check_box :looking_for_genders_male %> Male
+    <%= f.check_box :looking_for_genders_female %> Female
+    <%= f.check_box :looking_for_genders_other %> Other
   </div>
   <div class="field">
     <%= f.label :phone %><br />
     <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
   </div>
   <div class="field">
     <%= f.label :occupation %><br />
@@ -54,6 +72,11 @@
   <div class="field">
     <%= f.label :main_location %><br />
     <%= f.text_field :main_location %>
+  </div>
+  <div class="field">
+    <%= f.label :last_known_location %><br />
+    Latitude: <%= f.text_field :last_known_location_latitude %> <br />
+    Longitude: <%= f.text_field :last_known_location_longitude %>
   </div>
  
   <div class="actions">

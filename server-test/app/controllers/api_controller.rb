@@ -11,7 +11,7 @@ class ApiController < ApplicationController
     render :text => 'bad profile', :status=> :bad_request if params['profileJson'].blank?
     
 
-    profile.from_json(params['profile'])
+    profile = params['profile'].from_json
     
     render :text => 'abc', :status => :created
   end
@@ -22,7 +22,7 @@ class ApiController < ApplicationController
 
   private
   def create_data
-    nearby_persons = Person.all.select{|p| p != @current_user}
+    nearby_persons = order_by_relevance(Person.all.select{|p| p != @current_user}).take(50)
     persons = ([@current_user] + 
                 @current_user.friends +
                 @current_user.persons_waiting_for_me +
@@ -38,23 +38,27 @@ class ApiController < ApplicationController
     }
   end
 
+  def create_data_with_message_id message
+    data = create_data
+    data['MessageId'] = message.id.to_s
+    return data
+  end
+
+  def order_by_relevance persons
+    x = persons.collect{|p| {:person => p, :relevance => calculate_relevance_using_distance(@current_user, p)}}
+    y = x.sort { |a, b| a[:relevance] <=> b[:relevance] }
+
+    return y.collect{|p| p[:person]}
+  end
+
+  def calculate_relevance_using_distance person_1, person_2
+    return person_2.find_distance_from(person_1).nil? ? person_1.calculate_distance(-90, 0, 90, 0) : person_2.find_distance_from(person_1)
+  end
+
   def format_person person
     throw person.api_validation_errors(@current_user) unless person.api_validation_errors(@current_user).empty?
-=begin
-    formated_person = {
-      'Email' => person.email,
-      'Password' => person.password,
-      'VisibilityStatus' => person.visibility_status == 'Invisible' && person != @current_user ? 'Offline' : person.visibility_status,
-
-      'FriendshipStatus' => person.find_friendship_status(@current_user),
-      'RejectedOn' => 'person',
-      'Nick' => person.nick,
-      'Mood' => person.mood,
-      'Phone' => person.phone
-      }
-=end
+    
     formated_person = {}
-
     formated_person['Email'] = person.email
     formated_person['Password'] = person.password
     formated_person['VisibilityStatus'] = person.visibility_status == 'Invisible' && person != @current_user ? 'Offline' : person.visibility_status
@@ -62,20 +66,26 @@ class ApiController < ApplicationController
     formated_person['FriendshipStatus'] = @current_user.find_friendship_status(person)
     formated_person['RejectedOn'] = @current_user.find_rejected_on(person) unless @current_user.find_rejected_on(person).nil?
     formated_person['Nick'] = person.nick
-    formated_person['Mood'] = person.mood
+    formated_person['Mood'] = person.mood unless person.mood.empty?
     formated_person['GravatarCode'] = person.gravatar_code unless person.gravatar_code.nil?
-    formated_person['BornOn'] = person.born_on unless person.gender.nil?
+    formated_person['BornOn'] = person.born_on unless person.born_on.nil?
     formated_person['Gender'] = person.gender unless person.gender.nil?
     formated_person['LookingForGenders'] = person.looking_for_genders unless person.looking_for_genders.empty?
-    formated_person['Phone'] = person.phone
-    formated_person['Description'] = person.description
-    formated_person['Occupation'] = person.occupation
-    formated_person['Hobby'] = person.hobby
-    formated_person['MainLocation'] = person.main_location
+    formated_person['Phone'] = person.phone unless person.phone.empty?
+    formated_person['Description'] = person.description unless person.description.empty?
+    formated_person['Occupation'] = person.occupation unless person.occupation.empty?
+    formated_person['Hobby'] = person.hobby unless person.hobby.empty?
+    formated_person['MainLocation'] = person.main_location unless person.main_location.empty?
+    formated_person['LastKnownLocation'] = format_location(person.last_known_location) unless person.last_known_location.nil?
+    formated_person['DistanceInMeters'] = @current_user.find_distance_from(person) unless @current_user.find_distance_from(person).nil?
 
     return formated_person
   end
 
+  def format_location location
+    return {'Latitude' => location[:latitude], 'Longitude' => location[:longitude]}
+  end
+  
   def format_persons persons
     results = []
     persons.each { |p| results << format_person(p) }

@@ -4,8 +4,10 @@
 
   <title>SnaTest</title>
   
-  <%= stylesheet_link_tag :all 'ui-lightness/jquery-ui-1.8.14.custom', 'application' %>
-  
+  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag 'ui-lightness/jquery-ui-1.8.14.custom' %>
+  <%= stylesheet_link_tag 'custom' %>
+
   <%= javascript_include_tag 'prototype', 'jquery-1.6.2.min', 'jquery-ui-1.8.14.custom.min', 'jquery-ui-timepicker-addon', 'date.format', :defaults %>
   
   <%= csrf_meta_tag %>

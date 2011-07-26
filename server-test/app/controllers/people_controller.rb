@@ -43,9 +43,12 @@ class PeopleController < ApplicationController
   # POST /people.xml
   def create
     @person = Person.new(params[:person])
-
+    
     respond_to do |format|
       if @person.save
+        @person.gender = nil if @person.gender.empty?
+        @person.gravatar_code = nil if @person.gravatar_code.empty?
+        @person.save
         format.html { redirect_to(@person, :notice => 'Person was successfully created.') }
         format.xml  { render :xml => @person, :status => :created, :location => @person }
       else
@@ -62,6 +65,9 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
+        @person.gender = nil if @person.gender.empty?
+        @person.gravatar_code = nil if @person.gravatar_code.empty?
+        @person.save
         format.html { redirect_to(@person, :notice => 'Person was successfully updated.') }
         format.xml  { head :ok }
       else
