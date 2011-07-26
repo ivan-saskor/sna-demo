@@ -111,8 +111,8 @@ class Service
 {
     Data                        GetData()                                                   // GET  /api/data
     
-    Data                        RegisterProfile     (Profile profile)                       // POST /api/profile + profileJson
-    Data                        UpdateProfile       (Profile profile)                       // PUT  /api/profile + profileJson
+    Data                        RegisterProfile     (Profile profileJson)                   // POST /api/profile + profileJson
+    Data                        UpdateProfile       (Profile profileJson)                   // PUT  /api/profile + profileJson
 
     DataWithMessageIdentifier   RequestFriendship   (string personEmail, string message)    // POST /api/persons/{personEmail}/request-friendship + message
     DataWithMessageIdentifier   RejectFriendship    (string personEmail, string message)    // POST /api/persons/{personEmail}/reject-friendship  + message
