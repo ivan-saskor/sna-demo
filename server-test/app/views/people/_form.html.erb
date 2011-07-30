@@ -24,8 +24,8 @@
     <%= select 'person', 'visibility_status', ['Invisible', 'Offline', 'Online', 'ContactMe'].collect{|status| [status, status]}%>
   </div>
   <div class="field">
-    <%= f.label :offline_since %><br />
-    <%= f.text_field :offline_since, :class => 'datetime-picker'%>
+    <%= f.label :last_activity_on %><br />
+    <%= f.text_field :last_activity_on, :class => 'datetime-picker'%>
   </div>
   <div class="field">
     <%= f.label :nick %><br />

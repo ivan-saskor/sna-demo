@@ -4,6 +4,16 @@ class Person < ActiveRecord::Base
   has_many :to_relations, :class_name => 'PersonRelation', :foreign_key => 'to_id'
   has_many :from_relations, :class_name => 'PersonRelation', :foreign_key => 'from_id'
 
+  after_initialize :default_values
+
+  def offline_since
+    return ['Invisible', 'Offline'].include?(self.real_visibility_status) ? self.last_activity_on : nil
+  end
+
+  def real_visibility_status
+    return (self.last_activity_on.advance(:minutes=>5)).past? ? 'Offline' : self.visibility_status
+  end
+  
   def friends
     return filter_persons 'Friend'
   end
@@ -130,25 +140,28 @@ class Person < ActiveRecord::Base
     person = self
     result = []
     #throw person.gender
-    
-    result << "Invalid email"               unless !person.email.nil? && !person.email.empty?
-    result << "Invalid password"            unless !person.password.nil? && !person.password.empty?
-    result << "Invalid visibility status"   unless ['Invisible', 'Offline', 'Online', 'ContactMe'].include?(person.visibility_status)
-    result << "Invalid offline since"       unless person.offline_since.nil? || person.offline_since.acts_like?(:time)
-    result << "Invalid offline since"       unless (!person.offline_since.nil? && (person.visibility_status == 'Offline' || person.visibility_status == 'Invisible')) ||
-                                                    (person.offline_since.nil? && person.visibility_status != 'Offline' && person.visibility_status != 'Invisible')
-    result << "Invalid nick"                unless !person.nick.nil? && !person.nick.empty?
-    result << "Invalid mood"                unless !person.mood.nil?
-    result << "Invalid gravatar code"       unless person.gravatar_code.nil? || !person.gravatar_code.empty?
-    result << "Invalid born on"             unless person.born_on.nil? || person.born_on.acts_like?(:date)
-    result << "Invalid gender"              unless person.gender.nil? || ['Male', 'Female', 'Other'].include?(person.gender)
-    result << "Invalid looking for genders" unless !person.looking_for_genders.nil? && person.looking_for_genders.all? {|g| ['Male', 'Female', 'Other'].include?(g)}
-    result << "Invalid phone"               unless !person.phone.nil?
-    result << "Invalid description"         unless !person.description.nil?
-    result << "Invalid ocupation"           unless !person.occupation.nil?
-    result << "Invalid hobby"               unless !person.hobby.nil?
-    result << "Invalid main location"       unless !person.main_location.nil?
-    result << "Invalid last known location" unless person.last_known_location_latitude.nil? == person.last_known_location_longitude.nil?
+
+
+    result << "Invalid email"                   unless !person.email.nil? && !person.email.empty?
+    result << "Invalid password"                unless !person.password.nil? && !person.password.empty?
+    result << "Invalid visibility status"       unless ['Invisible', 'Online', 'ContactMe'].include?(person.visibility_status)
+    result << "Invalid real visibility status"  unless person.real_visibility_status == 'Offline' || person.real_visibility_status == person.visibility_status
+    result << "Invalid last activity on"        unless person.last_activity_on.acts_like?(:time)
+    result << "Invalid offline since"           unless person.offline_since.nil? || person.offline_since == person.last_activity_on
+    result << "Invalid offline since"           unless (!person.offline_since.nil? && (person.real_visibility_status == 'Offline' || person.real_visibility_status == 'Invisible')) ||
+                                                    (person.offline_since.nil? && person.real_visibility_status != 'Offline' && person.real_visibility_status != 'Invisible')
+    result << "Invalid nick"                    unless !person.nick.nil? && !person.nick.empty?
+    result << "Invalid mood"                    unless !person.mood.nil?
+    result << "Invalid gravatar code"           unless person.gravatar_code.nil? || !person.gravatar_code.empty?
+    result << "Invalid born on"                 unless person.born_on.nil? || person.born_on.acts_like?(:date)
+    result << "Invalid gender"                  unless person.gender.nil? || ['Male', 'Female', 'Other'].include?(person.gender)
+    result << "Invalid looking for genders"     unless !person.looking_for_genders.nil? && person.looking_for_genders.all? {|g| ['Male', 'Female', 'Other'].include?(g)}
+    result << "Invalid phone"                   unless !person.phone.nil?
+    result << "Invalid description"             unless !person.description.nil?
+    result << "Invalid ocupation"               unless !person.occupation.nil?
+    result << "Invalid hobby"                   unless !person.hobby.nil?
+    result << "Invalid main location"           unless !person.main_location.nil?
+    result << "Invalid last known location"     unless person.last_known_location_latitude.nil? == person.last_known_location_longitude.nil?
     result << "Invalid last known location latitude" unless person.last_known_location_latitude.nil? || person.last_known_location_latitude >= -90 && person.last_known_location_latitude <= 90 && person.last_known_location_latitude == person.last_known_location_latitude.round(4)
     result << "Invalid last known location longitude" unless person.last_known_location_longitude.nil? || person.last_known_location_longitude >= -180 && person.last_known_location_longitude <= 180 && person.last_known_location_longitude == person.last_known_location_longitude.round(4)
 
@@ -172,5 +185,16 @@ class Person < ActiveRecord::Base
     result << "Invalid distance" unless current_user.find_distance_from(self).nil? || current_user.find_distance_from(self) >= 0
     
     return result
+  end
+
+  private
+  def default_values
+    self.last_activity_on ||= DateTime.now
+    self.mood ||= ''
+    self.phone ||= ''
+    self.description ||= ''
+    self.occupation ||= ''
+    self.hobby ||= ''
+    self.main_location ||= ''
   end
 end

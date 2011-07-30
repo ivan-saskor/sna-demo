@@ -1,19 +1,56 @@
 include ApiHelper
 
 class ApiController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate, :except => [:register_profile]
 
   def get_data
     render :json => create_data.to_json
   end
 
   def register_profile
-    render :text => 'bad profile', :status=> :bad_request if params['profileJson'].blank?
-    
+    render :json => {'ErrorCode' => 102, 'ErrorMessage' => 'Invalid parameter: profileJson'}, :status => :bad_request if params['profileJson'].blank?
 
-    profile = params['profile'].from_json
+    begin
+      json_profile = JSON.parse(params['profileJson'])
+    rescue
+      render :json => {'ErrorCode' => 102, 'ErrorMessage' => 'Invalid parameter: profileJson'}, :status => 	:unprocessable_entity
+      return
+    end
+
+    person = Person.new
+
+    person.email = json_profile['Email'] if json_profile['Email']
+    person.password = json_profile['Password'] if json_profile['Password']
+    person.visibility_status = json_profile['VisibilityStatus'] if json_profile['VisibilityStatus']
+    person.nick = json_profile['Nick'] if json_profile['Nick']
+    person.mood = json_profile['Mood'] if json_profile['Mood']
+    person.gravatar_code = json_profile['GravatarCode'] if json_profile['GravatarCode']
+    person.born_on = json_profile['BornOn'] if json_profile['BornOn']
+    person.gender = json_profile['Gender'] if json_profile['Gender']
+    person.looking_for_genders_female = !json_profile['LookingForGenders'].nil? && json_profile['LookingForGenders'].include?('Female')
+    person.looking_for_genders_male = !json_profile['LookingForGenders'].nil? && json_profile['LookingForGenders'].include?('Male')
+    person.looking_for_genders_other = !json_profile['LookingForGenders'].nil? && json_profile['LookingForGenders'].include?('Other')
+    person.phone = json_profile['Phone'] if json_profile['Phone']
+    person.description = json_profile['Description'] if json_profile['Description']
+    person.occupation = json_profile['Occupation'] if json_profile['Occupation']
+    person.hobby = json_profile['Hobby'] if json_profile['Hobby']
+    person.main_location = json_profile['MainLocation'] if json_profile['MainLocation']
+    person.last_known_location_latitude = json_profile['LastKnownLocation']['Latitude'] if json_profile['LastKnownLocation']
+    person.last_known_location_longitude = json_profile['LastKnownLocation']['Longitude'] if json_profile['LastKnownLocation']
+
+    if person.validation_errors.count > 0
+      render :json => {'ErrorCode' => 103, 'ErrorMessage' => "Profile validation failed! #{person.validation_errors.inspect}"}, :status => 	:unprocessable_entity
+      return
+    end
     
-    render :text => 'abc', :status => :created
+    begin
+      person.save
+    rescue
+      render :json => {'ErrorCode' => 104, 'ErrorMessage' => 'Unable to save profile'}, :status => 	:internal_server_error
+      return
+    end
+
+    render :json => {'StatusCode' => 201, 'StatusMessage' => 'Profile created'}, :status => :created
   end
 
   def update_profile
@@ -61,7 +98,7 @@ class ApiController < ApplicationController
     formated_person = {}
     formated_person['Email'] = person.email
     formated_person['Password'] = person.password
-    formated_person['VisibilityStatus'] = person.visibility_status == 'Invisible' && person != @current_user ? 'Offline' : person.visibility_status
+    formated_person['VisibilityStatus'] = person.real_visibility_status == 'Invisible' && person != @current_user ? 'Offline' : person.real_visibility_status
     formated_person['OfflineSince'] = person.offline_since unless person.offline_since.nil?
     formated_person['FriendshipStatus'] = @current_user.find_friendship_status(person)
     formated_person['RejectedOn'] = @current_user.find_rejected_on(person) unless @current_user.find_rejected_on(person).nil?
