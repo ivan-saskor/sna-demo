@@ -24,8 +24,8 @@ enum VisibilityStatus
 }
 class Location
 {
-    Decimal[3.4] Longitude;                     //                  must be: NotNull and InRange(-180.0000, +180.0000)
     Decimal[2.4] Latitude;                      //                  must be: NotNull and InRange( -90.0000,  +90.0000)
+    Decimal[3.4] Longitude;                     //                  must be: NotNull and InRange(-180.0000, +180.0000)
 }
 class Person
 {
