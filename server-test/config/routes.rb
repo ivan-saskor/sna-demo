@@ -15,6 +15,10 @@ SnaTest::Application.routes.draw do
 
   match 'api/persons/*person_email/reject-friendship/' => 'api#reject_friendship', :via => :post
 
+  match 'api/messages/*person_email/send-message/' => 'api#send_message', :via => :post
+
+  match 'api/messages/:message_id/mark-as-read/' => 'api#mark_message_read', :via => :put
+
   match 'people/:id/friends' => 'people#friends', :as => :person_friends
 
   match 'people/:id/relations/:id2/remove' => 'people#remove_relation', :as => :remove_relation
@@ -26,7 +30,7 @@ SnaTest::Application.routes.draw do
   match 'people/:id/relations/:id2/add_waiting_for_me' => 'people#add_waiting_for_me', :as => :add_waiting_for_me
 
   match 'people/:id/relations/:id2/add_rejected' => 'people#add_rejected', :as => :add_rejected
-
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

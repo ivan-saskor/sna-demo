@@ -203,11 +203,26 @@ class ApiControllerTest < ActionController::TestCase
   test 'send message' do
     set_credentials
 
-    
+    message_text = 'Hello again'
+    to_person_email = 'six@test.com'
+    to_person = Person.find_by_email(to_person_email)
+    from_person = Person.find_by_email(request.env['HTTP_EMAIL'])
+
+    post(:request_friendship, :person_email => to_person_email, :message => message_text)
+
+    assert_response :ok
+    assert Message.all.select{|m| m.from_id == from_person.id && m.to_id == to_person.id && m.text == message_text}.count == 1
   end
 
   test 'mark message read' do
     set_credentials
+
+    message_id = 3
+
+    put(:mark_message_read, :message_id => message_id)
+    
+    assert_response :ok
+    assert Message.find(message_id).read_on.nil? == false
   end
 
 

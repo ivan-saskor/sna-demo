@@ -20,3 +20,8 @@ six_waiting_for_two:
   from_id: 6
   to_id: 2
   relation_status_code: WaitingForHim
+
+two_friend_with_seven:
+  from_id: 2
+  to_id: 7
+  relation_status_code: Friend

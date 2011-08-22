@@ -51,6 +51,14 @@ six:
   password: six
 #end
 
+friend_with_two:
+  id: 7
+  nick: nick7
+  mood: some mood 7
+  email: seven@test.com
+  phone: 123123
+  password: seven
+
 min_profile:
   visibility_status: Online
   nick: TestNick

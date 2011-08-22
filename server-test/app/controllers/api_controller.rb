@@ -184,6 +184,61 @@ class ApiController < ApplicationController
 
     render :json => {'StatusCode' => 204, 'StatusMessage' => 'Reject friendship request sent'}, :status => :ok
   end
+
+  def send_message
+    if params['message'].blank?
+      render :json => {'ErrorCode' => 102, 'ErrorMessage' => 'Invalid parameter: message'}, :status => :bad_request
+      return
+    end
+
+    if Person.find_by_email(params[:person_email]).nil?
+      render :json => {'ErrorCode' => 110, 'ErrorMessage' => "Email not found: #{params[:person_email]}"}, :status => :unprocessable_entity
+      return
+    end
+
+    to_person = Person.where(:email => params[:person_email])[0]
+
+    if @current_user.find_friendship_status(to_person) == 'Alien' || @current_user.find_friendship_status(to_person) == 'Self'
+      render :json => {'ErrorCode' => 113, 'ErrorMessage' => "Sending message is allowed only to friends"}, :status => :unprocessable_entity
+      return
+    end
+    
+    message = Message.new(:text => params['message'], :from_id => @current_user.id, :to_id => to_person.id, :sent_on => DateTime.now)
+
+    unless message.save
+      render :json => {'ErrorCode' => 109, 'ErrorMessage' => 'Unable to save message'}, :status => :internal_server_error
+      return
+    end
+
+    render :json => {'StatusCode' => 207, 'StatusMessage' => 'Message sent'}, :status => :ok
+  end
+
+  def mark_message_read
+    message = Message.find_by_id(params[:message_id])
+
+    if message.nil?
+      render :json => {'ErrorCode' => 113, 'ErrorMessage' => 'Message not found'}, :status => :unprocessable_entity
+      return
+    end
+
+    unless message.to_id == @current_user.id
+      render :json => {'ErrorCode' => 114, 'ErrorMessage' => 'Permission denied'}, :status => :unprocessable_entity
+      return
+    end
+
+    unless message.read_on.nil?
+      render :json => {'ErrorCode' => 115, 'ErrorMessage' => 'Message already marked as read'}, :status => :unprocessable_entity
+      return
+    end
+
+    message.read_on = DateTime.now
+    unless message.save
+      render :json => {'ErrorCode' => 109, 'ErrorMessage' => 'Unable to save message'}, :status => :internal_server_error
+      return
+    end
+
+    render :json => {'StatusCode' => 208, 'StatusMessage' => 'Message marked as read'}, :status => :ok
+  end
   
   private
   def create_data
