@@ -1,6 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  id: 1
   nick: nick1
   mood: some mood 1
   email: a
@@ -8,8 +9,68 @@ one:
   password: a
 
 two:
+  id: 2
   nick: nick2
   mood: some mood 2
   email: x
   phone: 123231
   password: y
+
+three:
+  id: 3
+  nick: nick3
+  mood: some mood 3
+  email: z@test.com
+  phone: 123231
+  password: z
+
+four:
+  id: 4
+  nick: nick4
+  mood: some mood 4
+  email: four@test.com
+  phone: 123231
+  password: four
+
+#rejected number 2
+five:
+  id: 5
+  nick: nick5
+  mood: some mood 5
+  email: five@test.com
+  phone: 123231
+  password: five
+
+#waiting for friendship confirmation from x
+six:
+  id: 6
+  nick: nick6
+  mood: some mood 6
+  email: six@test.com
+  phone: 123231
+  password: six
+#end
+
+min_profile:
+  visibility_status: Online
+  nick: TestNick
+  email: min_update@test.com
+  password: test1234
+
+max_profile:
+  visibility_status: Online
+  nick: TestNick
+  email: max_update@test.com
+  password: test1234
+  mood: killing time
+  gravatar_code: www.gravatar.com/me
+  born_on: 1984-06-28
+  gender: Male
+  looking_for_genders_female: 1
+  phone: +38521123321
+  description: somebody
+  occupation: software engineer
+  hobby: bikez
+  main_location: Split
+  last_known_location_latitude: 43.5138
+  last_known_location_longitude: 16.4558

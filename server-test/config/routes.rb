@@ -11,6 +11,10 @@ SnaTest::Application.routes.draw do
   
   match 'api/profile/' => 'api#update_profile', :via => :get
 
+  match 'api/persons/*person_email/request-friendship/' => 'api#request_friendship', :via => :post
+
+  match 'api/persons/*person_email/reject-friendship/' => 'api#reject_friendship', :via => :post
+
   match 'people/:id/friends' => 'people#friends', :as => :person_friends
 
   match 'people/:id/relations/:id2/remove' => 'people#remove_relation', :as => :remove_relation

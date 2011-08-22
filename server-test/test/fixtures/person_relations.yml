@@ -1,11 +1,22 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  from_id: 1
+  from_id: 2
   to_id: 1
-  relation_status_code: MyString
+  relation_status_code: WaitingForHim
 
 two:
-  from_id: 1
-  to_id: 1
-  relation_status_code: MyString
+  from_id: 4
+  to_id: 2
+  relation_status_code: WaitingForHim
+
+five_rejected_two:
+  from_id: 2
+  to_id: 5
+  relation_status_code: WaitingForHim
+  rejected_on: 2011-09-20 23:56:04
+
+six_waiting_for_two:
+  from_id: 6
+  to_id: 2
+  relation_status_code: WaitingForHim

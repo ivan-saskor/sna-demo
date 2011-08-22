@@ -66,6 +66,8 @@ class Person < ActiveRecord::Base
   def find_friendship_status person
     self.normalized_relations.each do |r|
         if r[:person] == person
+          return 'Rejected' if r[:rejected_on]
+          
           return r[:friendship_status]
         end
     end
@@ -139,9 +141,7 @@ class Person < ActiveRecord::Base
   def validation_errors
     person = self
     result = []
-    #throw person.gender
-
-
+    
     result << "Invalid email"                   unless !person.email.nil? && !person.email.empty?
     result << "Invalid password"                unless !person.password.nil? && !person.password.empty?
     result << "Invalid visibility status"       unless ['Invisible', 'Online', 'ContactMe'].include?(person.visibility_status)
@@ -164,7 +164,7 @@ class Person < ActiveRecord::Base
     result << "Invalid last known location"     unless person.last_known_location_latitude.nil? == person.last_known_location_longitude.nil?
     result << "Invalid last known location latitude" unless person.last_known_location_latitude.nil? || person.last_known_location_latitude >= -90 && person.last_known_location_latitude <= 90 && person.last_known_location_latitude == person.last_known_location_latitude.round(4)
     result << "Invalid last known location longitude" unless person.last_known_location_longitude.nil? || person.last_known_location_longitude >= -180 && person.last_known_location_longitude <= 180 && person.last_known_location_longitude == person.last_known_location_longitude.round(4)
-
+    
     return result
   end
 
