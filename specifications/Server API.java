@@ -117,7 +117,7 @@ class Service
     DataWithMessageIdentifier   RequestFriendship   (string personEmail, string message)    // POST /api/persons/{personEmail}/request-friendship + message
     DataWithMessageIdentifier   RejectFriendship    (string personEmail, string message)    // POST /api/persons/{personEmail}/reject-friendship  + message
     
-    DataWithMessageIdentifier   SendMessage         (string message)                        // POST /api/messages + message
+    DataWithMessageIdentifier   SendMessage         (string message)                        // POST /api/messages/{personEmail}/send-message + message
     Data                        MarkMessageAsRead   (string messageId)                      // PUT /api/messages/{messageId}/mark-as-read
 }
 
