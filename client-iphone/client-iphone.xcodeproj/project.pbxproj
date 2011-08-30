@@ -1,0 +1,669 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* SnaApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SnaApplicationDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* SnaApplicationMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* SnaApplicationMain.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		DF50691C13E233C4006E2566 /* SnaVisibilityStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = DF50691B13E233C4006E2566 /* SnaVisibilityStatus.m */; };
+		DF506A4413E4CFCE006E2566 /* FxDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF506A4313E4CFCE006E2566 /* FxDumper.m */; };
+		DF506AEC13E4EE7C006E2566 /* FxStringTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DF506AEB13E4EE7C006E2566 /* FxStringTools.m */; };
+		DF506D1F13E768EE006E2566 /* FxEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = DF506D1E13E768EE006E2566 /* FxEnum.m */; };
+		DF506DCD13E7850C006E2566 /* SnaDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = DF506DCC13E7850C006E2566 /* SnaDataService.m */; };
+		DF50716C13EB75B6006E2566 /* SnaLogInPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DF50716B13EB75B6006E2566 /* SnaLogInPage.m */; };
+		DF5071C713EC51BE006E2566 /* FxTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5071C613EC51BE006E2566 /* FxTextFieldTableViewCell.m */; };
+		DF5071CC13EC5262006E2566 /* FxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5071CB13EC5262006E2566 /* FxTableViewController.m */; };
+		DF5071CF13EC53A2006E2566 /* FxPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5071CE13EC53A2006E2566 /* FxPageViewController.m */; };
+		DF50720613EC9629006E2566 /* FxButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF50720513EC9629006E2566 /* FxButtonTableViewCell.m */; };
+		DF50738413ECE18F006E2566 /* FxUiSection.m in Sources */ = {isa = PBXBuildFile; fileRef = DF50738313ECE18F006E2566 /* FxUiSection.m */; };
+		DF50745213ECF500006E2566 /* FxUiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF50745113ECF500006E2566 /* FxUiCell.m */; };
+		DF5074B313EF3DB2006E2566 /* FxUiTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5074B213EF3DB2006E2566 /* FxUiTextFieldCell.m */; };
+		DF5074BE13EF43A0006E2566 /* FxUiButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5074BD13EF43A0006E2566 /* FxUiButtonCell.m */; };
+		DFABA03913E0BE55007E2517 /* SnaPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = DFABA03813E0BE55007E2517 /* SnaPerson.m */; };
+		DFBF918113F1CD9E0092CFB1 /* SnaTableViewPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF918013F1CD9E0092CFB1 /* SnaTableViewPageController.m */; };
+		DFBF926C13F324650092CFB1 /* FxUiTextBlockCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF926B13F324650092CFB1 /* FxUiTextBlockCell.m */; };
+		DFBF927A13F499480092CFB1 /* FxTextBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF927913F499480092CFB1 /* FxTextBlockTableViewCell.m */; };
+		DFBF94F113F7767C0092CFB1 /* SnaNearbyPersonsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF94F013F7767C0092CFB1 /* SnaNearbyPersonsPage.m */; };
+		DFBF960E13F7F0EE0092CFB1 /* FxItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF960D13F7F0EE0092CFB1 /* FxItemTableViewCell.m */; };
+		DFBF961813F7F4C10092CFB1 /* FxUiItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF961713F7F4C10092CFB1 /* FxUiItemCell.m */; };
+		DFBF96EF13F89B320092CFB1 /* UITV-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBF96EC13F89B320092CFB1 /* UITV-Checkmark.png */; };
+		DFBF96F013F89B320092CFB1 /* UITV-DetailDisclosureButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBF96ED13F89B320092CFB1 /* UITV-DetailDisclosureButton.png */; };
+		DFBF96F113F89B320092CFB1 /* UITV-DisclosureIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBF96EE13F89B320092CFB1 /* UITV-DisclosureIndicator.png */; };
+		DFBF972913F952E80092CFB1 /* SnaFriendshipStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF972813F952E80092CFB1 /* SnaFriendshipStatus.m */; };
+		DFBF975313F960BF0092CFB1 /* SnaPersonPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF975213F960BF0092CFB1 /* SnaPersonPage.m */; };
+		DFBF992913FEAC1E0092CFB1 /* SnaProfilePage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF992813FEAC1E0092CFB1 /* SnaProfilePage.m */; };
+		DFBF996D13FEE0AF0092CFB1 /* FxExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF996C13FEE0AF0092CFB1 /* FxExceptions.m */; };
+		DFBF997013FEE2A80092CFB1 /* FxAssert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF996F13FEE2A80092CFB1 /* FxAssert.m */; };
+		DFBF9A3E13FFE5420092CFB1 /* SnaFriendsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF9A3D13FFE5420092CFB1 /* SnaFriendsPage.m */; };
+		DFBF9B6C14068D1A0092CFB1 /* SnaHomePage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF9B6B14068D1A0092CFB1 /* SnaHomePage.m */; };
+		DFBF9BA11406BEAC0092CFB1 /* SnaMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF9BA01406BEAC0092CFB1 /* SnaMessage.m */; };
+		DFBF9C181406F49C0092CFB1 /* SnaMessagesPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF9C171406F49C0092CFB1 /* SnaMessagesPage.m */; };
+		DFBF9C1B1406F6450092CFB1 /* SnaMessagesWithPersonPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF9C1A1406F6450092CFB1 /* SnaMessagesWithPersonPage.m */; };
+		DFBF9C2A140700A30092CFB1 /* SnaMessagePage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF9C29140700A30092CFB1 /* SnaMessagePage.m */; };
+		DFBF9F56140B828E0092CFB1 /* SnaFriendshipRequestsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF9F55140B828E0092CFB1 /* SnaFriendshipRequestsPage.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* SnaApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaApplicationDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* SnaApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaApplicationDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* client-iphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "client-iphone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28A0AAE50D9B0CCF005BE974 /* client_iphone_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client_iphone_Prefix.pch; sourceTree = "<group>"; };
+		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../MainWindow.xib; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = ../RootViewController.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* SnaApplicationMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SnaApplicationMain.m; path = ../SnaApplicationMain.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* client_iphone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "client_iphone-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		DF50691A13E233C4006E2566 /* SnaVisibilityStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaVisibilityStatus.h; sourceTree = "<group>"; };
+		DF50691B13E233C4006E2566 /* SnaVisibilityStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaVisibilityStatus.m; sourceTree = "<group>"; };
+		DF506A4213E4CFCE006E2566 /* FxDumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxDumper.h; sourceTree = "<group>"; };
+		DF506A4313E4CFCE006E2566 /* FxDumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxDumper.m; sourceTree = "<group>"; };
+		DF506AEA13E4EE7C006E2566 /* FxStringTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxStringTools.h; sourceTree = "<group>"; };
+		DF506AEB13E4EE7C006E2566 /* FxStringTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxStringTools.m; sourceTree = "<group>"; };
+		DF506D1D13E768EE006E2566 /* FxEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxEnum.h; sourceTree = "<group>"; };
+		DF506D1E13E768EE006E2566 /* FxEnum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxEnum.m; sourceTree = "<group>"; };
+		DF506D2013E769EE006E2566 /* _Fx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Fx.h; sourceTree = "<group>"; };
+		DF506D7D13E773FA006E2566 /* FxIDumpableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxIDumpableObject.h; sourceTree = "<group>"; };
+		DF506D7E13E7740B006E2566 /* FxIDumpableEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxIDumpableEnum.h; sourceTree = "<group>"; };
+		DF506DCB13E7850C006E2566 /* SnaDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaDataService.h; sourceTree = "<group>"; };
+		DF506DCC13E7850C006E2566 /* SnaDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaDataService.m; sourceTree = "<group>"; };
+		DF506DCE13E785D8006E2566 /* _Domain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Domain.h; sourceTree = "<group>"; };
+		DF506E9E13E881D5006E2566 /* _Services.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Services.h; sourceTree = "<group>"; };
+		DF506EDE13E88E89006E2566 /* _Pages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Pages.h; sourceTree = "<group>"; };
+		DF50716A13EB75B6006E2566 /* SnaLogInPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaLogInPage.h; sourceTree = "<group>"; };
+		DF50716B13EB75B6006E2566 /* SnaLogInPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaLogInPage.m; sourceTree = "<group>"; };
+		DF5071C513EC51BE006E2566 /* FxTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxTextFieldTableViewCell.h; sourceTree = "<group>"; };
+		DF5071C613EC51BE006E2566 /* FxTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxTextFieldTableViewCell.m; sourceTree = "<group>"; };
+		DF5071CA13EC5262006E2566 /* FxTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxTableViewController.h; sourceTree = "<group>"; };
+		DF5071CB13EC5262006E2566 /* FxTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxTableViewController.m; sourceTree = "<group>"; };
+		DF5071CD13EC53A2006E2566 /* FxPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxPageViewController.h; sourceTree = "<group>"; };
+		DF5071CE13EC53A2006E2566 /* FxPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxPageViewController.m; sourceTree = "<group>"; };
+		DF50720413EC9629006E2566 /* FxButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxButtonTableViewCell.h; sourceTree = "<group>"; };
+		DF50720513EC9629006E2566 /* FxButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxButtonTableViewCell.m; sourceTree = "<group>"; };
+		DF50738213ECE18F006E2566 /* FxUiSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxUiSection.h; sourceTree = "<group>"; };
+		DF50738313ECE18F006E2566 /* FxUiSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxUiSection.m; sourceTree = "<group>"; };
+		DF50745013ECF500006E2566 /* FxUiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxUiCell.h; sourceTree = "<group>"; };
+		DF50745113ECF500006E2566 /* FxUiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxUiCell.m; sourceTree = "<group>"; };
+		DF5074B113EF3DB2006E2566 /* FxUiTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxUiTextFieldCell.h; sourceTree = "<group>"; };
+		DF5074B213EF3DB2006E2566 /* FxUiTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxUiTextFieldCell.m; sourceTree = "<group>"; };
+		DF5074BC13EF43A0006E2566 /* FxUiButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxUiButtonCell.h; sourceTree = "<group>"; };
+		DF5074BD13EF43A0006E2566 /* FxUiButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxUiButtonCell.m; sourceTree = "<group>"; };
+		DFABA03713E0BE55007E2517 /* SnaPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaPerson.h; sourceTree = "<group>"; };
+		DFABA03813E0BE55007E2517 /* SnaPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaPerson.m; sourceTree = "<group>"; };
+		DFBF917F13F1CD9E0092CFB1 /* SnaTableViewPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaTableViewPageController.h; sourceTree = "<group>"; };
+		DFBF918013F1CD9E0092CFB1 /* SnaTableViewPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaTableViewPageController.m; sourceTree = "<group>"; };
+		DFBF926A13F324650092CFB1 /* FxUiTextBlockCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxUiTextBlockCell.h; sourceTree = "<group>"; };
+		DFBF926B13F324650092CFB1 /* FxUiTextBlockCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxUiTextBlockCell.m; sourceTree = "<group>"; };
+		DFBF927813F499480092CFB1 /* FxTextBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxTextBlockTableViewCell.h; sourceTree = "<group>"; };
+		DFBF927913F499480092CFB1 /* FxTextBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxTextBlockTableViewCell.m; sourceTree = "<group>"; };
+		DFBF94EF13F7767C0092CFB1 /* SnaNearbyPersonsPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaNearbyPersonsPage.h; sourceTree = "<group>"; };
+		DFBF94F013F7767C0092CFB1 /* SnaNearbyPersonsPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaNearbyPersonsPage.m; sourceTree = "<group>"; };
+		DFBF960C13F7F0EE0092CFB1 /* FxItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxItemTableViewCell.h; sourceTree = "<group>"; };
+		DFBF960D13F7F0EE0092CFB1 /* FxItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxItemTableViewCell.m; sourceTree = "<group>"; };
+		DFBF961613F7F4C10092CFB1 /* FxUiItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxUiItemCell.h; sourceTree = "<group>"; };
+		DFBF961713F7F4C10092CFB1 /* FxUiItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxUiItemCell.m; sourceTree = "<group>"; };
+		DFBF96EC13F89B320092CFB1 /* UITV-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UITV-Checkmark.png"; path = "Resources/UITV-Checkmark.png"; sourceTree = "<group>"; };
+		DFBF96ED13F89B320092CFB1 /* UITV-DetailDisclosureButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UITV-DetailDisclosureButton.png"; path = "Resources/UITV-DetailDisclosureButton.png"; sourceTree = "<group>"; };
+		DFBF96EE13F89B320092CFB1 /* UITV-DisclosureIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UITV-DisclosureIndicator.png"; path = "Resources/UITV-DisclosureIndicator.png"; sourceTree = "<group>"; };
+		DFBF972713F952E80092CFB1 /* SnaFriendshipStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaFriendshipStatus.h; sourceTree = "<group>"; };
+		DFBF972813F952E80092CFB1 /* SnaFriendshipStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaFriendshipStatus.m; sourceTree = "<group>"; };
+		DFBF975113F960BF0092CFB1 /* SnaPersonPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaPersonPage.h; sourceTree = "<group>"; };
+		DFBF975213F960BF0092CFB1 /* SnaPersonPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaPersonPage.m; sourceTree = "<group>"; };
+		DFBF992713FEAC1E0092CFB1 /* SnaProfilePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaProfilePage.h; sourceTree = "<group>"; };
+		DFBF992813FEAC1E0092CFB1 /* SnaProfilePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaProfilePage.m; sourceTree = "<group>"; };
+		DFBF996B13FEE0AF0092CFB1 /* FxExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxExceptions.h; sourceTree = "<group>"; };
+		DFBF996C13FEE0AF0092CFB1 /* FxExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxExceptions.m; sourceTree = "<group>"; };
+		DFBF996E13FEE2A80092CFB1 /* FxAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxAssert.h; sourceTree = "<group>"; };
+		DFBF996F13FEE2A80092CFB1 /* FxAssert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxAssert.m; sourceTree = "<group>"; };
+		DFBF9A3C13FFE5420092CFB1 /* SnaFriendsPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaFriendsPage.h; sourceTree = "<group>"; };
+		DFBF9A3D13FFE5420092CFB1 /* SnaFriendsPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaFriendsPage.m; sourceTree = "<group>"; };
+		DFBF9B6A14068D1A0092CFB1 /* SnaHomePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaHomePage.h; sourceTree = "<group>"; };
+		DFBF9B6B14068D1A0092CFB1 /* SnaHomePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaHomePage.m; sourceTree = "<group>"; };
+		DFBF9B9F1406BEAC0092CFB1 /* SnaMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaMessage.h; sourceTree = "<group>"; };
+		DFBF9BA01406BEAC0092CFB1 /* SnaMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaMessage.m; sourceTree = "<group>"; };
+		DFBF9C161406F49C0092CFB1 /* SnaMessagesPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaMessagesPage.h; sourceTree = "<group>"; };
+		DFBF9C171406F49C0092CFB1 /* SnaMessagesPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaMessagesPage.m; sourceTree = "<group>"; };
+		DFBF9C191406F6450092CFB1 /* SnaMessagesWithPersonPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaMessagesWithPersonPage.h; sourceTree = "<group>"; };
+		DFBF9C1A1406F6450092CFB1 /* SnaMessagesWithPersonPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaMessagesWithPersonPage.m; sourceTree = "<group>"; };
+		DFBF9C28140700A30092CFB1 /* SnaMessagePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaMessagePage.h; sourceTree = "<group>"; };
+		DFBF9C29140700A30092CFB1 /* SnaMessagePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaMessagePage.m; sourceTree = "<group>"; };
+		DFBF9F54140B828E0092CFB1 /* SnaFriendshipRequestsPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaFriendshipRequestsPage.h; sourceTree = "<group>"; };
+		DFBF9F55140B828E0092CFB1 /* SnaFriendshipRequestsPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaFriendshipRequestsPage.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DFBFA057140C98FC0092CFB1 /* Core */,
+				DFABA03313E0BDD8007E2517 /* Domain */,
+				DF506DCA13E784A0006E2566 /* Services */,
+				DF506F9913E8CEDB006E2566 /* UI Pages */,
+				DF506A4113E4CFA4006E2566 /* Framework */,
+			);
+			name = Source;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* client-iphone.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF918213F1CDA90092CFB1 /* TO-BE-DELETED */,
+				080E96DDFE201D6D7F000001 /* Source */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Precompiled headers */ = {
+			isa = PBXGroup;
+			children = (
+				28A0AAE50D9B0CCF005BE974 /* client_iphone_Prefix.pch */,
+			);
+			name = "Precompiled headers";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF96EB13F89B040092CFB1 /* Images */,
+				8D1107310486CEB800E47090 /* client_iphone-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DF50682013E0E458006E2566 /* Application Main */ = {
+			isa = PBXGroup;
+			children = (
+				29B97316FDCFA39411CA2CEA /* SnaApplicationMain.m */,
+			);
+			name = "Application Main";
+			sourceTree = "<group>";
+		};
+		DF50682113E0E4C1006E2566 /* Application Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* SnaApplicationDelegate.h */,
+				1D3623250D0F684500981E51 /* SnaApplicationDelegate.m */,
+			);
+			name = "Application Delegate";
+			sourceTree = "<group>";
+		};
+		DF506A4113E4CFA4006E2566 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				DF506D2013E769EE006E2566 /* _Fx.h */,
+				DFBF917913F1C9530092CFB1 /* System */,
+				DF5071C813EC51CF006E2566 /* Ui */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		DF506AA413E4E800006E2566 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				DF50691A13E233C4006E2566 /* SnaVisibilityStatus.h */,
+				DF50691B13E233C4006E2566 /* SnaVisibilityStatus.m */,
+				DFBF972713F952E80092CFB1 /* SnaFriendshipStatus.h */,
+				DFBF972813F952E80092CFB1 /* SnaFriendshipStatus.m */,
+			);
+			name = Enums;
+			sourceTree = "<group>";
+		};
+		DF506AA513E4E814006E2566 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				DFABA03713E0BE55007E2517 /* SnaPerson.h */,
+				DFABA03813E0BE55007E2517 /* SnaPerson.m */,
+				DFBF9B9F1406BEAC0092CFB1 /* SnaMessage.h */,
+				DFBF9BA01406BEAC0092CFB1 /* SnaMessage.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		DF506DCA13E784A0006E2566 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DF506E9E13E881D5006E2566 /* _Services.h */,
+				DF506DCB13E7850C006E2566 /* SnaDataService.h */,
+				DF506DCC13E7850C006E2566 /* SnaDataService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		DF506EDD13E88E49006E2566 /* Base Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF917F13F1CD9E0092CFB1 /* SnaTableViewPageController.h */,
+				DFBF918013F1CD9E0092CFB1 /* SnaTableViewPageController.m */,
+			);
+			name = "Base Controllers";
+			sourceTree = "<group>";
+		};
+		DF506F9913E8CEDB006E2566 /* UI Pages */ = {
+			isa = PBXGroup;
+			children = (
+				DF506EDE13E88E89006E2566 /* _Pages.h */,
+				DFBF994C13FEB3000092CFB1 /* Log In */,
+				DFBF9B6914068CF20092CFB1 /* Home */,
+				DFBF994D13FEB34B0092CFB1 /* Persons */,
+				DFBF9C151406F44E0092CFB1 /* Messages */,
+				DFBF9F53140B825B0092CFB1 /* Friendship Requests */,
+				DFBF994B13FEB2CF0092CFB1 /* Profile */,
+			);
+			name = "UI Pages";
+			sourceTree = "<group>";
+		};
+		DF5071C813EC51CF006E2566 /* Ui */ = {
+			isa = PBXGroup;
+			children = (
+				DF50738113ECE169006E2566 /* Page Model */,
+				DF5071D213EC5407006E2566 /* Controllers */,
+				DF5071C913EC51DA006E2566 /* Table View Cells */,
+			);
+			name = Ui;
+			sourceTree = "<group>";
+		};
+		DF5071C913EC51DA006E2566 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF927813F499480092CFB1 /* FxTextBlockTableViewCell.h */,
+				DFBF927913F499480092CFB1 /* FxTextBlockTableViewCell.m */,
+				DF5071C513EC51BE006E2566 /* FxTextFieldTableViewCell.h */,
+				DF5071C613EC51BE006E2566 /* FxTextFieldTableViewCell.m */,
+				DF50720413EC9629006E2566 /* FxButtonTableViewCell.h */,
+				DF50720513EC9629006E2566 /* FxButtonTableViewCell.m */,
+				DFBF960C13F7F0EE0092CFB1 /* FxItemTableViewCell.h */,
+				DFBF960D13F7F0EE0092CFB1 /* FxItemTableViewCell.m */,
+			);
+			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		DF5071D213EC5407006E2566 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DF5071CD13EC53A2006E2566 /* FxPageViewController.h */,
+				DF5071CE13EC53A2006E2566 /* FxPageViewController.m */,
+				DF5071CA13EC5262006E2566 /* FxTableViewController.h */,
+				DF5071CB13EC5262006E2566 /* FxTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DF50738113ECE169006E2566 /* Page Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF50738213ECE18F006E2566 /* FxUiSection.h */,
+				DF50738313ECE18F006E2566 /* FxUiSection.m */,
+				DF50745013ECF500006E2566 /* FxUiCell.h */,
+				DF50745113ECF500006E2566 /* FxUiCell.m */,
+				DFBF926A13F324650092CFB1 /* FxUiTextBlockCell.h */,
+				DFBF926B13F324650092CFB1 /* FxUiTextBlockCell.m */,
+				DF5074B113EF3DB2006E2566 /* FxUiTextFieldCell.h */,
+				DF5074B213EF3DB2006E2566 /* FxUiTextFieldCell.m */,
+				DF5074BC13EF43A0006E2566 /* FxUiButtonCell.h */,
+				DF5074BD13EF43A0006E2566 /* FxUiButtonCell.m */,
+				DFBF961613F7F4C10092CFB1 /* FxUiItemCell.h */,
+				DFBF961713F7F4C10092CFB1 /* FxUiItemCell.m */,
+			);
+			name = "Page Model";
+			sourceTree = "<group>";
+		};
+		DFABA03313E0BDD8007E2517 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				DF506DCE13E785D8006E2566 /* _Domain.h */,
+				DF506AA413E4E800006E2566 /* Enums */,
+				DF506AA513E4E814006E2566 /* Entities */,
+			);
+			name = Domain;
+			sourceTree = "<group>";
+		};
+		DFBF917913F1C9530092CFB1 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				DF506D7D13E773FA006E2566 /* FxIDumpableObject.h */,
+				DF506D7E13E7740B006E2566 /* FxIDumpableEnum.h */,
+				DF506A4213E4CFCE006E2566 /* FxDumper.h */,
+				DF506A4313E4CFCE006E2566 /* FxDumper.m */,
+				DF506AEA13E4EE7C006E2566 /* FxStringTools.h */,
+				DF506AEB13E4EE7C006E2566 /* FxStringTools.m */,
+				DF506D1D13E768EE006E2566 /* FxEnum.h */,
+				DF506D1E13E768EE006E2566 /* FxEnum.m */,
+				DFBF996B13FEE0AF0092CFB1 /* FxExceptions.h */,
+				DFBF996C13FEE0AF0092CFB1 /* FxExceptions.m */,
+				DFBF996E13FEE2A80092CFB1 /* FxAssert.h */,
+				DFBF996F13FEE2A80092CFB1 /* FxAssert.m */,
+			);
+			name = System;
+			sourceTree = "<group>";
+		};
+		DFBF918213F1CDA90092CFB1 /* TO-BE-DELETED */ = {
+			isa = PBXGroup;
+			children = (
+				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
+				28C286E00D94DF7D0034E888 /* RootViewController.m */,
+				28F335F01007B36200424DE2 /* RootViewController.xib */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+			);
+			name = "TO-BE-DELETED";
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DFBF96EB13F89B040092CFB1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF96EC13F89B320092CFB1 /* UITV-Checkmark.png */,
+				DFBF96ED13F89B320092CFB1 /* UITV-DetailDisclosureButton.png */,
+				DFBF96EE13F89B320092CFB1 /* UITV-DisclosureIndicator.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		DFBF994B13FEB2CF0092CFB1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF992713FEAC1E0092CFB1 /* SnaProfilePage.h */,
+				DFBF992813FEAC1E0092CFB1 /* SnaProfilePage.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		DFBF994C13FEB3000092CFB1 /* Log In */ = {
+			isa = PBXGroup;
+			children = (
+				DF50716A13EB75B6006E2566 /* SnaLogInPage.h */,
+				DF50716B13EB75B6006E2566 /* SnaLogInPage.m */,
+			);
+			name = "Log In";
+			sourceTree = "<group>";
+		};
+		DFBF994D13FEB34B0092CFB1 /* Persons */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF94EF13F7767C0092CFB1 /* SnaNearbyPersonsPage.h */,
+				DFBF94F013F7767C0092CFB1 /* SnaNearbyPersonsPage.m */,
+				DFBF9A3C13FFE5420092CFB1 /* SnaFriendsPage.h */,
+				DFBF9A3D13FFE5420092CFB1 /* SnaFriendsPage.m */,
+				DFBF975113F960BF0092CFB1 /* SnaPersonPage.h */,
+				DFBF975213F960BF0092CFB1 /* SnaPersonPage.m */,
+			);
+			name = Persons;
+			sourceTree = "<group>";
+		};
+		DFBF9B6914068CF20092CFB1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF9B6A14068D1A0092CFB1 /* SnaHomePage.h */,
+				DFBF9B6B14068D1A0092CFB1 /* SnaHomePage.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		DFBF9C151406F44E0092CFB1 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF9C161406F49C0092CFB1 /* SnaMessagesPage.h */,
+				DFBF9C171406F49C0092CFB1 /* SnaMessagesPage.m */,
+				DFBF9C191406F6450092CFB1 /* SnaMessagesWithPersonPage.h */,
+				DFBF9C1A1406F6450092CFB1 /* SnaMessagesWithPersonPage.m */,
+				DFBF9C28140700A30092CFB1 /* SnaMessagePage.h */,
+				DFBF9C29140700A30092CFB1 /* SnaMessagePage.m */,
+			);
+			name = Messages;
+			sourceTree = "<group>";
+		};
+		DFBF9F53140B825B0092CFB1 /* Friendship Requests */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF9F54140B828E0092CFB1 /* SnaFriendshipRequestsPage.h */,
+				DFBF9F55140B828E0092CFB1 /* SnaFriendshipRequestsPage.m */,
+			);
+			name = "Friendship Requests";
+			sourceTree = "<group>";
+		};
+		DFBFA057140C98FC0092CFB1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				29B97315FDCFA39411CA2CEA /* Precompiled headers */,
+				DF50682013E0E458006E2566 /* Application Main */,
+				DF50682113E0E4C1006E2566 /* Application Delegate */,
+				DF506EDD13E88E49006E2566 /* Base Controllers */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* client-iphone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "client-iphone" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "client-iphone";
+			productName = "client-iphone";
+			productReference = 1D6058910D05DD3D006BFB54 /* client-iphone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "client-iphone" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* client-iphone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
+				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
+				DFBF96EF13F89B320092CFB1 /* UITV-Checkmark.png in Resources */,
+				DFBF96F013F89B320092CFB1 /* UITV-DetailDisclosureButton.png in Resources */,
+				DFBF96F113F89B320092CFB1 /* UITV-DisclosureIndicator.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* SnaApplicationMain.m in Sources */,
+				1D3623260D0F684500981E51 /* SnaApplicationDelegate.m in Sources */,
+				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
+				DFABA03913E0BE55007E2517 /* SnaPerson.m in Sources */,
+				DF50691C13E233C4006E2566 /* SnaVisibilityStatus.m in Sources */,
+				DF506A4413E4CFCE006E2566 /* FxDumper.m in Sources */,
+				DF506AEC13E4EE7C006E2566 /* FxStringTools.m in Sources */,
+				DF506D1F13E768EE006E2566 /* FxEnum.m in Sources */,
+				DF506DCD13E7850C006E2566 /* SnaDataService.m in Sources */,
+				DF50716C13EB75B6006E2566 /* SnaLogInPage.m in Sources */,
+				DF5071C713EC51BE006E2566 /* FxTextFieldTableViewCell.m in Sources */,
+				DF5071CC13EC5262006E2566 /* FxTableViewController.m in Sources */,
+				DF5071CF13EC53A2006E2566 /* FxPageViewController.m in Sources */,
+				DF50720613EC9629006E2566 /* FxButtonTableViewCell.m in Sources */,
+				DF50738413ECE18F006E2566 /* FxUiSection.m in Sources */,
+				DF50745213ECF500006E2566 /* FxUiCell.m in Sources */,
+				DF5074B313EF3DB2006E2566 /* FxUiTextFieldCell.m in Sources */,
+				DF5074BE13EF43A0006E2566 /* FxUiButtonCell.m in Sources */,
+				DFBF918113F1CD9E0092CFB1 /* SnaTableViewPageController.m in Sources */,
+				DFBF926C13F324650092CFB1 /* FxUiTextBlockCell.m in Sources */,
+				DFBF927A13F499480092CFB1 /* FxTextBlockTableViewCell.m in Sources */,
+				DFBF94F113F7767C0092CFB1 /* SnaNearbyPersonsPage.m in Sources */,
+				DFBF960E13F7F0EE0092CFB1 /* FxItemTableViewCell.m in Sources */,
+				DFBF961813F7F4C10092CFB1 /* FxUiItemCell.m in Sources */,
+				DFBF972913F952E80092CFB1 /* SnaFriendshipStatus.m in Sources */,
+				DFBF975313F960BF0092CFB1 /* SnaPersonPage.m in Sources */,
+				DFBF992913FEAC1E0092CFB1 /* SnaProfilePage.m in Sources */,
+				DFBF996D13FEE0AF0092CFB1 /* FxExceptions.m in Sources */,
+				DFBF997013FEE2A80092CFB1 /* FxAssert.m in Sources */,
+				DFBF9A3E13FFE5420092CFB1 /* SnaFriendsPage.m in Sources */,
+				DFBF9B6C14068D1A0092CFB1 /* SnaHomePage.m in Sources */,
+				DFBF9BA11406BEAC0092CFB1 /* SnaMessage.m in Sources */,
+				DFBF9C181406F49C0092CFB1 /* SnaMessagesPage.m in Sources */,
+				DFBF9C1B1406F6450092CFB1 /* SnaMessagesWithPersonPage.m in Sources */,
+				DFBF9C2A140700A30092CFB1 /* SnaMessagePage.m in Sources */,
+				DFBF9F56140B828E0092CFB1 /* SnaFriendshipRequestsPage.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = client_iphone_Prefix.pch;
+				INFOPLIST_FILE = "client_iphone-Info.plist";
+				PRODUCT_NAME = "client-iphone";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = client_iphone_Prefix.pch;
+				INFOPLIST_FILE = "client_iphone-Info.plist";
+				PRODUCT_NAME = "client-iphone";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "client-iphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "client-iphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

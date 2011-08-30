@@ -1,0 +1,56 @@
+dubrovacka 25
+
+- Vidit šta sa statusom Invisible i testnim podacima kako to pametno napravit
+- Napravit Interface za Bruna
+
+ BRZO
+------
+- Možda u testu ostavit da se prikazuje page od message-a (ili obrisat Message page)
+- Zamijenit ViewWillApear sa onRefresh na svim pagevima (možda je već zamijenjeno)
+- Prebacit dealoc ispod init u svim klasama
+- Stavit u sve logoute removeAllPageRefreshTriggers
+- u entitijima je prvi copy with zone exception, a mogli bi ga definirat samo na prvom i drugom, a muutable onda ne treba ništa radit
+
+ TEŠKO
+-------
+- multiline field za mood koji ima promijenjivu veličinu
+- Prikazat poruku Waiting for response u text blocku, a ne u botunu
+- Da piše broj itema u glavnoj navigaciji i svugdi di je botun Messages + refresh na promijenu broja
+  - nepročitane poruke
+  - broj ne odgovorenih zahtjeva
+- Napravit da se pamti stack prozora, pa da se resetira kad drugi put kliknemo (da se ne zaboravi di je bija na promijenu u glavnoj navigaciji)
+
+ SOMEDAY MAYBE
+---------------
+
+- Prebacit da se sortiranje određuje u view-u, a ne u service-u
+- Da se refresha kontent stranicee koja je bila na navigacijskom staeku kod pop-a ako su promijenjeni podaci
+- Da se refresha back botun kad se mutiraju personi
+- Da ne koristimo timestamp nego pravi binding na array
+- Stavi FxException-e u sve klase tamo di treba
+- Dodat u UnsupportedMethodException da se mora napisat ime metode a možda i razlog
+- Dodat VisibilityStatus i FriendshipStatus na iteme u Persons listi
+- sredit TableViewController base classu da ne moramo imat šampione kao _isInitStarted_SnaNearbyPersonsPageController
+- lastMessage i unreadMessagesCount prebacit iz person u calculated object
+- Caption i description od list itema trebaju bit odma rašireni tako kad dođe veliki tekst da nema točkica (sad je problem ako se description ne poveća kad i caption ??)
+- Person Page koji mutira kad se promijene podaci (s animacijom)
+- Dodat toolbar u Messages
+  - Incomming
+  - Outgoing
+  - All
+  - Unread
+- Dodat disclosure indikator
+  - Dodat u framework opciju da se uključi na botunu
+  - implementirat di treba
+    - Home Page -> Nearby Persons
+- Dodat item display cell
+  - dodat u framework novi tip cell-a
+  - implemntirat di treba
+    - Home page -> gravatar + nick
+- Zamijenit bottun change mood sa details disclosure buttonom
+- Previous i Next Botuni
+  - dodat u framework mogučnost prikayivanja previous i next botuna kad se pregledavaju detalji liste
+  - implementirat di treba
+    - Person Page
+
+-------

@@ -1,0 +1,986 @@
+Tclient-iphone
+v7
+r0
+t334467490.899307
+cCheck dependencies
+cProcessInfoPlistFile /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/Info.plist client_iphone-Info.plist
+cCompileXIB /Users/saski/_Code/sna-demo/client-iphone/MainWindow.xib
+cCompileXIB /Users/saski/_Code/sna-demo/client-iphone/RootViewController.xib
+cCompileXIB /Users/saski/_Code/sna-demo/client-iphone/SnaHomePageView.xib
+cCompileXIB /Users/saski/_Code/sna-demo/client-iphone/SnaPersonPageView.xib
+cCompileXIB /Users/saski/_Code/sna-demo/client-iphone/SnaLogInPageView.xib
+cCompileXIB /Users/saski/_Code/sna-demo/client-iphone/SnaStandardCellView.xib
+cProcessPCH /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch.gch client_iphone_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaApplicationMain.o /Users/saski/_Code/sna-demo/client-iphone/Classes/../SnaApplicationMain.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaApplicationDelegate.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaApplicationDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/RootViewController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/RootViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaPerson.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPerson.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaVisibilityStatus.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaVisibilityStatus.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaData.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaData.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxDumper.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxDumper.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxStringTools.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxStringTools.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxEnum.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxEnum.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaDataService.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaDataService.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaHomePageController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaHomePageController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaPersonPageController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPersonPageController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaLogInPageController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaLogInPageTvController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageTvController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxTextFieldTableViewCell.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxTextFieldTableViewCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxTableViewController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxTableViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxPageViewController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxPageViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxButtonTableViewCell.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxButtonTableViewCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiSection.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiSection.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiCell.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiTextFieldCell.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiTextFieldCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiButtonCell.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiButtonCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone normal i386
+cGenerateDSYMFile /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app.dSYM /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone
+cTouch /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk
+c000000004D5C9B4E0000000000000110
+t1297914702
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004D54CFFA00000000002999B0
+t1297403898
+s2726320
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004D54CFE5000000000029DA70
+t1297403877
+s2742896
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004D54CFB80000000000001466
+t1297403832
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004D5615B40000000000000AA1
+t1297487284
+s2721
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004D5616030000000000766870
+t1297487363
+s7759984
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/usr/include/Availability.h
+c000000004D4F7A2B0000000000001B19
+t1297054251
+s6937
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/../SnaApplicationMain.m
+c000000004E31D8F30000000000000106
+t1311889651
+s262
+i<UIKit/UIKit.h>
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxButtonTableViewCell.h
+c000000004E3C5F070000000000000082
+t1312579335
+s130
+i<UIKit/UIKit.h>
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxButtonTableViewCell.m
+c000000004E3C5F1600000000000000B5
+t1312579350
+s181
+i"FxButtonTableViewCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxDumper.h
+c000000004E374C9300000000000000C0
+t1312246931
+s192
+i<Foundation/Foundation.h>
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxDumper.m
+c000000004E374CA8000000000000129C
+t1312246952
+s4764
+i"FxDumper.h"
+i"FxIDumpableObject.h"
+i"FxIDumpableEnum.h"
+i"FxStringTools.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxEnum.h
+c000000004E373D6900000000000000FB
+t1312243049
+s251
+i<Foundation/Foundation.h>
+i"FxIDumpableEnum.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxEnum.m
+c000000004E3737C40000000000000859
+t1312241604
+s2137
+i"FxEnum.h"
+i"FxDumper.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxIDumpableEnum.h
+c000000004E373D560000000000000064
+t1312243030
+s100
+i<Foundation/Foundation.h>
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxIDumpableObject.h
+c000000004E373D4E0000000000000061
+t1312243022
+s97
+i<Foundation/Foundation.h>
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxPageViewController.h
+c000000004E3CA2910000000000000084
+t1312596625
+s132
+i<UIKit/UIKit.h>
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxPageViewController.m
+c000000004E3CA86B00000000000002CB
+t1312598123
+s715
+i"FxPageViewController.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxStringTools.h
+c000000004E373FAD00000000000001E1
+t1312243629
+s481
+i<Foundation/Foundation.h>
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxStringTools.m
+c000000004E3767B700000000000008D2
+t1312253879
+s2258
+i"FxStringTools.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxTableViewController.h
+c000000004E3F1C1000000000000001B8
+t1312758800
+s440
+i<UIKit/UIKit.h>
+i"FxUiSection.h"
+i"FxTextFieldTableViewCell.h"
+i"FxButtonTableViewCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxTableViewController.m
+c000000004E3F594E0000000000002166
+t1312774478
+s8550
+i"FxTableViewController.h"
+i"FxUiTextFieldCell.h"
+i"FxUiButtonCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxTextFieldTableViewCell.h
+c000000004E3C21A9000000000000008B
+t1312563625
+s139
+i<UIKit/UIKit.h>
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxTextFieldTableViewCell.m
+c000000004E3C220500000000000000C4
+t1312563717
+s196
+i"FxTextFieldTableViewCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiButtonCell.h
+c000000004E3F0DE20000000000000165
+t1312755170
+s357
+i<Foundation/Foundation.h>
+i"FxUiCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiButtonCell.m
+c000000004E3F0DF6000000000000036C
+t1312755190
+s876
+i"FxUiButtonCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiCell.h
+c000000004E3CC565000000000000009B
+t1312605541
+s155
+i<UIKit/UIKit.h>
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiCell.m
+c000000004E3F0A8900000000000001C4
+t1312754313
+s452
+i"FxUiCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiSection.h
+c000000004E3F514B00000000000002C2
+t1312772427
+s706
+i<UIKit/UIKit.h>
+i"FxUiCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiSection.m
+c000000004E3F516700000000000005FC
+t1312772455
+s1532
+i"FxUiSection.h"
+i"FxUiTextFieldCell.h"
+i"FxUiButtonCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiTextFieldCell.h
+c000000004E3F296600000000000001ED
+t1312762214
+s493
+i<Foundation/Foundation.h>
+i"FxUiCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiTextFieldCell.m
+c000000004E3F57120000000000000471
+t1312773906
+s1137
+i"FxUiTextFieldCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/RootViewController.h
+c000000004E3856EE000000000000005A
+t1312315118
+s90
+i<UIKit/UIKit.h>
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/RootViewController.m
+c000000004E30858700000000000010CC
+t1311802759
+s4300
+i"RootViewController.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaApplicationDelegate.h
+c000000004E388AC90000000000000168
+t1312328393
+s360
+i<UIKit/UIKit.h>
+i"_Services.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaApplicationDelegate.m
+c000000004E3B34400000000000000C0B
+t1312502848
+s3083
+i"SnaApplicationDelegate.h"
+i"_Domain.h"
+i"_Services.h"
+i"_Controllers.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaData.h
+c000000004E38432E00000000000008E2
+t1312310062
+s2274
+i"_Fx.h"
+i"SnaPerson.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaData.m
+c000000004E3843B10000000000001FD9
+t1312310193
+s8153
+i"SnaData.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaDataService.h
+c000000004E3B34640000000000000134
+t1312502884
+s308
+i"_Fx.h"
+i"_Domain.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaDataService.m
+c000000004E3B346C000000000000093C
+t1312502892
+s2364
+i"SnaDataService.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaHomePageController.h
+c000000004E3B2D2E00000000000001DD
+t1312501038
+s477
+i<UIKit/UIKit.h>
+i"_Domain.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaHomePageController.m
+c000000004E3B2CBA0000000000000C30
+t1312500922
+s3120
+i"SnaHomePageController.h"
+i"_Services.h"
+i"_Controllers.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageController.h
+c000000004E3C9FED000000000000016D
+t1312595949
+s365
+i"_Fx.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageController.m
+c000000004E3F48340000000000000669
+t1312770100
+s1641
+i"SnaLogInPageController.h"
+i"_Services.h"
+i"_Controllers.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageTvController.h
+c000000004E3F4B610000000000000104
+t1312770913
+s260
+i"_Fx.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageTvController.m
+c000000004E3F598F0000000000000815
+t1312774543
+s2069
+i"SnaLogInPageTvController.h"
+i"_Services.h"
+i"_Controllers.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPerson.h
+c000000004E374ECB0000000000000D01
+t1312247499
+s3329
+i"_Fx.h"
+i"SnaVisibilityStatus.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPerson.m
+c000000004E374CD20000000000002556
+t1312246994
+s9558
+i"SnaPerson.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPersonPageController.h
+c000000004E3B2D2E00000000000001DA
+t1312501038
+s474
+i<UIKit/UIKit.h>
+i"_Domain.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPersonPageController.m
+c000000004E3B2D2E0000000000000BE7
+t1312501038
+s3047
+i"SnaPersonPageController.h"
+i"_Services.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaVisibilityStatus.h
+c000000004E374ED30000000000000130
+t1312247507
+s304
+i"_Fx.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaVisibilityStatus.m
+c000000004E373DFF0000000000001306
+t1312243199
+s4870
+i"SnaVisibilityStatus.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/_Controllers.h
+c000000004E3BED86000000000000008F
+t1312550278
+s143
+i"SnaLogInPageController.h"
+i"SnaLogInPageTvController.h"
+i"SnaHomePageController.h"
+i"SnaPersonPageController.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/_Domain.h
+c000000004E374E9C000000000000004B
+t1312247452
+s75
+i"SnaVisibilityStatus.h"
+i"SnaPerson.h"
+i"SnaData.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/_Fx.h
+c000000004E3CBFE70000000000000159
+t1312604135
+s345
+i<Foundation/Foundation.h>
+i"FxIDumpableObject.h"
+i"FxIDumpableEnum.h"
+i"FxDumper.h"
+i"FxStringTools.h"
+i"FxEnum.h"
+i"FxUiSection.h"
+i"FxUiCell.h"
+i"FxPageViewController.h"
+i"FxTableViewController.h"
+i"FxTextFieldTableViewCell.h"
+i"FxButtonTableViewCell.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/Classes/_Services.h
+c000000004E388A77000000000000001C
+t1312328311
+s28
+i"SnaDataService.h"
+
+N/Users/saski/_Code/sna-demo/client-iphone/MainWindow.xib
+c000000004E3B354800000000000070C5
+t1312503112
+s28869
+
+N/Users/saski/_Code/sna-demo/client-iphone/RootViewController.xib
+c000000004E38922800000000000043CD
+t1312330280
+s17357
+
+N/Users/saski/_Code/sna-demo/client-iphone/SnaHomePageView.xib
+c000000004E3B319D0000000000008D07
+t1312502173
+s36103
+
+N/Users/saski/_Code/sna-demo/client-iphone/SnaLogInPageView.xib
+c000000004E3B319F00000000000066FB
+t1312502175
+s26363
+
+N/Users/saski/_Code/sna-demo/client-iphone/SnaPersonPageView.xib
+c000000004E3B319E0000000000008CA8
+t1312502174
+s36008
+
+N/Users/saski/_Code/sna-demo/client-iphone/SnaStandardCellView.xib
+c000000004E3C0A5D0000000000001116
+t1312557661
+s4374
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app
+t1312774690
+s374
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app.dSYM
+t1312774690
+s102
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/Info.plist
+t1312774685
+s615
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/MainWindow.nib
+t1312774686
+s2542
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/PkgInfo
+t1312774685
+s8
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/RootViewController.nib
+t1312774686
+s1520
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/SnaHomePageView.nib
+t1312774687
+s5446
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/SnaLogInPageView.nib
+t1312774687
+s4032
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/SnaPersonPageView.nib
+t1312774686
+s5454
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/SnaStandardCellView.nib
+t1312774687
+s614
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone
+t1312774690
+s106124
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxButtonTableViewCell.o
+t1312774690
+s38300
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxDumper.o
+t1312774689
+s17268
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxEnum.o
+t1312774689
+s10856
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxPageViewController.o
+t1312774690
+s41252
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxStringTools.o
+t1312774689
+s13560
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxTableViewController.o
+t1312774690
+s61256
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxTextFieldTableViewCell.o
+t1312774690
+s38416
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiButtonCell.o
+t1312774690
+s11244
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiCell.o
+t1312774690
+s9292
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiSection.o
+t1312774690
+s13648
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiTextFieldCell.o
+t1312774690
+s12284
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/RootViewController.o
+t1312774689
+s41516
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaApplicationDelegate.o
+t1312774689
+s54916
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaApplicationMain.o
+t1312774689
+s6352
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaData.o
+t1312774689
+s23848
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaDataService.o
+t1312774689
+s15628
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaHomePageController.o
+t1312774689
+s53148
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaLogInPageController.o
+t1312774690
+s47460
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaLogInPageTvController.o
+t1312774690
+s44624
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaPerson.o
+t1312774689
+s28016
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaPersonPageController.o
+t1312774689
+s52644
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaVisibilityStatus.o
+t1312774689
+s14052
+
+N/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/client-iphone.LinkFileList
+c000000004E3F5A1D0000000000000D02
+t1312774685
+s3330
+
+N/Users/saski/_Code/sna-demo/client-iphone/client_iphone_Prefix.pch
+c000000004E308587000000000000014C
+t1311802759
+s332
+i<Availability.h>
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch.gch
+t1312774688
+s15461808
+
+Nclient_iphone-Info.plist
+c000000004E308587000000000000038D
+t1311802759
+s909
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies334467485#334467485#0(0"0(0#1#0"32651513917735028#0"0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxButtonTableViewCell.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxButtonTableViewCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467490.233424
+e334467490.322431
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxButtonTableViewCell.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxButtonTableViewCell.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxButtonTableViewCell.m334467490#334467490#0(0"0(0#0#73"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxButtonTableViewCell.m8606049024#2168"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxButtonTableViewCell.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxButtonTableViewCell.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxDumper.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxDumper.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.318075
+e334467489.488549
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxDumper.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxDumper.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@68"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxDumper.m334467489#334467489#0(0"0(0#0#60"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxDumper.m8602406496#2142"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxDumper.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxDumper.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxEnum.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxEnum.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.488652
+e334467489.566630
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxEnum.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxEnum.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@66"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxEnum.m334467489#334467489#0(0"0(0#0#58"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxEnum.m8605971424#2138"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxEnum.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxEnum.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxPageViewController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxPageViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467490.129995
+e334467490.233325
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxPageViewController.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxPageViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@80"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxPageViewController.m334467490#334467490#0(0"0(0#0#72"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxPageViewController.m8603452864#2166"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxPageViewController.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxPageViewController.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxStringTools.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxStringTools.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.439708
+e334467489.624825
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxStringTools.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxStringTools.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@73"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxStringTools.m334467489#334467489#0(0"0(0#0#65"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxStringTools.m8606547808#2152"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxStringTools.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxStringTools.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxTableViewController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxTableViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467490.053653
+e334467490.381429
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxTableViewController.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxTableViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxTableViewController.m334467490#334467490#0(0"0(0#0#73"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxTableViewController.m8599846464#2168"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxTableViewController.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxTableViewController.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxTextFieldTableViewCell.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxTextFieldTableViewCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467490.041804
+e334467490.129873
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxTextFieldTableViewCell.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxTextFieldTableViewCell.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@84"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxTextFieldTableViewCell.m334467490#334467490#0(0"0(0#0#76"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxTextFieldTableViewCell.m8603788160#2174"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxTextFieldTableViewCell.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxTextFieldTableViewCell.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiButtonCell.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiButtonCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467490.464494
+e334467490.567372
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiButtonCell.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiButtonCell.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@74"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiButtonCell.m334467490#334467490#0(0"0(0#0#66"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiButtonCell.m8604446144#2154"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiButtonCell.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiButtonCell.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiCell.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467490.381526
+e334467490.464365
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiCell.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiCell.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@68"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiCell.m334467490#334467490#0(0"0(0#0#60"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiCell.m8605991488#2142"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiCell.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiCell.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiSection.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiSection.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467490.322527
+e334467490.436661
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiSection.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiSection.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@71"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiSection.m334467490#334467490#0(0"0(0#0#63"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiSection.m8603639648#2148"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiSection.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiSection.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiTextFieldCell.o /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiTextFieldCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467490.436764
+e334467490.552449
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiTextFieldCell.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiTextFieldCell.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@77"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiTextFieldCell.m334467490#334467490#0(0"0(0#0#69"/Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiTextFieldCell.m8604613184#2160"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/FxUiTextFieldCell.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/FxUiTextFieldCell.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/RootViewController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/RootViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.014295
+e334467489.102540
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/RootViewController.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/RootViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@78"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/RootViewController.m334467489#334467489#0(0"0(0#0#70"/Users/saski/_Code/sna-demo/client-iphone/Classes/RootViewController.m8604074592#2162"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/RootViewController.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/RootViewController.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaApplicationDelegate.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaApplicationDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467488.787052
+e334467489.095289
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaApplicationDelegate.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaApplicationDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@82"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaApplicationDelegate.m334467488#334467489#0(0"0(0#0#74"/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaApplicationDelegate.m8605816480#2170"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaApplicationDelegate.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaApplicationDelegate.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaApplicationMain.o /Users/saski/_Code/sna-demo/client-iphone/Classes/../SnaApplicationMain.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467488.785867
+e334467489.014118
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaApplicationMain.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/../SnaApplicationMain.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/../SnaApplicationMain.m334467488#334467489#0(0"0(0#0#73"/Users/saski/_Code/sna-demo/client-iphone/Classes/../SnaApplicationMain.m8606126080#2165"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/../SnaApplicationMain.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaApplicationMain.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaData.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaData.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.239065
+e334467489.439463
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaData.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaData.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaData.m334467489#334467489#0(0"0(0#0#59"/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaData.m8603668480#2140"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaData.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaData.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaDataService.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaDataService.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.566726
+e334467489.699492
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaDataService.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaDataService.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@74"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaDataService.m334467489#334467489#0(0"0(0#0#66"/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaDataService.m8604470912#2154"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaDataService.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaDataService.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaHomePageController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaHomePageController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.624976
+e334467489.864380
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaHomePageController.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaHomePageController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaHomePageController.m334467489#334467489#0(0"0(0#0#73"/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaHomePageController.m8606393312#2168"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaHomePageController.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaHomePageController.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaLogInPageController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.864476
+e334467490.041706
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaLogInPageController.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@82"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageController.m334467489#334467490#0(0"0(0#0#74"/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageController.m8606109312#2170"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageController.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaLogInPageController.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaLogInPageTvController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageTvController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.918301
+e334467490.053552
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaLogInPageTvController.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageTvController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@84"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageTvController.m334467489#334467490#0(0"0(0#0#76"/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageTvController.m8604592384#2174"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaLogInPageTvController.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaLogInPageTvController.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaPerson.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPerson.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.095386
+e334467489.317979
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaPerson.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPerson.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@69"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPerson.m334467489#334467489#0(0"0(0#0#61"/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPerson.m8608142400#2144"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPerson.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaPerson.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaPersonPageController.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPersonPageController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.699623
+e334467489.918189
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaPersonPageController.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPersonPageController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@83"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPersonPageController.m334467489#334467489#0(0"0(0#0#75"/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPersonPageController.m8605703104#2172"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaPersonPageController.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaPersonPageController.o0#
+
+CCompileC build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaVisibilityStatus.o /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaVisibilityStatus.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467489.102642
+e334467489.238968
+r1
+xCompileC
+xbuild/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaVisibilityStatus.o
+x/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaVisibilityStatus.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@79"Compile /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaVisibilityStatus.m334467489#334467489#0(0"0(0#0#71"/Users/saski/_Code/sna-demo/client-iphone/Classes/SnaVisibilityStatus.m8606337792#2164"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch -c /Users/saski/_Code/sna-demo/client-iphone/Classes/SnaVisibilityStatus.m -o /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/SnaVisibilityStatus.o0#
+
+CCompileXIB /Users/saski/_Code/sna-demo/client-iphone/MainWindow.xib
+s334467485.904914
+e334467486.450750
+r1
+xCompileXIB
+x/Users/saski/_Code/sna-demo/client-iphone/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib334467485#334467486#0(0"0(0#0#56"/Users/saski/_Code/sna-demo/client-iphone/MainWindow.xib8600343456#587"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/MainWindow.nib /Users/saski/_Code/sna-demo/client-iphone/MainWindow.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk0#
+
+CCompileXIB /Users/saski/_Code/sna-demo/client-iphone/RootViewController.xib
+s334467485.921589
+e334467486.447227
+r1
+xCompileXIB
+x/Users/saski/_Code/sna-demo/client-iphone/RootViewController.xib
+lSLF07#2@33"CompileXIB RootViewController.xib334467485#334467486#0(0"0(0#0#64"/Users/saski/_Code/sna-demo/client-iphone/RootViewController.xib8608080224#603"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/RootViewController.nib /Users/saski/_Code/sna-demo/client-iphone/RootViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk0#
+
+CCompileXIB /Users/saski/_Code/sna-demo/client-iphone/SnaHomePageView.xib
+s334467486.447319
+e334467487.116552
+r1
+xCompileXIB
+x/Users/saski/_Code/sna-demo/client-iphone/SnaHomePageView.xib
+lSLF07#2@30"CompileXIB SnaHomePageView.xib334467486#334467487#0(0"0(0#0#61"/Users/saski/_Code/sna-demo/client-iphone/SnaHomePageView.xib8602367456#597"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/SnaHomePageView.nib /Users/saski/_Code/sna-demo/client-iphone/SnaHomePageView.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk0#
+
+CCompileXIB /Users/saski/_Code/sna-demo/client-iphone/SnaLogInPageView.xib
+s334467487.036836
+e334467487.530719
+r1
+xCompileXIB
+x/Users/saski/_Code/sna-demo/client-iphone/SnaLogInPageView.xib
+lSLF07#2@31"CompileXIB SnaLogInPageView.xib334467487#334467487#0(0"0(0#0#62"/Users/saski/_Code/sna-demo/client-iphone/SnaLogInPageView.xib8606477984#599"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/SnaLogInPageView.nib /Users/saski/_Code/sna-demo/client-iphone/SnaLogInPageView.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk0#
+
+CCompileXIB /Users/saski/_Code/sna-demo/client-iphone/SnaPersonPageView.xib
+s334467486.450829
+e334467487.036747
+r1
+xCompileXIB
+x/Users/saski/_Code/sna-demo/client-iphone/SnaPersonPageView.xib
+lSLF07#2@32"CompileXIB SnaPersonPageView.xib334467486#334467487#0(0"0(0#0#63"/Users/saski/_Code/sna-demo/client-iphone/SnaPersonPageView.xib8603105024#601"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/SnaPersonPageView.nib /Users/saski/_Code/sna-demo/client-iphone/SnaPersonPageView.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk0#
+
+CCompileXIB /Users/saski/_Code/sna-demo/client-iphone/SnaStandardCellView.xib
+s334467487.116657
+e334467487.465915
+r1
+xCompileXIB
+x/Users/saski/_Code/sna-demo/client-iphone/SnaStandardCellView.xib
+lSLF07#2@34"CompileXIB SnaStandardCellView.xib334467487#334467487#0(0"0(0#0#65"/Users/saski/_Code/sna-demo/client-iphone/SnaStandardCellView.xib8606274720#605"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/SnaStandardCellView.nib /Users/saski/_Code/sna-demo/client-iphone/SnaStandardCellView.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk0#
+
+CGenerateDSYMFile /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app.dSYM /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone
+s334467490.772058
+e334467490.869700
+r1
+xGenerateDSYMFile
+x/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app.dSYM
+x/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone
+lSLF07#2@131"GenerateDSYMFile build/Release-iphonesimulator/client-iphone.app.dSYM build/Release-iphonesimulator/client-iphone.app/client-iphone334467490#334467490#0(0"0(0#0#103"/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone8602983616#414"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone -o /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app.dSYM0#
+
+CLd /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone normal i386
+s334467490.567461
+e334467490.771948
+r1
+xLd
+x/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone
+xnormal
+xi386
+lSLF07#2@108"Link /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone334467490#334467490#0(0"0(0#0#0"8605966336#953"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -L/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -filelist /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/Objects-normal/i386/client-iphone.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -o /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/client-iphone0#
+
+CProcessInfoPlistFile /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/Info.plist client_iphone-Info.plist
+s334467485.883594
+e334467485.904830
+r1
+xProcessInfoPlistFile
+x/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/Info.plist
+xclient_iphone-Info.plist
+lSLF07#2@32"Process client_iphone-Info.plist334467485#334467485#0(0"0(0#0#66"/Users/saski/_Code/sna-demo/client-iphone/client_iphone-Info.plist27303270316048496#510"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility client_iphone-Info.plist -genpkginfo /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app/Info.plist0#
+
+CProcessPCH /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch.gch client_iphone_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s334467487.530868
+e334467488.785745
+r1
+xProcessPCH
+x/var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch.gch
+xclient_iphone_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@35"Precompile client_iphone_Prefix.pch334467487#334467488#0(0"0(0#0#66"/Users/saski/_Code/sna-demo/client-iphone/client_iphone_Prefix.pch8604316736#2007"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-generated-files.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-own-target-headers.hmap -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-all-target-headers.hmap -iquote /Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/client-iphone-project-headers.hmap -F/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator -I/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/include -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources/i386 -I/Users/saski/_Code/sna-demo/client-iphone/build/client-iphone.build/Release-iphonesimulator/client-iphone.build/DerivedSources -DNS_BLOCK_ASSERTIONS=1 -c /Users/saski/_Code/sna-demo/client-iphone/client_iphone_Prefix.pch -o /var/folders/jB/jBs+8CN8EmqNQ9F9hTj9Vk+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/client_iphone_Prefix-eevoqigzyffyiaaqqrzvgagsnbdl/client_iphone_Prefix.pch.gch0#
+
+CTouch /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app
+s334467490.869784
+e334467490.899258
+r1
+xTouch
+x/Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app
+lSLF07#2@95"Touch /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app334467490#334467490#0(0"0(0#0#0"8602838208#292"    cd /Users/saski/_Code/sna-demo/client-iphone    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/saski/_Code/sna-demo/client-iphone/build/Release-iphonesimulator/client-iphone.app0#
+
