@@ -64,6 +64,8 @@ class Person
 
 class Profile // Constraints are defined in class Person
 {
+    String              Password;
+
     VisibilityStatus    VisibilityStatus;
 
     string              Nick;
@@ -81,6 +83,10 @@ class Profile // Constraints are defined in class Person
     string              MainLocation;
     
     Location            LastKnownLocation;
+}
+class NewProfile extends Profile // Constraints are defined in class Person
+{
+    String              Email;
 }
 class Message
 {
@@ -109,9 +115,11 @@ class DataWithMessageIdentifier extends ApiData
 
 class Service
 {
+    // NOTE: Email and Passwords are in HTTP headers for all requests except RegisterProfile
+    
     Data                        GetData()                                                   // GET  /api/data
     
-    Data                        RegisterProfile     (Profile profileJson)                   // POST /api/profile + profileJson
+    Data                        RegisterProfile     (NewProfile profileJson)                // POST /api/profile + profileJson
     Data                        UpdateProfile       (Profile profileJson)                   // PUT  /api/profile + profileJson
 
     DataWithMessageIdentifier   RequestFriendship   (string personEmail, string message)    // POST /api/persons/{personEmail}/request-friendship + message
@@ -120,5 +128,3 @@ class Service
     DataWithMessageIdentifier   SendMessage         (string message)                        // POST /api/messages + message
     Data                        MarkMessageAsRead   (string messageId)                      // PUT /api/messages/{messageId}/mark-as-read
 }
-
-
