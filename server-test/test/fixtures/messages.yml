@@ -1,6 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  id: 1
   text: MyString
   from_id: 1
   to_id: 1
@@ -8,8 +9,16 @@ one:
   read_on: 2011-07-20 23:56:04
 
 two:
+  id: 2
   text: MyString
   from_id: 1
   to_id: 1
   sent_on: 2011-07-20 23:56:04
   read_on: 2011-07-20 23:56:04
+
+to_be_marked_as_read:
+  id: 3
+  text: MyString
+  from_id: 7
+  to_id: 2
+  sent_on: 2011-07-20 23:56:04

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725202758) do
+ActiveRecord::Schema.define(:version => 20110728215708) do
 
   create_table "messages", :force => true do |t|
     t.string   "text"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20110725202758) do
     t.string   "main_location"
     t.decimal  "last_known_location_latitude"
     t.decimal  "last_known_location_longitude"
-    t.datetime "offline_since"
+    t.datetime "last_activity_on"
   end
 
   create_table "person_relations", :force => true do |t|
