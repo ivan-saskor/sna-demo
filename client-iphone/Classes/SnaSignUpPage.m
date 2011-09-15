@@ -81,7 +81,7 @@
         [nickSection addTextFieldCellWithPlaceholder:@"Nick" boundObject:_model propertyKey:@"nick"];
     }
     
-#ifdef DEBUG
+	#ifdef DEBUG
     {
         FxUiSection *testSection = [super addSectionWithCaption:@"Test"];
         {
@@ -90,7 +90,7 @@
             [testSection addButtonCellWithCaption:@"Fill Existing Nick"  targetObject:self action:@selector(testFillExistingNick:)];
         }
     }
-#endif
+	#endif
 }
 
 - (void) signUp:(id)sender

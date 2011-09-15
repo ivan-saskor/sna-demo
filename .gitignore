@@ -1,2 +1,3 @@
 /client-iphone/build
 /client-iphone/client-iphone.xcodeproj
+!/client-iphone/client-iphone.xcodeproj/project.pbxproj
