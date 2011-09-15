@@ -41,7 +41,9 @@
     [FxAssert isNotNullValue:self];
     
     _model = [[SnaMessagesPageModel alloc] initWithFriendsWithMessages:self.dataService.friendsWithMessages];
-    
+
+    super.title = @"Messages";
+
     return self;
 }
 - (id) initWithStyle:(UITableViewStyle)style
@@ -58,16 +60,17 @@
 
 - (void) onPageRefresh
 {
-    super.title     = @"Messages";
     super.backTitle = @"Messages";
     
     [super addPageRefreshTriggerWithBoundObject:[self dataService] propertyKey:@"timestamp"];
+
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"+" style:UIBarButtonItemStylePlain target:self action:@selector(openNewMessagePage:)] autorelease];
 
     FxUiSection *dataSection = [super addSection];
     {
         for (SnaPerson *friend in _model.friendsWithMessages)
         {
-            [dataSection addItem1CellWithCaptionBoundObject:friend captionPropertyKey:@"nick" contentBoundObject:friend.lastMessage contentPropertyKey:@"text" targetObject:self action:@selector(openMessages:) actionContext:friend];
+            [dataSection addItem1CellWithCaptionBoundObject:friend captionPropertyKey:@"nick" contentBoundObject:friend.lastMessage contentPropertyKey:@"text" targetObject:self action:@selector(openMessages:) actionContext:friend  accesoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
     }
     
@@ -83,6 +86,12 @@
     }
     #endif
 }
+
+- (void) openNewMessagePage:(id)sender
+{
+    [self showNewMessagePageWithActionType:SnaNewMessageActionTypeSendMessage toPerson:nil text:@""];
+}
+
 
 - (void) openMessages:(SnaPerson *)person
 {

@@ -1,5 +1,6 @@
 
 #import "SnaLogInPage.h"
+#import "SnaSignUpPage.h"
 
 #import "SnaHomePage.h"
 
@@ -14,3 +15,7 @@
 #import "SnaFriendshipRequestsPage.h"
 
 #import "SnaProfilePage.h"
+#import "SnaChangeMoodPage.h"
+#import "SnaChangeLocationPage.h"
+
+#import "SnaNewMessagePage.h"

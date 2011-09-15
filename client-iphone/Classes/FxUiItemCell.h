@@ -17,6 +17,8 @@
 @property(nonatomic, readonly) SEL        action;
 @property(nonatomic, readonly) NSObject  *actionContext;
 
-- (id) initWithStyleCode:(NSInteger)styleCode captionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey targetObject:(NSObject *)targetObject action:(SEL)action actionContext:(NSObject *)actionContext;
+@property(nonatomic, readonly) UITableViewCellAccessoryType accesoryType;
+
+- (id) initWithStyleCode:(NSInteger)styleCode captionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey targetObject:(NSObject *)targetObject action:(SEL)action actionContext:(NSObject *)actionContext accesoryType:(UITableViewCellAccessoryType)accesoryType;
 
 @end

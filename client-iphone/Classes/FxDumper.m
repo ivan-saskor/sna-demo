@@ -23,6 +23,7 @@
 + (NSString *)_dumpString        :(NSString                    *)string;
 + (NSString *)_dumpBoolean       :(BOOL                         )boolean;
 + (NSString *)_dumpInteger       :(NSInteger                    )integer;
++ (NSString *)_dumpDecimal       :(NSDecimal                    )decimal;
 
 + (NSString *)_dumpClassNameAndMemoryAddressOfObject:(NSObject*)object;
 
@@ -146,13 +147,24 @@
 + (NSString *)dumpFieldWithName:(NSString *)name integer:(NSInteger )value
 {
     return [FxStringTools
-            joinValues:[NSArray arrayWithObjects:
-                name,
-                [FxDumper _dumpInteger:value],
-                nil
-            ]
-            withDelimiter:FxDumper._FIELD_NAME_VALUE_DELIMITER
-        ];
+        joinValues:[NSArray arrayWithObjects:
+            name,
+            [FxDumper _dumpInteger:value],
+            nil
+        ]
+        withDelimiter:FxDumper._FIELD_NAME_VALUE_DELIMITER
+    ];
+}
++ (NSString *)dumpFieldWithName:(NSString *)name decimal:(NSDecimal )value
+{
+    return [FxStringTools
+        joinValues:[NSArray arrayWithObjects:
+            name,
+            [FxDumper _dumpDecimal:value],
+            nil
+        ]
+        withDelimiter:FxDumper._FIELD_NAME_VALUE_DELIMITER
+    ];
 }
 
 + (NSString *)_dumpDumpableObject:(NSObject<FxIDumpableObject> *)dumpableObject
@@ -202,7 +214,11 @@
 }
 + (NSString *)_dumpInteger       :(NSInteger                   )integer
 {
-    return [NSString stringWithFormat:@"@d", integer];
+    return [NSString stringWithFormat:@"%d", integer];
+}
++ (NSString *)_dumpDecimal       :(NSDecimal                   )decimal
+{
+    return [[NSDecimalNumber decimalNumberWithDecimal:decimal] description];
 }
 
 + (NSString *)_dumpClassNameAndMemoryAddressOfObject:(NSObject*)object

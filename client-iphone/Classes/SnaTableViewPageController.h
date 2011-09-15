@@ -2,6 +2,16 @@
 #import "_Fx.h"
 #import "_Services.h"
 
+typedef enum
+{
+    SnaNewMessageActionTypeSendMessage,
+    SnaNewMessageActionTypeRequestFriendship,
+    SnaNewMessageActionTypeAcceptFriendship,
+    SnaNewMessageActionTypeRejectFriendship,
+    SnaNewMessageActionTypeCancelFriendship
+    
+} SnaNewMessageActionType;
+
 @interface SnaTableViewPageController : FxTableViewController
 {
     @private BOOL _isInitStarted_SnaTableViewPageController;
@@ -12,6 +22,7 @@
 @property(nonatomic, retain, readonly) SnaDataService *dataService;
 
 - (void) showLogInPage;
+- (void) showSignUpPage;
 - (void) showHomePage;
 
 - (void) showNearbyPersonsPage;
@@ -25,5 +36,9 @@
 - (void) showFriendshipRequestsPage;
 
 - (void) showProfilePage;
+- (void) showChangeMoodPage;
+- (void) showChangeLocationPage;
+
+- (void) showNewMessagePageWithActionType:(SnaNewMessageActionType)actionType toPerson:(SnaPerson *)toPerson text:(NSString *)text;
 
 @end

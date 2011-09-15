@@ -8,6 +8,7 @@
 #import "FxIDumpableEnum.h"
 #import "FxDumper.h"
 #import "FxStringTools.h"
+#import "FxDecimalTools.h"
 #import "FxEnum.h"
 
 #import "FxUiSection.h"

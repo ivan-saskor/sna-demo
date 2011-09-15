@@ -4,6 +4,11 @@
 #import "SnaTableViewPageController.h"
 
 @interface SnaFriendshipRequestsPageModel : NSObject
+{
+    @private NSArray *_waitingForMePersons;
+    @private NSArray *_waitingForHimPersons;
+    @private NSArray *_rejectedPersons;
+}
 
 @property(nonatomic, readonly) NSArray *waitingForMePersons;
 @property(nonatomic, readonly) NSArray *waitingForHimPersons;

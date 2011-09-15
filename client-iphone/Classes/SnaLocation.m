@@ -1,7 +1,7 @@
 
 #import "_Domain.h"
 
-@interface SnaMessage()
+@interface SnaLocation()
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Internal Constructor
@@ -10,31 +10,16 @@
 - (id) _init;
 
 @end
-@implementation SnaMessage
+@implementation SnaLocation
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Properties
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-- (NSString  *) id      { @throw [FxException unsupportedMethodException]; }
+- (NSString  *) name      { @throw [FxException unsupportedMethodException]; }
 
-- (SnaPerson *) from    { @throw [FxException unsupportedMethodException]; }
-- (SnaPerson *) to      { @throw [FxException unsupportedMethodException]; }
-
-- (NSString  *) text    { @throw [FxException unsupportedMethodException]; }
-
-- (NSDate    *) sentOn  { @throw [FxException unsupportedMethodException]; }
-- (NSDate    *) readOn  { @throw [FxException unsupportedMethodException]; }
-
-- (BOOL       ) isRead
-{
-    return self.readOn != nil;
-}
-
-+ (NSSet *)keyPathsForValuesAffectingIsRead
-{
-    return [NSSet setWithObjects:@"readOn", nil];
-}
+- (NSDecimal  ) latitude  { @throw [FxException unsupportedMethodException]; }
+- (NSDecimal  ) longitude { @throw [FxException unsupportedMethodException]; }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Constructors
@@ -65,34 +50,22 @@
 {
     return [NSArray arrayWithObjects:
             
-        [FxDumper dumpFieldWithName:@"id"      value  :self.id    ],
-
-        [FxDumper dumpFieldWithName:@"from"    value  :self.from  ],
-        [FxDumper dumpFieldWithName:@"to"      value  :self.to    ],
+        [FxDumper dumpFieldWithName:@"name"      value  :self.name     ],
         
-        [FxDumper dumpFieldWithName:@"text"    value  :self.text  ],
-        
-        [FxDumper dumpFieldWithName:@"sentOn"  value  :self.sentOn],
-        [FxDumper dumpFieldWithName:@"readOn"  value  :self.readOn],
-        
-        [FxDumper dumpFieldWithName:@"isRead"  boolean:self.isRead],
+        [FxDumper dumpFieldWithName:@"latitude"  decimal:self.latitude ],
+        [FxDumper dumpFieldWithName:@"longitude" decimal:self.longitude],
         
         nil
     ];
 }
 - (id) copyWithZone:(NSZone *)zone
 {
-    if ([self class] != [SnaImmutableMessage class] || (zone != nil && self.zone != zone))
+    if ([self class] != [SnaImmutableLocation class] || (zone != nil && self.zone != zone))
     {
-        return [[SnaImmutableMessage allocWithZone:zone] initWithId:self.id
+        return [[SnaImmutableLocation allocWithZone:zone] initWithName:self.name
                 
-                                                               from:self.from
-                                                                 to:self.to
-                
-                                                               text:self.text
-                
-                                                             sentOn:self.sentOn
-                                                             readOn:self.readOn];
+                                                              latitude:self.latitude
+                                                             longitude:self.longitude];
     }
     else
     {
@@ -101,63 +74,43 @@
 }
 - (id) mutableCopyWithZone:(NSZone *)zone
 {
-    return [[SnaMutableMessage allocWithZone:zone] initWithId:self.id
+    return [[SnaMutableLocation allocWithZone:zone] initWithName:self.name
             
-                                                         from:self.from
-                                                           to:self.to
-            
-                                                         text:self.text
-            
-                                                       sentOn:self.sentOn
-                                                       readOn:self.readOn];
+                                                        latitude:self.latitude
+                                                       longitude:self.longitude];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 @end
-@implementation SnaImmutableMessage
+@implementation SnaImmutableLocation
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Properties
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-- (NSString  *) id      { return _id    ; }
+- (NSString  *) name       { return _name     ; }
 
-- (SnaPerson *) from    { return _from  ; }
-- (SnaPerson *) to      { return _to    ; }
-
-- (NSString  *) text    { return _text  ; }
-
-- (NSDate    *) sentOn  { return _sentOn; }
-- (NSDate    *) readOn  { return _readOn; }
+- (NSDecimal  ) latitude   { return _latitude ; }
+- (NSDecimal  ) longitude  { return _longitude; }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Constructors
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-- (id) initWithId:(NSString  *)id
+- (id) initWithName:(NSString  *)name
 
-            from:(SnaPerson *)from
-              to:(SnaPerson *)to
-
-            text:(NSString  *)text
-
-          sentOn:(NSDate    *)sentOn
-          readOn:(NSDate    *)readOn
+           latitude:(NSDecimal  )latitude
+          longitude:(NSDecimal  )longitude
 {
     self = [super _init];
     
     [FxAssert isNotNullValue:self];
     
-    _id      = [id        copy];
+    _name      = [name      copy];
     
-    _from    = [from    retain];
-    _to      = [to      retain];
-    
-    _text    = [text      copy];
-    
-    _sentOn  = [sentOn    copy];
-    _readOn  = [readOn    copy];
+    _latitude  =  latitude       ;
+    _longitude =  longitude      ;
     
     return self;
 }
@@ -168,15 +121,7 @@
 
 - (void) dealloc
 {
-    [_id      release];
-
-    [_from    release];
-    [_to      release];
-
-    [_text    release];
-    
-    [_sentOn  release];
-    [_readOn  release];
+    [_name      release];
     
 	[super dealloc];
 }
@@ -184,60 +129,31 @@
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 @end
-@implementation SnaMutableMessage
+@implementation SnaMutableLocation
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Properties
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-- (NSString  *) id      { return _id    ; }
+- (NSString  *) name      { return _name     ; }
 
-- (SnaPerson *) from    { return _from  ; }
-- (SnaPerson *) to      { return _to    ; }
+- (NSDecimal  ) latitude  { return _latitude ; }
+- (NSDecimal  ) longitude { return _longitude; }
 
-- (NSString  *) text    { return _text  ; }
-
-- (NSDate    *) sentOn  { return _sentOn; }
-- (NSDate    *) readOn  { return _readOn; }
-
-- (void) setId     :(NSString  *)value
+- (void) setName     :(NSString  *)value
 {
-    [_id release];
+    [_name release];
     
-    _id = [value copy];
+    _name = [value copy];
 }
 
-- (void) setFrom   :(SnaPerson *)value
+- (void) setLatitude :(NSDecimal  )value
 {
-    [_from release];
-    
-    _from = [value retain];
+    _latitude = value;
 }
-- (void) setTo     :(SnaPerson *)value
+- (void) setLongitude:(NSDecimal  )value
 {
-    [_to release];
-    
-    _to = [value retain];
-}
-
-- (void) setText   :(NSString  *)value
-{
-    [_text release];
-    
-    _text = [value copy];
-}
-
-- (void) setSentOn :(NSDate    *)value
-{
-    [_sentOn release];
-    
-    _sentOn = [value copy];
-}
-- (void) setReadOn :(NSDate    *)value
-{
-    [_readOn release];
-    
-    _readOn = [value copy];
+    _longitude = value;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -246,39 +162,23 @@
 
 - (id) init
 {
-    return [self initWithId:nil
+    return [self initWithName:nil
             
-                       from:nil
-                         to:nil
-            
-                       text:nil
-            
-                     sentOn:nil
-                     readOn:nil];
+                     latitude:[FxDecimalTools decimalFromMantisa:0 exponent:0 isNegative:FALSE]
+                    longitude:[FxDecimalTools decimalFromMantisa:0 exponent:0 isNegative:FALSE]];
 }
-- (id) initWithId:(NSString  *)id
-
-             from:(SnaPerson *)from
-               to:(SnaPerson *)to
-
-             text:(NSString  *)text
-
-           sentOn:(NSDate    *)sentOn
-           readOn:(NSDate    *)readOn
+- (id) initWithName:(NSString  *)name
+           latitude:(NSDecimal  )latitude
+          longitude:(NSDecimal  )longitude
 {
     self = [super _init];
     
     [FxAssert isNotNullValue:self];
     
-    _id      = [id      copy  ];
+    _name      = [name       copy];
     
-    _from    = [from    retain];
-    _to      = [to      retain];
-    
-    _text    = [text    copy  ];
-    
-    _sentOn  = [sentOn  copy  ];
-    _readOn  = [readOn  copy  ];
+    _latitude  =  latitude        ;
+    _longitude =  longitude       ;
     
     return self;
 }
@@ -289,15 +189,7 @@
 
 - (void) dealloc
 {
-    [_id      release];
-    
-    [_from    release];
-    [_to      release];
-
-    [_text    release];
-    
-    [_sentOn  release];
-    [_readOn  release];
+    [_name    release];
     
 	[super dealloc];
 }

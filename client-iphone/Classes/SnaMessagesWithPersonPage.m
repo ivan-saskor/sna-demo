@@ -76,11 +76,13 @@
     
     [super addPageRefreshTriggerWithBoundObject:[self dataService] propertyKey:@"timestamp"];
     
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"+" style:UIBarButtonItemStylePlain target:self action:@selector(openNewMessagePage:)] autorelease];
+
     FxUiSection *dataSection = [super addSection];
     {
         for (SnaMessage *message in [_model.person.messages reverseObjectEnumerator])
         {
-            [dataSection addItem2CellWithCaptionBoundObject:message.from captionPropertyKey:@"nick" contentBoundObject:message contentPropertyKey:@"text"];
+            [dataSection addItem2CellWithCaptionBoundObject:message.from captionPropertyKey:@"nick" contentBoundObject:message contentPropertyKey:@"text"  accesoryType:UITableViewCellAccessoryNone];
         }
     }
     
@@ -94,6 +96,11 @@
         }
     }
     #endif
+}
+
+- (void) openNewMessagePage:(id)sender
+{
+    [self showNewMessagePageWithActionType:SnaNewMessageActionTypeSendMessage toPerson:_model.person text:@""];
 }
 
 - (void) openMessage:(SnaMessage *)message

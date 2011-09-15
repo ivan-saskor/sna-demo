@@ -3,16 +3,19 @@
 
 @interface SnaDataService()
 
-@property (nonatomic, assign, readwrite) NSInteger timestamp;
+@property (nonatomic, assign, readwrite) NSInteger    timestamp;
 
-@property (nonatomic,   copy, readwrite) NSString  *defaultLogInEmail;
-@property (nonatomic,   copy, readwrite) NSString  *defaultLogInPassword;
+@property (nonatomic,   copy, readwrite) NSString    *defaultLogInEmail;
+@property (nonatomic,   copy, readwrite) NSString    *defaultLogInPassword;
 
-@property (nonatomic, retain, readwrite) SnaPerson *currentUser;
+@property (nonatomic, retain, readwrite) SnaPerson   *currentUser;
+
+@property (nonatomic, retain, readwrite) SnaLocation *currentLocation;
 
 - (void) _fillTestData;
 
 - (SnaPerson  *) _registerPersonWithString :(NSString *)string;
+- (SnaPerson *)  _registerPersonWithEmail  :(NSString *)email password:(NSString *)password nick:(NSString *)nick;
 - (SnaMessage *) _registerMessageWithString:(NSString *)string from:(SnaPerson *)personA to:(SnaPerson *)personB;
 
 - (void) _registerAsFriendsPerson:(SnaPerson *)personA andPerson:(SnaPerson *)personB;
@@ -30,6 +33,11 @@
 - (BOOL) _areInRelationPerson:(SnaPerson *)personA andPerson:(SnaPerson *)personB;
 
 - (SnaPerson *) _tryFindPersonWithEmail:(NSString *)email password:(NSString *)password;
+
+- (BOOL) _existsPersonWithEmail:(NSString *)email;
+- (BOOL) _existsPersonWithNick :(NSString *)nick;
+
+- (void) _logInPerson:(SnaPerson *)person;
 
 - (void) _allignData;
 
@@ -85,6 +93,9 @@
 
 @synthesize friendsWithMessages  = _friendsWithMessages;
 
+@synthesize currentLocation      = _currentLocation;
+@synthesize availableLocations   = _availableLocations;
+
 - (id) init
 {
     self = [super init];
@@ -110,8 +121,17 @@
     _waitingForMePersons  = [[NSMutableArray alloc] init];
     _waitingForHimPersons = [[NSMutableArray alloc] init];
     _rejectedPersons      = [[NSMutableArray alloc] init];
+    
     _friendsWithMessages  = [[NSMutableArray alloc] init];
 
+    _availableLocations   = [[NSArray alloc] initWithObjects:
+        
+        [[SnaImmutableLocation alloc] initWithName:@"Split" latitude:[FxDecimalTools decimalFromMantisa:1 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:1 exponent:0 isNegative:FALSE]],
+        [[SnaImmutableLocation alloc] initWithName:@"Bol"   latitude:[FxDecimalTools decimalFromMantisa:2 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:2 exponent:0 isNegative:FALSE]],
+        [[SnaImmutableLocation alloc] initWithName:@"Čišla" latitude:[FxDecimalTools decimalFromMantisa:3 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:3 exponent:0 isNegative:FALSE]],
+        nil
+    ];
+    
     #if DEBUG
     {
         _personA = nil;
@@ -120,6 +140,9 @@
     #endif
     
     [self _fillTestData];
+    
+    [self _logInPerson:[_persons objectAtIndex:0]];
+    self.currentLocation = [self.availableLocations objectAtIndex:0];
     
     return self;
 }
@@ -155,23 +178,52 @@
 	[super dealloc];
 }
 
-- (void) logInWithEmail:(NSString *)email password:(NSString *)password
+- (BOOL) tryLogInWithEmail :(NSString *)email password:(NSString *)password
 {
-    [FxAssert isNotNullNorEmptyArgument:email    withName:@"email"   ];
-    [FxAssert isNotNullNorEmptyArgument:password withName:@"password"];
-    
+    [FxAssert isNotNullArgument:email    withName:@"email"   ];
+    [FxAssert isNotNullArgument:password withName:@"password"];
+
     [FxAssert isValidState:(self.currentUser == nil) reason:@"User is already logged in"];
 
-    SnaPerson *user = [self _tryFindPersonWithEmail:email password:password];
-
-    if (user == nil)
+    if ([email isEqual:@""] || [password isEqual:@""])
     {
-        @throw [FxException invalidStateExceptionWithReason:[NSString stringWithFormat:@"Log In Failed with email: \"%@\" password: \"%@\"", email, password]];
+        return NO;
+    }
+    
+    SnaPerson *person = [self _tryFindPersonWithEmail:email password:password];
+
+    if (person == nil)
+    {
+        return NO;
     }
 
-    self.currentUser = user;
+    [self _logInPerson:person];
+    
+    return YES;
+}
+- (BOOL) trySignUpWithEmail:(NSString *)email password:(NSString *)password nick:(NSString *)nick
+{
+    [FxAssert isNotNullArgument:email    withName:@"email"   ];
+    [FxAssert isNotNullArgument:password withName:@"password"];
+    [FxAssert isNotNullArgument:nick     withName:@"nick"    ];
+    
+    if ([email isEqual:@""] || [password isEqual:@""] || [nick isEqual:@""])
+    {
+        return NO;
+    }
 
-    [self _allignData];
+    [FxAssert isValidState:(self.currentUser == nil) reason:@"User is already logged in"];
+    
+    if ([self _existsPersonWithEmail:email] || [self _existsPersonWithNick:nick])
+    {
+        return NO;
+    }
+
+    SnaPerson *person = [self _registerPersonWithEmail:email password:password nick:nick];
+    
+    [self _logInPerson:person];
+
+    return YES;
 }
 - (void) logOut
 {
@@ -182,9 +234,11 @@
     [self _allignData];
 }
 
-- (void) requestFriendshipToPerson:(SnaPerson *)person
+- (void) requestFriendshipToPerson:(SnaPerson *)person withMessage:(NSString *)message
 {
-    [FxAssert isNotNullArgument:person withName:@"person"];
+    [FxAssert isNotNullArgument        :person  withName:@"person"];
+    [FxAssert isValidArgument          :person  withName:@"person" validation:[_persons containsObject:person]];
+    [FxAssert isNotNullNorEmptyArgument:message withName:@"message"];
 
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
     
@@ -204,13 +258,15 @@
     [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
     
     [self _registerFriendshipRequestFromPerson:self.currentUser toPerson:person];
-    [self _registerMessageWithString:@"Friendship requested!" from:self.currentUser to:person];
+    [self _registerMessageWithString:message from:self.currentUser to:person];
     
     [self _allignData];
 }
-- (void) acceptFriendshipToPerson :(SnaPerson *)person
+- (void) acceptFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
 {
-    [FxAssert isNotNullArgument:person withName:@"person"];
+    [FxAssert isNotNullArgument        :person  withName:@"person"];
+    [FxAssert isValidArgument          :person  withName:@"person" validation:[_persons containsObject:person]];
+    [FxAssert isNotNullNorEmptyArgument:message withName:@"message"];
     
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
     
@@ -226,13 +282,15 @@
     [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
     
     [self _registerAsFriendsPerson:self.currentUser andPerson:person];
-    [self _registerMessageWithString:@"Friendship accepted!" from:self.currentUser to:person];
+    [self _registerMessageWithString:message from:self.currentUser to:person];
    
     [self _allignData];
 }
-- (void) rejectFriendshipToPerson :(SnaPerson *)person
+- (void) rejectFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
 {
-    [FxAssert isNotNullArgument:person withName:@"person"];
+    [FxAssert isNotNullArgument        :person  withName:@"person"];
+    [FxAssert isValidArgument          :person  withName:@"person" validation:[_persons containsObject:person]];
+    [FxAssert isNotNullNorEmptyArgument:message withName:@"message"];
     
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
 
@@ -248,13 +306,15 @@
     [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
     
     [self _registerAsRejectedPerson:self.currentUser andPerson:person];
-    [self _registerMessageWithString:@"Friendship rejected!" from:self.currentUser to:person];
+    [self _registerMessageWithString:message from:self.currentUser to:person];
     
     [self _allignData];
 }
-- (void) cancelFriendshipToPerson :(SnaPerson *)person
+- (void) cancelFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
 {
-    [FxAssert isNotNullArgument:person withName:@"person"];
+    [FxAssert isNotNullArgument        :person  withName:@"person"];
+    [FxAssert isValidArgument          :person  withName:@"person" validation:[_persons containsObject:person]];
+    [FxAssert isNotNullNorEmptyArgument:message withName:@"message"];
     
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
 
@@ -270,7 +330,7 @@
     [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
     
     [self _registerAsRejectedPerson:self.currentUser andPerson:person];
-    [self _registerMessageWithString:@"Friendship canceled!" from:self.currentUser to:person];
+    [self _registerMessageWithString:message from:self.currentUser to:person];
     
     [self _allignData];
 }
@@ -278,20 +338,52 @@
 - (void) callPerson               :(SnaPerson *)person
 {
     [FxAssert isNotNullArgument:person withName:@"person"];
+    [FxAssert isValidArgument  :person withName:@"person" validation:[_persons containsObject:person]];
     
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
     
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus FRIEND]) reason:@"Invalid person status"];
 
-    UIAlertView *alertView =[[[UIAlertView alloc] initWithTitle:person.nick message:@"Calling mobile" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil] autorelease];
+    [[[[UIAlertView alloc] initWithTitle:person.nick message:@"Calling mobile" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil] autorelease] show];
     
     //
     // http://developer.apple.com/library/ios/#featuredarticles/iPhoneURLScheme_Reference/Articles/PhoneLinks.html
     //
     // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:1212121212121"]];
     //
+}
+
+- (void) changeMood:(NSString *)mood
+{
+    [FxAssert isNotNullArgument:mood withName:@"mood"];
     
-    [alertView show];
+    [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
+
+    ((SnaMutablePerson *)self.currentUser).mood = mood;
+    
+    [self _allignData];
+}
+- (void) changeLocation:(SnaLocation *)location
+{
+    [FxAssert isNotNullArgument:location withName:@"location"];
+    [FxAssert isValidArgument  :location withName:@"location" validation:[_availableLocations containsObject:location]];
+
+    [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
+
+    self.currentLocation = location;
+    
+    [self _allignData];
+}
+
+- (void) sendMessageWithText:(NSString *)text toPerson:(SnaPerson *)toPerson
+{
+    [FxAssert isNotNullNorEmptyArgument:text   withName:@"text"];
+    [FxAssert isNotNullArgument        :toPerson withName:@"toPerson"];
+    [FxAssert isValidArgument          :toPerson withName:@"toPerson" validation:[_persons containsObject:toPerson]];
+
+    [self _registerMessageWithString:text from:self.currentUser to:toPerson];
+    
+    [self _allignData];
 }
 
 - (void) _fillTestData
@@ -307,11 +399,16 @@
     
     [self _registerAsFriendsPerson:personA andPerson:person0];
     [self _registerAsFriendsPerson:personA andPerson:person1];
+    [self _registerMessageWithString:@"friends-1" from:personA to:person0];
+    [self _registerMessageWithString:@"friends-2" from:personA to:person1];
     
     [self _registerFriendshipRequestFromPerson:personA toPerson:person2];
     [self _registerFriendshipRequestFromPerson:person3 toPerson:personA];
+    [self _registerMessageWithString:@"request-1" from:personA to:person2];
+    [self _registerMessageWithString:@"request-2" from:person3 to:personA];
 
     [self _registerAsRejectedPerson:personA andPerson:person4];
+    [self _registerMessageWithString:@"rejected-2" from:personA to:person4];
 
     [self _registerMessageWithString:@"m-1" from:personA to:person0];
     [self _registerMessageWithString:@"m-2" from:personA to:person3];
@@ -339,13 +436,73 @@
 {
     [FxAssert isNotNullNorEmptyArgument:string withName:@"string"];
 
+    [FxAssert isValidArgument:string withName:@"string" validation:![self _existsPersonWithEmail:string]];
+    [FxAssert isValidArgument:string withName:@"string" validation:![self _existsPersonWithNick :string]];
+    
     SnaPerson *person = [[[SnaMutablePerson alloc] initWithEmail:string
                                                         password:string
+                                                
                                                 visibilityStatus:[SnaVisibilityStatus OFFLINE]
+                                                    offlineSince:[NSDate date]
+                                                
                                                 friendshipStatus:[SnaFriendshipStatus SELF]
+                                                      rejectedOn:nil
+                                                            
                                                             nick:string
-                                                            mood:string
-                                                           phone:string] autorelease];
+                                                            mood:@""
+                                                    gravatarCode:nil
+                                                          
+                                                          bornOn:nil
+                                                          gender:nil
+                                               lookingForGenders:[NSSet set]
+                                                           
+                                                           phone:@""
+                                                   myDescription:@""
+                                                      occupation:@""
+                                                           hobby:@""
+                                                    mainLocation:@""
+                          
+                                               lastKnownLocation:nil
+                                               distanceInMeeters:0] autorelease];
+    
+    [_persons addObject:person];
+    
+    return person;
+}
+- (SnaPerson *)  _registerPersonWithEmail:(NSString *)email password:(NSString *)password nick:(NSString *)nick
+{
+    [FxAssert isNotNullNorEmptyArgument:email    withName:@"email"   ];
+    [FxAssert isNotNullNorEmptyArgument:password withName:@"password"];
+    [FxAssert isNotNullNorEmptyArgument:nick     withName:@"nick"    ];
+    
+    [FxAssert isValidArgument:email withName:@"email" validation:![self _existsPersonWithEmail:email]];
+    [FxAssert isValidArgument:email withName:@"nick"  validation:![self _existsPersonWithNick:nick  ]];
+    
+    SnaPerson *person = [[[SnaMutablePerson alloc] initWithEmail:email
+                                                        password:password
+                          
+                                                visibilityStatus:[SnaVisibilityStatus ONLINE]
+                                                    offlineSince:nil
+                          
+                                                friendshipStatus:[SnaFriendshipStatus SELF]
+                                                      rejectedOn:nil
+                          
+                                                            nick:nick
+                                                            mood:@""
+                                                    gravatarCode:nil
+                          
+                                                          bornOn:nil
+                                                          gender:nil
+                                               lookingForGenders:[NSSet set]
+                          
+                                                           phone:@""
+                                                   myDescription:@""
+                                                      occupation:@""
+                                                           hobby:@""
+                                                    mainLocation:@""
+                          
+                                               lastKnownLocation:nil
+                                               distanceInMeeters:0] autorelease];
     
     [_persons addObject:person];
     
@@ -355,7 +512,9 @@
 {
     [FxAssert isNotNullNorEmptyArgument:string  withName:@"string"];
     [FxAssert isNotNullArgument        :personA withName:@"personA"];
+    [FxAssert isValidArgument          :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument        :personB withName:@"personB"];
+    [FxAssert isValidArgument          :personB withName:@"personB" validation:[_persons containsObject:personB]];
 
     SnaMessage *message = [[[SnaMutableMessage alloc] initWithId:string
                                                             from:personA
@@ -372,7 +531,9 @@
 - (void) _registerAsFriendsPerson:(SnaPerson *)personA andPerson:(SnaPerson *)personB
 {
     [FxAssert isNotNullArgument:personA withName:@"personA"];
+    [FxAssert isValidArgument  :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument:personB withName:@"personB"];
+    [FxAssert isValidArgument  :personB withName:@"personB" validation:[_persons containsObject:personB]];
 
     [FxAssert isValidState:(![self _areInRelationPerson:personA andPerson:personB]) reason:@"Persons are already in relation"];
     
@@ -389,7 +550,9 @@
 - (void) _unregisterFriendsPerson:(SnaPerson *)personA andPerson:(SnaPerson *)personB
 {
     [FxAssert isNotNullArgument:personA withName:@"personA"];
+    [FxAssert isValidArgument  :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument:personB withName:@"personB"];
+    [FxAssert isValidArgument  :personB withName:@"personB" validation:[_persons containsObject:personB]];
     
     [FxAssert isValidState:([self _areFriendsPerson:personA andPerson:personB]) reason:@"Persons are not friends"];
 
@@ -406,7 +569,9 @@
 - (BOOL) _areFriendsPerson       :(SnaPerson *)personA andPerson:(SnaPerson *)personB
 {
     [FxAssert isNotNullArgument:personA withName:@"personA"];
+    [FxAssert isValidArgument  :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument:personB withName:@"personB"];
+    [FxAssert isValidArgument  :personB withName:@"personB" validation:[_persons containsObject:personB]];
     
     NSMutableArray *friendsOfA = (NSMutableArray *)[_friendshipRelations objectForKey:personA.email];
     NSMutableArray *friendsOfB = (NSMutableArray *)[_friendshipRelations objectForKey:personB.email];
@@ -418,7 +583,9 @@
 - (void) _registerFriendshipRequestFromPerson  :(SnaPerson *)personA toPerson:(SnaPerson *)personB
 {
     [FxAssert isNotNullArgument:personA withName:@"personA"];
+    [FxAssert isValidArgument  :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument:personB withName:@"personB"];
+    [FxAssert isValidArgument  :personB withName:@"personB" validation:[_persons containsObject:personB]];
     
     [FxAssert isValidState:(![self _areInRelationPerson:personA andPerson:personB]) reason:@"Persons are already in relation"];
     
@@ -435,7 +602,9 @@
 - (void) _unregisterFriendshipRequestFromPerson:(SnaPerson *)personA toPerson:(SnaPerson *)personB
 {
     [FxAssert isNotNullArgument:personA withName:@"personA"];
+    [FxAssert isValidArgument  :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument:personB withName:@"personB"];
+    [FxAssert isValidArgument  :personB withName:@"personB" validation:[_persons containsObject:personB]];
     
     [FxAssert isValidState:([self _existsFriendshipRequestFromPerson:personA toPerson:personB]) reason:@"Friendship request does not exist"];
     
@@ -447,7 +616,9 @@
 - (BOOL) _existsFriendshipRequestFromPerson    :(SnaPerson *)personA toPerson:(SnaPerson *)personB
 {
     [FxAssert isNotNullArgument:personA withName:@"personA"];
+    [FxAssert isValidArgument  :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument:personB withName:@"personB"];
+    [FxAssert isValidArgument  :personB withName:@"personB" validation:[_persons containsObject:personB]];
     
     NSMutableArray *friendshipRequestsOfA = (NSMutableArray *)[_friendshipRequests objectForKey:personA.email];
     
@@ -457,7 +628,9 @@
 - (void) _registerAsRejectedPerson:(SnaPerson *)personA andPerson:(SnaPerson *)personB
 {
     [FxAssert isNotNullArgument:personA withName:@"personA"];
+    [FxAssert isValidArgument  :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument:personB withName:@"personB"];
+    [FxAssert isValidArgument  :personB withName:@"personB" validation:[_persons containsObject:personB]];
     
     [FxAssert isValidState:(![self _areInRelationPerson:personA andPerson:personB]) reason:@"Persons are already in relation"];
     
@@ -474,7 +647,9 @@
 - (void) _unregisterRejectedPerson:(SnaPerson *)personA andPerson:(SnaPerson *)personB
 {
     [FxAssert isNotNullArgument:personA withName:@"personA"];
+    [FxAssert isValidArgument  :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument:personB withName:@"personB"];
+    [FxAssert isValidArgument  :personB withName:@"personB" validation:[_persons containsObject:personB]];
     
     [FxAssert isValidState:([self _areRejectedPerson:personA andPerson:personB]) reason:@"Persons are not rejected"];
     
@@ -491,7 +666,9 @@
 - (BOOL) _areRejectedPerson       :(SnaPerson *)personA andPerson:(SnaPerson *)personB
 {
     [FxAssert isNotNullArgument:personA withName:@"personA"];
+    [FxAssert isValidArgument  :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument:personB withName:@"personB"];
+    [FxAssert isValidArgument  :personB withName:@"personB" validation:[_persons containsObject:personB]];
     
     NSMutableArray *rejectionsOfA = (NSMutableArray *)[_rejections objectForKey:personA.email];
     NSMutableArray *rejectionsOfB = (NSMutableArray *)[_rejections objectForKey:personB.email];
@@ -503,7 +680,9 @@
 - (BOOL) _areInRelationPerson:(SnaPerson *)personA andPerson:(SnaPerson *)personB
 {
     [FxAssert isNotNullArgument:personA withName:@"personA"];
+    [FxAssert isValidArgument  :personA withName:@"personA" validation:[_persons containsObject:personA]];
     [FxAssert isNotNullArgument:personB withName:@"personB"];
+    [FxAssert isValidArgument  :personB withName:@"personB" validation:[_persons containsObject:personB]];
     
     return [self _areFriendsPerson                 :personA andPerson:personB]
         || [self _existsFriendshipRequestFromPerson:personA  toPerson:personB]
@@ -525,6 +704,47 @@
     }
     
     return nil;
+}
+
+- (BOOL) _existsPersonWithEmail:(NSString *)email
+{
+    [FxAssert isNotNullNorEmptyArgument:email withName:@"email"];
+    
+    for (SnaPerson *person in _persons)
+    {
+        if ([person.email isEqual:email])
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+- (BOOL) _existsPersonWithNick :(NSString *)nick
+{
+    [FxAssert isNotNullNorEmptyArgument:nick withName:@"nick"];
+    
+    for (SnaPerson *person in _persons)
+    {
+        if ([person.nick isEqual:nick])
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (void) _logInPerson:(SnaPerson *)person
+{
+    [FxAssert isNotNullArgument:person withName:@"person"];
+    [FxAssert isValidArgument  :person withName:@"person" validation:[_persons containsObject:person]];
+    
+    [FxAssert isValidState:(self.currentUser == nil) reason:@"User is already logged in"];
+
+    self.currentUser = person;
+    
+    [self _allignData];
 }
 
 - (void) _allignData
@@ -667,7 +887,8 @@
 - (NSArray *) _findMessagesWithPerson:(SnaPerson *)person
 {
     [FxAssert isNotNullArgument:person withName:@"person"];
-    
+    [FxAssert isValidArgument  :person withName:@"person" validation:[_persons containsObject:person]];
+   
     NSMutableArray *result = [NSMutableArray array];
     
     for (SnaMessage *mesage in _messages)
@@ -830,21 +1051,39 @@
 
 #ifdef DEBUG
 
--(void) testLogInPersonA
+- (void) testLogInPersonA
 {
-    [self logInWithEmail:_personA.email password:_personA.password];
+    [self _logInPerson:_personA];
 }
--(void) testLogInPersonB
+- (void) testLogInPersonB
 {
-    [self logInWithEmail:_personB.email password:_personB.password];
+    [self _logInPerson:_personB];
 }
--(void) testLogInRandomPerson
+- (void) testLogInRandomPerson
 {
-    SnaPerson *person = [self testGetRandomPerson];
-    
-    [self logInWithEmail:person.email password:person.password];
+    [self _logInPerson:[self testGetRandomPerson]];
 }
 
+- (SnaPerson *) testGenerateNewProfile
+{
+    static int testIndex = 101;
+
+    SnaMutablePerson *result = [[[SnaMutablePerson alloc] init] autorelease];
+    {
+        result.email    = [NSString stringWithFormat:@"New Profile Email %d"   , testIndex];
+        result.password = [NSString stringWithFormat:@"New Profile Password %d", testIndex];
+        result.nick     = [NSString stringWithFormat:@"New Profile Nick %d"    , testIndex];
+    }
+    
+    return [result copy];
+}
+
+- (BOOL) testGetRandomBool
+{
+    int boolIndex = random() % 2;
+    
+    return boolIndex == 1;
+}
 - (SnaPerson *) testGetRandomPerson
 {
     int personIndex = random() % _persons.count;
@@ -861,6 +1100,49 @@
     return [self.friends objectAtIndex:friendIndex];
 }
 
+- (SnaVisibilityStatus *) testGetRandomVisibilityStatus
+{
+    int visibilityStatusIndex = 1 + random() % 2;
+    
+    return [[SnaVisibilityStatus values] objectAtIndex:visibilityStatusIndex];
+}
+- (NSDate *) testGetRandomBornOn
+{
+    NSTimeInterval secondsPerDay = 24 * 60 * 60;
+
+    int bornOnDayIndex = 15 * 265 + random() % 365 * 20;
+
+    NSTimeInterval bornOnTimeinterval = - bornOnDayIndex * secondsPerDay;
+
+    return [NSDate dateWithTimeIntervalSinceNow:bornOnTimeinterval];
+}
+- (SnaGender *) testGetRandomGender
+{
+    int genderIndex = random() % [[SnaGender values] count];
+    
+    return [[SnaGender values] objectAtIndex:genderIndex];
+}
+- (NSSet *) testGetRandomGenders
+{
+    NSMutableSet *result = [NSMutableSet set];
+    
+    for (SnaGender *gender in [SnaGender values])
+    {
+        if ([self testGetRandomBool])
+        {
+            [result addObject:gender];
+        }
+    }
+    
+    return [result copy];
+}
+- (NSInteger) testGetRandomDistance
+{
+    int distance = random() % 10000;
+    
+    return distance;
+}
+
 - (void) testAddFivePersons
 {
     static int testIndex = 101;
@@ -872,6 +1154,22 @@
         if (i == 0 && self.currentUser != nil)
         {
             [self _registerAsFriendsPerson:self.currentUser andPerson:person];
+            [self _registerMessageWithString:@"new-friends" from:self.currentUser to:person];
+        }
+        if (i == 1 && self.currentUser != nil)
+        {
+            [self _registerFriendshipRequestFromPerson:person toPerson:self.currentUser];
+            [self _registerMessageWithString:@"new-in-request" from:person to:self.currentUser];
+        }
+        if (i == 2 && self.currentUser != nil)
+        {
+            [self _registerFriendshipRequestFromPerson:self.currentUser toPerson:person];
+            [self _registerMessageWithString:@"new-out-request" from:self.currentUser to:person];
+        }
+        if (i == 3 && self.currentUser != nil)
+        {
+            [self _registerAsRejectedPerson:self.currentUser andPerson:person];
+            [self _registerMessageWithString:@"new-rejection" from:self.currentUser to:person];
         }
         
         testIndex ++;
@@ -887,14 +1185,24 @@
     {
         SnaMutablePerson *person = [_persons objectAtIndex:i];
         
-        NSInteger nextVisibilityStatusIndex = ([[SnaVisibilityStatus values] indexOfObject:person.visibilityStatus] + 1) % [[SnaVisibilityStatus values] count];
+        person.visibilityStatus   = [self testGetRandomVisibilityStatus];
         
-        person.visibilityStatus = [[SnaVisibilityStatus values] objectAtIndex:nextVisibilityStatusIndex];
+        person.nick               = [NSString stringWithFormat:@"Nick %i - %i"         , i, testIndex];
+        person.mood               = [NSString stringWithFormat:@"Mood %i - %i"         , i, testIndex];
+        person.gravatarCode       = [NSString stringWithFormat:@"Gravatar Code %i - %i", i, testIndex];
         
-        person.nick  = [NSString stringWithFormat:@"Nick %i - %i" , i, testIndex];
-        person.mood  = [NSString stringWithFormat:@"Mood %i - %i" , i, testIndex];
+        person.bornOn             = [self testGetRandomBornOn];
+        person.gender             = [self testGetRandomGender];
+        
+        [person.lookingForGenders setSet:[self testGetRandomGenders]];
 
-        person.phone = [NSString stringWithFormat:@"Phone %i - %i", i, testIndex];
+        person.phone              = [NSString stringWithFormat:@"Phone %i - %i"        , i, testIndex];
+        person.myDescription      = [NSString stringWithFormat:@"Description %i - %i"  , i, testIndex];
+        person.occupation         = [NSString stringWithFormat:@"Occupation %i - %i"   , i, testIndex];
+        person.hobby              = [NSString stringWithFormat:@"Hobby %i - %i"        , i, testIndex];
+        person.mainLocation       = [NSString stringWithFormat:@"Main Location %i - %i", i, testIndex];
+        
+        person.distanceInMeeters  = [self testGetRandomDistance];
     }
     
     [self _allignData];
@@ -927,6 +1235,9 @@
 }
 - (void) testAddMessageWithPerson:(SnaPerson *)person
 {
+    [FxAssert isNotNullArgument:person withName:@"person"];
+    [FxAssert isValidArgument  :person withName:@"person" validation:[_persons containsObject:person]];
+
     static int testIndex = 1001;
     
     int direction = random() % 2;

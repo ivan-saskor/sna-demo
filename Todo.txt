@@ -1,7 +1,10 @@
-dubrovacka 25
 
-- Vidit šta sa statusom Invisible i testnim podacima kako to pametno napravit
+
+- imamo neki memory leak - kad se otvori novi page ostane field refresh trigger - testirat na change mood
+- Stavit na sve pageve trigger na dataServices.timestamp
 - Napravit Interface za Bruna
+- Stavit bolji plus
+- Brojevi na tab iteme
 
  BRZO
 ------
@@ -19,10 +22,18 @@ dubrovacka 25
   - nepročitane poruke
   - broj ne odgovorenih zahtjeva
 - Napravit da se pamti stack prozora, pa da se resetira kad drugi put kliknemo (da se ne zaboravi di je bija na promijenu u glavnoj navigaciji)
+- Vidit šta s VisibilityStatusom Invisible od nekog person - to se ne bi trebalo vidit u UI-u - Exception, a treba bi bit u testnim podacima
+  - Stavit funkciju test get real visibility status, a bacat exception ako dobijemo invisible
+- Bacat exception na person pageu ako dobijemo self
+- Bacat exception na profile pagu ako ne dobijemo self
+
 
  SOMEDAY MAYBE
 ---------------
 
+- Ponekad se yaglavi ekran na text boxu, pa se ne može scrol pomaknit da se textbox ne vidi
+- Napravit helper za registriranje botuna gore desno
+- umisto readonlz mutableArray ili mutableSet properija koristit get KVO Mutable Array jer tako se trigeriraju pravi change eventi
 - Prebacit da se sortiranje određuje u view-u, a ne u service-u
 - Da se refresha kontent stranicee koja je bila na navigacijskom staeku kod pop-a ako su promijenjeni podaci
 - Da se refresha back botun kad se mutiraju personi

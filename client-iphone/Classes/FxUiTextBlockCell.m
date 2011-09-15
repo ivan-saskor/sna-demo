@@ -20,7 +20,7 @@ static const NSInteger _CELL_HEIGHT = 24;
 }
 - (id) initWithCaption:(NSString *)caption boundObject:(NSObject *)boundObject propertyKey:(NSString *)propertyKey displayPropertyKey:(NSString *)displayPropertyKey
 {
-    self = [super initWithHeight:_CELL_HEIGHT canBecomeFirstResponder:YES];
+    self = [super initWithHeight:_CELL_HEIGHT canBecomeFirstResponder:NO];
     
     if (!self) @throw [NSException exceptionWithName:@"Init failed" reason:nil userInfo:nil];
     

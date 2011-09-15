@@ -12,5 +12,10 @@
 @property(nonatomic, retain) IBOutlet UIWindow *window;
 @property(nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
++ (SnaApplicationDelegate *) INSTANCE;
+
+- (void) flipToLoginPage;
+- (void) flipToHomePage;
+
 @end
 

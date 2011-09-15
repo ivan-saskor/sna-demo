@@ -17,13 +17,17 @@ static const NSInteger _CELL_HEIGHT = 44;
 @synthesize action             = _action;
 @synthesize actionContext      = _actionContext;
 
+@synthesize accesoryType       = _accesoryType;
+
+NSInteger accesoryStleCode;
+
 - (id) initWithHeight:(NSInteger)height
 {
     @throw [NSException exceptionWithName:@"Init with height is not supported" reason:nil userInfo:nil];
 }
-- (id) initWithStyleCode:(NSInteger)styleCode captionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey targetObject:(NSObject *)targetObject action:(SEL)action actionContext:(NSObject *)actionContext;
+- (id) initWithStyleCode:(NSInteger)styleCode captionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey targetObject:(NSObject *)targetObject action:(SEL)action actionContext:(NSObject *)actionContext accesoryType:(UITableViewCellAccessoryType)accesoryType
 {
-    self = [super initWithHeight:_CELL_HEIGHT canBecomeFirstResponder:YES];
+    self = [super initWithHeight:_CELL_HEIGHT canBecomeFirstResponder:NO];
     
     if (!self) @throw [NSException exceptionWithName:@"Init failed" reason:nil userInfo:nil];
     
@@ -39,6 +43,8 @@ static const NSInteger _CELL_HEIGHT = 44;
     _action             =  action                    ;
     _actionContext      = [actionContext      retain];
 
+    _accesoryType       =  accesoryType;
+    
     return self;
 }
 

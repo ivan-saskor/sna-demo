@@ -8,7 +8,7 @@
 
 - (id) init
 {
-    return [self initWithEmail:nil password:nil];
+    return [self initWithEmail:@"" password:@""];
 }
 - (id) initWithEmail:(NSString *)email password:(NSString *)password
 {
@@ -77,7 +77,8 @@
     }
     FxUiSection *buttonsSection = [super addSection];
     {
-        [buttonsSection addButtonCellWithCaption:@"Log In" targetObject:self action:@selector(logIn:)];
+        [buttonsSection addButtonCellWithCaption:@"Log In"  targetObject:self action:@selector(logIn:)];
+        [buttonsSection addButtonCellWithCaption:@"Sign Up" targetObject:self action:@selector(signUp:)];
     }
 
     #ifdef DEBUG
@@ -94,9 +95,20 @@
 
 - (void) logIn:(id)sender
 {
-    [self.dataService logInWithEmail:_model.email password:_model.password];
+    BOOL isSuccesfull = [self.dataService tryLogInWithEmail:_model.email password:_model.password];
 
-    [self showHomePage];
+    if (isSuccesfull)
+    {
+        [self showHomePage];
+    }
+    else
+    {
+        [[[[UIAlertView alloc] initWithTitle:@"Error" message:@"Log In failed!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
+    }
+}
+- (void) signUp:(id)sender
+{
+    [self showSignUpPage];
 }
 
 #ifdef DEBUG

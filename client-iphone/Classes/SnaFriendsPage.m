@@ -42,6 +42,8 @@
     
     _model = [[SnaFriendsPageModel alloc] initWithFriends:self.dataService.friends];
     
+    super.title = @"Friends";
+    
     return self;
 }
 - (id) initWithStyle:(UITableViewStyle)style
@@ -65,7 +67,6 @@
 
 - (void) onPageRefresh
 {
-    super.title     = @"Friends";
     super.backTitle = @"Friends";
     
     [super addPageRefreshTriggerWithBoundObject:[self dataService] propertyKey:@"timestamp"];
@@ -74,7 +75,7 @@
     {
         for (SnaPerson *person in _model.friends)
         {
-            [dataSection addItem1CellWithCaptionBoundObject:person captionPropertyKey:@"nick" contentBoundObject:person contentPropertyKey:@"mood" targetObject:self action:@selector(openPerson:) actionContext:person];
+            [dataSection addItem1CellWithCaptionBoundObject:person captionPropertyKey:@"nick" contentBoundObject:person contentPropertyKey:@"mood" targetObject:self action:@selector(openPerson:) actionContext:person  accesoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
     }
     

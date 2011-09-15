@@ -8,5 +8,6 @@
 + (NSString *)dumpFieldWithName:(NSString *)name value  :(NSObject *)value;
 + (NSString *)dumpFieldWithName:(NSString *)name boolean:(BOOL      )value;
 + (NSString *)dumpFieldWithName:(NSString *)name integer:(NSInteger )value;
++ (NSString *)dumpFieldWithName:(NSString *)name decimal:(NSDecimal )value;
 
 @end

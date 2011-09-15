@@ -19,7 +19,7 @@
 @property(nonatomic, readonly, copy  ) NSDate    *sentOn;
 @property(nonatomic, readonly, copy  ) NSDate    *readOn;
 
-@property(nonatomic, readonly        ) BOOL       isRead;
+@property(nonatomic, readonly, assign) BOOL       isRead; // CALCULATED
 
 @end
 
@@ -40,7 +40,15 @@
     @private NSDate    *_readOn;
 }
 
-- (id) initWithId:(NSString *)id from:(SnaPerson *)from to:(SnaPerson *)to text:(NSString *)text sentOn:(NSDate *)sentOn readOn:(NSDate *)readOn;
+- (id) initWithId:(NSString  *)id
+
+             from:(SnaPerson *)from
+               to:(SnaPerson *)to
+
+             text:(NSString  *)text
+
+           sentOn:(NSDate    *)sentOn
+           readOn:(NSDate    *)readOn;
 
 @end
 
@@ -61,8 +69,6 @@
     @private NSDate    *_readOn;
 }
 
-- (id) initWithId:(NSString *)id from:(SnaPerson *)from to:(SnaPerson *)to text:(NSString *)text sentOn:(NSDate *)sentOn readOn:(NSDate *)readOn;
-
 @property(nonatomic, readwrite, copy  ) NSString  *id;
 
 @property(nonatomic, readwrite, retain) SnaPerson *from;
@@ -73,17 +79,14 @@
 @property(nonatomic, readwrite, copy  ) NSDate    *sentOn;
 @property(nonatomic, readwrite, copy  ) NSDate    *readOn;
 
-@end
+- (id) initWithId:(NSString  *)id
 
-//class Message
-//{
-//    string              Id;                     //                  must be: NotNull and NotEmpty    // Must be: unique in database
-//    
-//    string              FromEmail;              //                  must be: NotNull and NotEmpty
-//    string              ToEmail;                //                  must be: NotNull and NotEmpty
-//    
-//    string              Text;                   //                  must be: NotNull and NotEmpty
-//    
-//    datetime            SentOn;                 //                  must be: NotNull
-//    datetime            ReadOn;                 // can be: Null     must be: GreaterThanOrEqualTo(this.SentOn) if NotNull
-//}
+             from:(SnaPerson *)from
+               to:(SnaPerson *)to
+
+             text:(NSString  *)text
+
+           sentOn:(NSDate    *)sentOn
+           readOn:(NSDate    *)readOn;
+
+@end

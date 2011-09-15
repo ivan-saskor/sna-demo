@@ -31,7 +31,7 @@
 
 - (FxUiButtonCell *) addButtonCellWithCaption:(NSString *)caption targetObject:(NSObject *)targetObject action:(SEL)action;
 
-- (FxUiItemCell *) addItem1CellWithCaptionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey targetObject:(NSObject *)targetObject action:(SEL)action actionContext:(NSObject *)actionContext;
-- (FxUiItemCell *) addItem2CellWithCaptionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey;
+- (FxUiItemCell *) addItem1CellWithCaptionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey targetObject:(NSObject *)targetObject action:(SEL)action actionContext:(NSObject *)actionContext accesoryType:(UITableViewCellAccessoryType)accesoryType;
+- (FxUiItemCell *) addItem2CellWithCaptionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey  accesoryType:(UITableViewCellAccessoryType)accesoryType;
 
 @end

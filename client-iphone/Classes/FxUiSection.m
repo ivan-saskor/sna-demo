@@ -50,7 +50,7 @@
 {
     return [self addCell:[[[FxUiTextBlockCell alloc] initWithCaption:caption boundObject:boundObject propertyKey:propertyKey] autorelease]];
 }
-- (FxUiTextBlockCell *) addTextBlockCellWithCaption:(NSString *)caption boundObject:(NSObject *)boundObject propertyKey:(NSString *)propertyKey displayPropertyKey:(NSString *)displayPropertyKey;
+- (FxUiTextBlockCell *) addTextBlockCellWithCaption:(NSString *)caption boundObject:(NSObject *)boundObject propertyKey:(NSString *)propertyKey displayPropertyKey:(NSString *)displayPropertyKey
 {
     return [self addCell:[[[FxUiTextBlockCell alloc] initWithCaption:caption boundObject:boundObject propertyKey:propertyKey displayPropertyKey:displayPropertyKey] autorelease]];
 }
@@ -74,13 +74,13 @@
     return [self addCell:[[[FxUiButtonCell alloc] initWithCaption:caption targetObject:targetObject action:action] autorelease]];
 }
 
-- (FxUiItemCell *) addItem1CellWithCaptionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey targetObject:(NSObject *)targetObject action:(SEL)action actionContext:(NSObject *)actionContext;
+- (FxUiItemCell *) addItem1CellWithCaptionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey targetObject:(NSObject *)targetObject action:(SEL)action actionContext:(NSObject *)actionContext accesoryType:(UITableViewCellAccessoryType)accesoryType
 {
-    return [self addCell:[[[FxUiItemCell alloc] initWithStyleCode:1 captionBoundObject:captionBoundObject captionPropertyKey:captionPropertyKey contentBoundObject:contentBoundObject contentPropertyKey:contentPropertyKey targetObject:targetObject action:action actionContext:actionContext] autorelease]];
+    return [self addCell:[[[FxUiItemCell alloc] initWithStyleCode:1 captionBoundObject:captionBoundObject captionPropertyKey:captionPropertyKey contentBoundObject:contentBoundObject contentPropertyKey:contentPropertyKey targetObject:targetObject action:action actionContext:actionContext accesoryType:accesoryType] autorelease]];
 }
-- (FxUiItemCell *) addItem2CellWithCaptionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey;
+- (FxUiItemCell *) addItem2CellWithCaptionBoundObject:(NSObject *)captionBoundObject captionPropertyKey:(NSString *)captionPropertyKey contentBoundObject:(NSObject *)contentBoundObject contentPropertyKey:(NSString *)contentPropertyKey  accesoryType:(UITableViewCellAccessoryType)accesoryType
 {
-    return [self addCell:[[[FxUiItemCell alloc] initWithStyleCode:2 captionBoundObject:captionBoundObject captionPropertyKey:captionPropertyKey contentBoundObject:contentBoundObject contentPropertyKey:contentPropertyKey targetObject:nil action:nil actionContext:nil] autorelease]];
+    return [self addCell:[[[FxUiItemCell alloc] initWithStyleCode:2 captionBoundObject:captionBoundObject captionPropertyKey:captionPropertyKey contentBoundObject:contentBoundObject contentPropertyKey:contentPropertyKey targetObject:nil action:nil actionContext:nil accesoryType:accesoryType] autorelease]];
 }
 
 @end

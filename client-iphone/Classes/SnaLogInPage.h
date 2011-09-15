@@ -5,8 +5,8 @@
 
 @interface SnaLogInPageModel : NSObject
 
-@property(nonatomic, copy) NSString *email;
-@property(nonatomic, copy) NSString *password;
+@property(nonatomic, copy, readwrite) NSString *email;
+@property(nonatomic, copy, readwrite) NSString *password;
 
 - (id) initWithEmail:(NSString *)email password:(NSString *)password;
 

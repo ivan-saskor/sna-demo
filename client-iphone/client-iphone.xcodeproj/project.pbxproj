@@ -29,6 +29,7 @@
 		DF50745213ECF500006E2566 /* FxUiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF50745113ECF500006E2566 /* FxUiCell.m */; };
 		DF5074B313EF3DB2006E2566 /* FxUiTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5074B213EF3DB2006E2566 /* FxUiTextFieldCell.m */; };
 		DF5074BE13EF43A0006E2566 /* FxUiButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5074BD13EF43A0006E2566 /* FxUiButtonCell.m */; };
+		DF51595F1421802800FC2F1D /* SnaNewMessagePage.m in Sources */ = {isa = PBXBuildFile; fileRef = DF51595E1421802800FC2F1D /* SnaNewMessagePage.m */; };
 		DFABA03913E0BE55007E2517 /* SnaPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = DFABA03813E0BE55007E2517 /* SnaPerson.m */; };
 		DFBF918113F1CD9E0092CFB1 /* SnaTableViewPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF918013F1CD9E0092CFB1 /* SnaTableViewPageController.m */; };
 		DFBF926C13F324650092CFB1 /* FxUiTextBlockCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF926B13F324650092CFB1 /* FxUiTextBlockCell.m */; };
@@ -51,6 +52,17 @@
 		DFBF9C1B1406F6450092CFB1 /* SnaMessagesWithPersonPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF9C1A1406F6450092CFB1 /* SnaMessagesWithPersonPage.m */; };
 		DFBF9C2A140700A30092CFB1 /* SnaMessagePage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF9C29140700A30092CFB1 /* SnaMessagePage.m */; };
 		DFBF9F56140B828E0092CFB1 /* SnaFriendshipRequestsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF9F55140B828E0092CFB1 /* SnaFriendshipRequestsPage.m */; };
+		DFBFA0B21412D0700092CFB1 /* SnaGender.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBFA0B11412D0700092CFB1 /* SnaGender.m */; };
+		DFBFA0B51412D0820092CFB1 /* SnaLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBFA0B41412D0820092CFB1 /* SnaLocation.m */; };
+		DFBFA138141CFA850092CFB1 /* FxDecimalTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBFA137141CFA850092CFB1 /* FxDecimalTools.m */; };
+		DFF7C809141D5FA200EC3511 /* SnaSignUpPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF7C808141D5FA200EC3511 /* SnaSignUpPage.m */; };
+		DFF7C90714215A4D00EC3511 /* SnaChangeLocationPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF7C90614215A4D00EC3511 /* SnaChangeLocationPage.m */; };
+		DFF7C99B1421716700EC3511 /* SnaChangeMoodPage.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF7C99A1421716700EC3511 /* SnaChangeMoodPage.m */; };
+		DFFCA2471421C46900005A65 /* Friends.png in Resources */ = {isa = PBXBuildFile; fileRef = DFFCA2421421C46900005A65 /* Friends.png */; };
+		DFFCA2481421C46900005A65 /* FriendshipRequests.png in Resources */ = {isa = PBXBuildFile; fileRef = DFFCA2431421C46900005A65 /* FriendshipRequests.png */; };
+		DFFCA2491421C46900005A65 /* Messages.png in Resources */ = {isa = PBXBuildFile; fileRef = DFFCA2441421C46900005A65 /* Messages.png */; };
+		DFFCA24A1421C46900005A65 /* NearbyPersons.png in Resources */ = {isa = PBXBuildFile; fileRef = DFFCA2451421C46900005A65 /* NearbyPersons.png */; };
+		DFFCA24B1421C46900005A65 /* Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = DFFCA2461421C46900005A65 /* Profile.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +113,8 @@
 		DF5074B213EF3DB2006E2566 /* FxUiTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxUiTextFieldCell.m; sourceTree = "<group>"; };
 		DF5074BC13EF43A0006E2566 /* FxUiButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxUiButtonCell.h; sourceTree = "<group>"; };
 		DF5074BD13EF43A0006E2566 /* FxUiButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxUiButtonCell.m; sourceTree = "<group>"; };
+		DF51595D1421802800FC2F1D /* SnaNewMessagePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaNewMessagePage.h; sourceTree = "<group>"; };
+		DF51595E1421802800FC2F1D /* SnaNewMessagePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaNewMessagePage.m; sourceTree = "<group>"; };
 		DFABA03713E0BE55007E2517 /* SnaPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaPerson.h; sourceTree = "<group>"; };
 		DFABA03813E0BE55007E2517 /* SnaPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaPerson.m; sourceTree = "<group>"; };
 		DFBF917F13F1CD9E0092CFB1 /* SnaTableViewPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaTableViewPageController.h; sourceTree = "<group>"; };
@@ -142,6 +156,23 @@
 		DFBF9C29140700A30092CFB1 /* SnaMessagePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaMessagePage.m; sourceTree = "<group>"; };
 		DFBF9F54140B828E0092CFB1 /* SnaFriendshipRequestsPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaFriendshipRequestsPage.h; sourceTree = "<group>"; };
 		DFBF9F55140B828E0092CFB1 /* SnaFriendshipRequestsPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaFriendshipRequestsPage.m; sourceTree = "<group>"; };
+		DFBFA0B01412D0700092CFB1 /* SnaGender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaGender.h; sourceTree = "<group>"; };
+		DFBFA0B11412D0700092CFB1 /* SnaGender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaGender.m; sourceTree = "<group>"; };
+		DFBFA0B31412D0820092CFB1 /* SnaLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaLocation.h; sourceTree = "<group>"; };
+		DFBFA0B41412D0820092CFB1 /* SnaLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaLocation.m; sourceTree = "<group>"; };
+		DFBFA136141CFA850092CFB1 /* FxDecimalTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxDecimalTools.h; sourceTree = "<group>"; };
+		DFBFA137141CFA850092CFB1 /* FxDecimalTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FxDecimalTools.m; sourceTree = "<group>"; };
+		DFF7C807141D5FA200EC3511 /* SnaSignUpPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaSignUpPage.h; sourceTree = "<group>"; };
+		DFF7C808141D5FA200EC3511 /* SnaSignUpPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaSignUpPage.m; sourceTree = "<group>"; };
+		DFF7C90514215A4D00EC3511 /* SnaChangeLocationPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaChangeLocationPage.h; sourceTree = "<group>"; };
+		DFF7C90614215A4D00EC3511 /* SnaChangeLocationPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaChangeLocationPage.m; sourceTree = "<group>"; };
+		DFF7C9991421716700EC3511 /* SnaChangeMoodPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaChangeMoodPage.h; sourceTree = "<group>"; };
+		DFF7C99A1421716700EC3511 /* SnaChangeMoodPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaChangeMoodPage.m; sourceTree = "<group>"; };
+		DFFCA2421421C46900005A65 /* Friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Friends.png; path = Resources/Friends.png; sourceTree = "<group>"; };
+		DFFCA2431421C46900005A65 /* FriendshipRequests.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FriendshipRequests.png; path = Resources/FriendshipRequests.png; sourceTree = "<group>"; };
+		DFFCA2441421C46900005A65 /* Messages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Messages.png; path = Resources/Messages.png; sourceTree = "<group>"; };
+		DFFCA2451421C46900005A65 /* NearbyPersons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NearbyPersons.png; path = Resources/NearbyPersons.png; sourceTree = "<group>"; };
+		DFFCA2461421C46900005A65 /* Profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Profile.png; path = Resources/Profile.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +284,8 @@
 				DF50691B13E233C4006E2566 /* SnaVisibilityStatus.m */,
 				DFBF972713F952E80092CFB1 /* SnaFriendshipStatus.h */,
 				DFBF972813F952E80092CFB1 /* SnaFriendshipStatus.m */,
+				DFBFA0B01412D0700092CFB1 /* SnaGender.h */,
+				DFBFA0B11412D0700092CFB1 /* SnaGender.m */,
 			);
 			name = Enums;
 			sourceTree = "<group>";
@@ -264,6 +297,8 @@
 				DFABA03813E0BE55007E2517 /* SnaPerson.m */,
 				DFBF9B9F1406BEAC0092CFB1 /* SnaMessage.h */,
 				DFBF9BA01406BEAC0092CFB1 /* SnaMessage.m */,
+				DFBFA0B31412D0820092CFB1 /* SnaLocation.h */,
+				DFBFA0B41412D0820092CFB1 /* SnaLocation.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -375,6 +410,8 @@
 				DF506A4313E4CFCE006E2566 /* FxDumper.m */,
 				DF506AEA13E4EE7C006E2566 /* FxStringTools.h */,
 				DF506AEB13E4EE7C006E2566 /* FxStringTools.m */,
+				DFBFA136141CFA850092CFB1 /* FxDecimalTools.h */,
+				DFBFA137141CFA850092CFB1 /* FxDecimalTools.m */,
 				DF506D1D13E768EE006E2566 /* FxEnum.h */,
 				DF506D1E13E768EE006E2566 /* FxEnum.m */,
 				DFBF996B13FEE0AF0092CFB1 /* FxExceptions.h */,
@@ -400,6 +437,11 @@
 		DFBF96EB13F89B040092CFB1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DFFCA2421421C46900005A65 /* Friends.png */,
+				DFFCA2431421C46900005A65 /* FriendshipRequests.png */,
+				DFFCA2441421C46900005A65 /* Messages.png */,
+				DFFCA2451421C46900005A65 /* NearbyPersons.png */,
+				DFFCA2461421C46900005A65 /* Profile.png */,
 				DFBF96EC13F89B320092CFB1 /* UITV-Checkmark.png */,
 				DFBF96ED13F89B320092CFB1 /* UITV-DetailDisclosureButton.png */,
 				DFBF96EE13F89B320092CFB1 /* UITV-DisclosureIndicator.png */,
@@ -412,6 +454,10 @@
 			children = (
 				DFBF992713FEAC1E0092CFB1 /* SnaProfilePage.h */,
 				DFBF992813FEAC1E0092CFB1 /* SnaProfilePage.m */,
+				DFF7C9991421716700EC3511 /* SnaChangeMoodPage.h */,
+				DFF7C99A1421716700EC3511 /* SnaChangeMoodPage.m */,
+				DFF7C90514215A4D00EC3511 /* SnaChangeLocationPage.h */,
+				DFF7C90614215A4D00EC3511 /* SnaChangeLocationPage.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -421,6 +467,8 @@
 			children = (
 				DF50716A13EB75B6006E2566 /* SnaLogInPage.h */,
 				DF50716B13EB75B6006E2566 /* SnaLogInPage.m */,
+				DFF7C807141D5FA200EC3511 /* SnaSignUpPage.h */,
+				DFF7C808141D5FA200EC3511 /* SnaSignUpPage.m */,
 			);
 			name = "Log In";
 			sourceTree = "<group>";
@@ -456,6 +504,8 @@
 				DFBF9C1A1406F6450092CFB1 /* SnaMessagesWithPersonPage.m */,
 				DFBF9C28140700A30092CFB1 /* SnaMessagePage.h */,
 				DFBF9C29140700A30092CFB1 /* SnaMessagePage.m */,
+				DF51595D1421802800FC2F1D /* SnaNewMessagePage.h */,
+				DF51595E1421802800FC2F1D /* SnaNewMessagePage.m */,
 			);
 			name = Messages;
 			sourceTree = "<group>";
@@ -535,6 +585,11 @@
 				DFBF96EF13F89B320092CFB1 /* UITV-Checkmark.png in Resources */,
 				DFBF96F013F89B320092CFB1 /* UITV-DetailDisclosureButton.png in Resources */,
 				DFBF96F113F89B320092CFB1 /* UITV-DisclosureIndicator.png in Resources */,
+				DFFCA2471421C46900005A65 /* Friends.png in Resources */,
+				DFFCA2481421C46900005A65 /* FriendshipRequests.png in Resources */,
+				DFFCA2491421C46900005A65 /* Messages.png in Resources */,
+				DFFCA24A1421C46900005A65 /* NearbyPersons.png in Resources */,
+				DFFCA24B1421C46900005A65 /* Profile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +636,13 @@
 				DFBF9C1B1406F6450092CFB1 /* SnaMessagesWithPersonPage.m in Sources */,
 				DFBF9C2A140700A30092CFB1 /* SnaMessagePage.m in Sources */,
 				DFBF9F56140B828E0092CFB1 /* SnaFriendshipRequestsPage.m in Sources */,
+				DFBFA0B21412D0700092CFB1 /* SnaGender.m in Sources */,
+				DFBFA0B51412D0820092CFB1 /* SnaLocation.m in Sources */,
+				DFBFA138141CFA850092CFB1 /* FxDecimalTools.m in Sources */,
+				DFF7C809141D5FA200EC3511 /* SnaSignUpPage.m in Sources */,
+				DFF7C90714215A4D00EC3511 /* SnaChangeLocationPage.m in Sources */,
+				DFF7C99B1421716700EC3511 /* SnaChangeMoodPage.m in Sources */,
+				DF51595F1421802800FC2F1D /* SnaNewMessagePage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

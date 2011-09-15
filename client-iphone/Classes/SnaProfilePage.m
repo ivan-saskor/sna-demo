@@ -42,6 +42,8 @@
     
     _model = [[SnaProfilePageModel alloc] initWithCurrentUser:self.dataService.currentUser];
     
+    super.title = @"Profile";
+
     return self;
 }
 - (id) initWithStyle:(UITableViewStyle)style
@@ -58,18 +60,48 @@
 
 - (void) onPageRefresh
 {
-    super.title     = @"Profile";
     super.backTitle = @"Profile";
-    
+
+    [super addPageRefreshTriggerWithBoundObject:[self dataService] propertyKey:@"timestamp"];
+
     FxUiSection *dataSection = [super addSection];
     {
-        [dataSection addTextBlockCellWithCaption:@"nick" boundObject:_model.currentUser propertyKey:@"nick"];
-        [dataSection addTextBlockCellWithCaption:@"mood" boundObject:_model.currentUser propertyKey:@"mood"];
+        [dataSection addTextBlockCellWithCaption:@"nick"  boundObject:_model.currentUser propertyKey:@"nick" ];
+        [dataSection addTextBlockCellWithCaption:@"mood"  boundObject:_model.currentUser propertyKey:@"mood" ];
+    }
+    FxUiSection *changeMoodButtonSection = [super addSection];
+    {
+        [changeMoodButtonSection addButtonCellWithCaption:@"Change Mood" targetObject:self action:@selector(openChangeMoodPage:)];
+    }
+    FxUiSection *mainDataSection = [super addSection];
+    {
+        [mainDataSection addTextBlockCellWithCaption:@"born on"     boundObject:_model.currentUser propertyKey:@"bornOnAsString"            ];
+        [mainDataSection addTextBlockCellWithCaption:@"gender"      boundObject:_model.currentUser propertyKey:@"gender"                    displayPropertyKey:@"name"];
+        [mainDataSection addTextBlockCellWithCaption:@"looking for" boundObject:_model.currentUser propertyKey:@"lookingForGendersAsString" ];
+    }
+    FxUiSection *otherDataSection = [super addSection];
+    {
+        [otherDataSection addTextBlockCellWithCaption:@"description"   boundObject:_model.currentUser propertyKey:@"myDescription"];
+        [otherDataSection addTextBlockCellWithCaption:@"occupation"    boundObject:_model.currentUser propertyKey:@"occupation"   ];
+        [otherDataSection addTextBlockCellWithCaption:@"hobby"         boundObject:_model.currentUser propertyKey:@"hobby"        ];
+        [otherDataSection addTextBlockCellWithCaption:@"main location" boundObject:_model.currentUser propertyKey:@"mainLocation" ];
+    }
+    FxUiSection *contactsDataSection = [super addSection];
+    {
+        [contactsDataSection addTextBlockCellWithCaption:@"email" boundObject:_model.currentUser propertyKey:@"email"];
+        [contactsDataSection addTextBlockCellWithCaption:@"phone" boundObject:_model.currentUser propertyKey:@"phone"];
+    }
+    FxUiSection *locationSection = [super addSection];
+    {
+        [locationSection addTextBlockCellWithCaption:@"current location" boundObject:self.dataService propertyKey:@"currentLocation" displayPropertyKey:@"name"];
+    }
+    FxUiSection *changeLocationButtonSection = [super addSection];
+    {
+        [changeLocationButtonSection addButtonCellWithCaption:@"Change Location" targetObject:self action:@selector(openChangeLocationPage:)];
     }
     FxUiSection *buttonsSection = [super addSection];
     {
-        [buttonsSection addButtonCellWithCaption:@"Change Mood"    targetObject:self action:@selector(openChangeMoodPopup:)];
-        [buttonsSection addButtonCellWithCaption:@"Log Out"        targetObject:self action:@selector(logOut:             )];
+        [buttonsSection addButtonCellWithCaption:@"Log Out"     targetObject:self action:@selector(logOut:             )];
     }
     
     #ifdef DEBUG
@@ -82,8 +114,13 @@
     #endif
 }
 
-- (void) openChangeMoodPopup:(id)sender
+- (void) openChangeMoodPage:(id)sender
 {
+    [self showChangeMoodPage];
+}
+- (void) openChangeLocationPage:(id)sender
+{
+    [self showChangeLocationPage];
 }
 
 - (void) logOut:(id)sender

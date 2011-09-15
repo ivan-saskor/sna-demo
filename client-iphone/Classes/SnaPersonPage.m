@@ -81,18 +81,34 @@
     super.title     = _model.person.nick;
     super.backTitle = _model.person.nick;
 
-    [super addPageRefreshTriggerWithBoundObject:_model.person propertyKey:@"friendshipStatus"];
-
+    [super addPageRefreshTriggerWithBoundObject:[self dataService] propertyKey:@"timestamp"];
+    
     FxUiSection *dataSection = [super addSection];
     {
-        [dataSection addTextBlockCellWithCaption:@"nick"       boundObject:_model.person propertyKey:@"nick"                                       ];
-        [dataSection addTextBlockCellWithCaption:@"mood"       boundObject:_model.person propertyKey:@"mood"                                       ];
-        [dataSection addTextBlockCellWithCaption:@"visibility" boundObject:_model.person propertyKey:@"visibilityStatus" displayPropertyKey:@"name"];
-        
-        if (_model.person.friendshipStatus == [SnaFriendshipStatus FRIEND])
+        [dataSection addTextBlockCellWithCaption:@"nick"     boundObject:_model.person propertyKey:@"nick"                      ];
+        [dataSection addTextBlockCellWithCaption:@"mood"     boundObject:_model.person propertyKey:@"mood"                      ];
+        [dataSection addTextBlockCellWithCaption:@"status"   boundObject:_model.person propertyKey:@"visibilityStatus"          displayPropertyKey:@"name"];
+        [dataSection addTextBlockCellWithCaption:@"distance" boundObject:_model.person propertyKey:@"distanceInMeetersAsString" ];
+    }
+    FxUiSection *mainDataSection = [super addSection];
+    {
+        [mainDataSection addTextBlockCellWithCaption:@"bornOn"      boundObject:_model.person propertyKey:@"bornOnAsString"            ];
+        [mainDataSection addTextBlockCellWithCaption:@"gender"      boundObject:_model.person propertyKey:@"gender"                    displayPropertyKey:@"name"];
+        [mainDataSection addTextBlockCellWithCaption:@"looking for" boundObject:_model.person propertyKey:@"lookingForGendersAsString" ];
+    }
+    FxUiSection *otherDataSection = [super addSection];
+    {
+        [otherDataSection addTextBlockCellWithCaption:@"description"   boundObject:_model.person propertyKey:@"myDescription"];
+        [otherDataSection addTextBlockCellWithCaption:@"occupation"    boundObject:_model.person propertyKey:@"occupation"   ];
+        [otherDataSection addTextBlockCellWithCaption:@"hobby"         boundObject:_model.person propertyKey:@"hobby"        ];
+        [otherDataSection addTextBlockCellWithCaption:@"main location" boundObject:_model.person propertyKey:@"mainLocation" ];
+    }
+    if (_model.person.friendshipStatus == [SnaFriendshipStatus FRIEND])
+    {
+        FxUiSection *contactsDataSection = [super addSection];
         {
-            [dataSection addTextBlockCellWithCaption:@"email" boundObject:_model.person propertyKey:@"email" ];
-            [dataSection addTextBlockCellWithCaption:@"phone" boundObject:_model.person propertyKey:@"phone" ];
+            [contactsDataSection addTextBlockCellWithCaption:@"email" boundObject:_model.person propertyKey:@"email" ];
+            [contactsDataSection addTextBlockCellWithCaption:@"phone" boundObject:_model.person propertyKey:@"phone" ];
         }
     }
     
@@ -156,19 +172,19 @@
 
 - (void) requestFriendship:(id)sender
 {
-    [self.dataService requestFriendshipToPerson:_model.person];
+    [self showNewMessagePageWithActionType:SnaNewMessageActionTypeRequestFriendship toPerson:_model.person text:@"Friendship requested!"];
 }
 - (void) acceptFriendship:(id)sender
 {
-    [self.dataService acceptFriendshipToPerson:_model.person];
+    [self showNewMessagePageWithActionType:SnaNewMessageActionTypeAcceptFriendship toPerson:_model.person text:@"Friendship accepted!"];
 }
 - (void) rejectFriendship:(id)sender
 {
-    [self.dataService rejectFriendshipToPerson:_model.person];
+    [self showNewMessagePageWithActionType:SnaNewMessageActionTypeRejectFriendship toPerson:_model.person text:@"Friendship rejected!"];
 }
 - (void) cancelFriendship:(id)sender
 {
-    [self.dataService cancelFriendshipToPerson:_model.person];
+    [self showNewMessagePageWithActionType:SnaNewMessageActionTypeCancelFriendship toPerson:_model.person text:@"Friendship canceled!"];
 }
 
 #ifdef DEBUG

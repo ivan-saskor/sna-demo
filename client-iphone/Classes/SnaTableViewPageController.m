@@ -1,8 +1,9 @@
 
 #import "SnaTableViewPageController.h"
 
-#import "_Services.h"
 #import "_Pages.h"
+
+#import "SnaApplicationDelegate.h"
 
 @implementation SnaTableViewPageController
 
@@ -41,15 +42,23 @@
 
 - (void) showLogInPage
 {
-    SnaLogInPageController *pageController = [[[SnaLogInPageController alloc] init] autorelease];
+    [[SnaApplicationDelegate INSTANCE] flipToLoginPage];
+//    SnaLogInPageController *pageController = [[[SnaLogInPageController alloc] init] autorelease];
+//    
+//    [self flipViewController:pageController];
+}
+- (void) showSignUpPage
+{
+    SnaSignUpPageController *pageController = [[[SnaSignUpPageController alloc] init] autorelease];
     
-    [self flipViewController:pageController];
+    [self pushViewController:pageController];
 }
 - (void) showHomePage
 {
-    SnaHomePageController *pageController = [[[SnaHomePageController alloc] init] autorelease];
-    
-    [self flipViewController:pageController];
+    [[SnaApplicationDelegate INSTANCE] flipToHomePage];
+//    SnaHomePageController *pageController = [[[SnaHomePageController alloc] init] autorelease];
+//    
+//    [self flipViewController:pageController];
 }
 
 - (void) showNearbyPersonsPage
@@ -101,6 +110,25 @@
 - (void) showProfilePage
 {
     SnaProfilePageController *pageController = [[[SnaProfilePageController alloc] init] autorelease];
+    
+    [self pushViewController:pageController];
+}
+- (void) showChangeMoodPage
+{
+    SnaChangeMoodPageController *pageController = [[[SnaChangeMoodPageController alloc] init] autorelease];
+    
+    [self pushViewController:pageController];
+}
+- (void) showChangeLocationPage
+{
+    SnaChangeLocationPageController *pageController = [[[SnaChangeLocationPageController alloc] init] autorelease];
+    
+    [self pushViewController:pageController];
+}
+
+- (void) showNewMessagePageWithActionType:(SnaNewMessageActionType)actionType toPerson:(SnaPerson *)toPerson text:(NSString *)text
+{
+    SnaNewMessagePageController *pageController = [[[SnaNewMessagePageController alloc] initWithActionType:actionType toPerson:toPerson text:text] autorelease];
     
     [self pushViewController:pageController];
 }

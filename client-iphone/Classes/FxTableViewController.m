@@ -24,6 +24,7 @@
 
 - (BOOL) _isLastSectionCell:(FxUiCell *)cell;
 
+- (void) _refreshPage;
 - (void) _startObservingPageRefreshTrggers;
 - (void) _stopObservingPageRefreshTrggers;
 
@@ -45,7 +46,7 @@
 
 static NSInteger _TEXT_BLOCK_HEIGHT_CHAMPION                  = 21; // Based onr 17px content font
 static NSInteger _TEXT_BLOCK_CAPTION_TOP_CHAMPION             =  5;  // 12px font alligned with 17px font
-static NSInteger _TEXT_BLOCK_CAPTION_WIDTH_CHAMPION           = 70;
+static NSInteger _TEXT_BLOCK_CAPTION_WIDTH_CHAMPION           = 95;
 static NSInteger _TEXT_BLOCK_CAPTION_HEIGHT_CHAMPION          = 15; // optimal for 12px
 static NSInteger _TEXT_BLOCK_CAPTION_DELIMITER_WIDTH_CHAMPION =  4;
 static NSInteger _TEXT_BLOCK_DELIMITER_HEIGHT_CHAMPION        =  2;
@@ -169,12 +170,17 @@ static NSInteger _BUTTON_DELIMITER_HEIGHT_CHAMPION = 4;
     
     if (!self) @throw [NSException exceptionWithName:@"Init failed" reason:nil userInfo:nil];
 
-    _sections            = [[NSMutableArray alloc] init];
-    _pageRefreshTriggers = [[NSMutableArray alloc] init];
+    _sections                 = [[NSMutableArray alloc] init];
+    _pageRefreshTriggers      = [[NSMutableArray alloc] init];
+    _canAddPageRefreshTrigger = NO;
     
     return self;
 }
 
+- (void) refreshPage
+{
+    [self _refreshPage];
+}
 - (void) onPageRefresh { }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -191,14 +197,7 @@ static NSInteger _BUTTON_DELIMITER_HEIGHT_CHAMPION = 4;
         
         if ([keyPath isEqual:propertyKey])
         {
-            [self removeAllSections           ];
-            [self removeAllPageRefreshTriggers];
-            
-            [self onPageRefresh];
-            
-            [self _startObservingPageRefreshTrggers];
-            
-            [self.tableView reloadData];
+            [self _refreshPage];
         }
     }
     
@@ -207,10 +206,8 @@ static NSInteger _BUTTON_DELIMITER_HEIGHT_CHAMPION = 4;
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    [self onPageRefresh];
-    
-    [self _startObservingPageRefreshTrggers];
-    
+    [self _refreshPage];
+
     if (self.backTitle != nil)
     {
         self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle: self.backTitle style: UIBarButtonItemStyleBordered target: nil action: nil] autorelease];
@@ -226,11 +223,11 @@ static NSInteger _BUTTON_DELIMITER_HEIGHT_CHAMPION = 4;
 {
     [super viewDidDisappear:animated];
     
-    self.title     = nil;
-    self.backTitle = nil;
+    //self.title     = nil;
+    //self.backTitle = nil;
     
-    [self removeAllSections           ];
     [self removeAllPageRefreshTriggers];
+    [self removeAllSections           ];
     
 }
 - (void) viewDidUnload
@@ -272,6 +269,11 @@ static NSInteger _BUTTON_DELIMITER_HEIGHT_CHAMPION = 4;
 
 - (void) addPageRefreshTriggerWithBoundObject:(NSObject *)boundObject propertyKey:(NSString *)propertyKey
 {
+    [FxAssert         isNotNullArgument:boundObject withName:@"boundObject"];
+    [FxAssert isNotNullNorEmptyArgument:propertyKey withName:@"propertyKey"];
+    
+    [FxAssert isValidState:_canAddPageRefreshTrigger reason:@"Adding page refresh trigger is allowed in onPageRefresh method only."];
+    
     NSArray *trigger = [NSArray arrayWithObjects:boundObject, propertyKey, nil];
     
     [_pageRefreshTriggers addObject:trigger];
@@ -340,10 +342,20 @@ static NSInteger _BUTTON_DELIMITER_HEIGHT_CHAMPION = 4;
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:navigationController.view cache:YES];
         
         [navigationController setViewControllers:[NSArray arrayWithObject:viewController]];
-        //[navigationController popViewControllerAnimated:NO];
-        //[navigationController pushViewController:viewController animated:NO];
     }
     [UIView commitAnimations];
+}
+- (void) showMadalViewController:(UIViewController *)viewController
+{
+    //    viewController.delegate = self;
+
+    UINavigationController *hostController = [[[UINavigationController alloc] initWithRootViewController:viewController] autorelease];
+    
+    [self presentModalViewController:hostController animated:YES];
+}
+- (void) popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) dealloc
@@ -358,6 +370,22 @@ static NSInteger _BUTTON_DELIMITER_HEIGHT_CHAMPION = 4;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Page refresh triggers helpers
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+- (void) _refreshPage
+{
+    [self removeAllPageRefreshTriggers];
+    [self removeAllSections           ];
+    
+    _canAddPageRefreshTrigger = YES;
+    {
+        [self onPageRefresh];
+    }
+    _canAddPageRefreshTrigger = NO;
+    
+    [self _startObservingPageRefreshTrggers];
+    
+    [self.tableView reloadData];
+}
 
 - (void) _startObservingPageRefreshTrggers
 {
@@ -477,6 +505,8 @@ static NSInteger _BUTTON_DELIMITER_HEIGHT_CHAMPION = 4;
         FxItemTableViewCell *tableViewCell = [FxTableViewController _getReusableItem1CellForTableView:tableView];
         {
             [tableViewCell bindToCaptionBoundObject:uiCell.captionBoundObject withCaptionPropertyKey:uiCell.captionPropertyKey toContentBoundObject:uiCell.contentBoundObject withContentPropertyKey:uiCell.contentPropertyKey];
+            
+            tableViewCell.accessoryType = uiCell.accesoryType;
         }
         
         return tableViewCell;
@@ -486,6 +516,8 @@ static NSInteger _BUTTON_DELIMITER_HEIGHT_CHAMPION = 4;
         FxItemTableViewCell *tableViewCell = [FxTableViewController _getReusableItem2CellForTableView:tableView];
         {
             [tableViewCell bindToCaptionBoundObject:uiCell.captionBoundObject withCaptionPropertyKey:uiCell.captionPropertyKey toContentBoundObject:uiCell.contentBoundObject withContentPropertyKey:uiCell.contentPropertyKey];
+
+            tableViewCell.accessoryType = uiCell.accesoryType;
         }
         
         return tableViewCell;

@@ -54,6 +54,8 @@
                                                             waitingForHimPersons:self.dataService.waitingForHimPersons
                                                                  rejectedPersons:self.dataService.rejectedPersons];
     
+    super.title = @"Friendship Requests";
+
     return self;
 }
 - (id) initWithStyle:(UITableViewStyle)style
@@ -77,7 +79,6 @@
 
 - (void) onPageRefresh
 {
-    super.title     = @"Friendship Requests";
     super.backTitle = @"Friendship Requests";
     
     [super addPageRefreshTriggerWithBoundObject:[self dataService] propertyKey:@"timestamp"];
@@ -86,21 +87,21 @@
     {
         for (SnaPerson *person in _model.waitingForMePersons)
         {
-            [incommingSection addItem1CellWithCaptionBoundObject:person captionPropertyKey:@"nick" contentBoundObject:person.lastMessage contentPropertyKey:@"text" targetObject:self action:@selector(openPerson:) actionContext:person];
+            [incommingSection addItem1CellWithCaptionBoundObject:person captionPropertyKey:@"nick" contentBoundObject:person.lastMessage contentPropertyKey:@"text" targetObject:self action:@selector(openPerson:) actionContext:person  accesoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
     }
     FxUiSection *outgoingSection = [super addSectionWithCaption:@"Outgoing"];
     {
         for (SnaPerson *person in _model.waitingForHimPersons)
         {
-            [outgoingSection addItem1CellWithCaptionBoundObject:person captionPropertyKey:@"nick" contentBoundObject:person.lastMessage contentPropertyKey:@"text" targetObject:self action:@selector(openPerson:) actionContext:person];
+            [outgoingSection addItem1CellWithCaptionBoundObject:person captionPropertyKey:@"nick" contentBoundObject:person.lastMessage contentPropertyKey:@"text" targetObject:self action:@selector(openPerson:) actionContext:person  accesoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
     }
     FxUiSection *rejectedSection = [super addSectionWithCaption:@"Rejected"];
     {
         for (SnaPerson *person in _model.rejectedPersons)
         {
-            [rejectedSection addItem1CellWithCaptionBoundObject:person captionPropertyKey:@"nick" contentBoundObject:person.lastMessage contentPropertyKey:@"text" targetObject:self action:@selector(openPerson:) actionContext:person];
+            [rejectedSection addItem1CellWithCaptionBoundObject:person captionPropertyKey:@"nick" contentBoundObject:person.lastMessage contentPropertyKey:@"text" targetObject:self action:@selector(openPerson:) actionContext:person  accesoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
     }
     
@@ -109,7 +110,7 @@
         FxUiSection *testSection = [super addSectionWithCaption:@"Test"];
         {
             [testSection addButtonCellWithCaption:@"Mutate Persons" targetObject:self action:@selector(testMutatePersons: )];
-            [testSection addButtonCellWithCaption:@"Add 5 Persons"  targetObject:self action:@selector(testAddFivePersons:)];
+            [testSection addButtonCellWithCaption:@"Add 5 Persons (1 in + 1 out + 1 rejected)"  targetObject:self action:@selector(testAddFivePersons:)];
             [testSection addButtonCellWithCaption:@"Log Out"        targetObject:self action:@selector(testLogOut:        )];
         }
     }

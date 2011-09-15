@@ -17,9 +17,14 @@
     
     [FxAssert isNotNullValue:self];
     
-    _nearbyPersons = [nearbyPersons copy];
+    _nearbyPersons = [nearbyPersons mutableCopy];
     
     return self;
+}
+
+- (void) refreshNearbyPersons:(NSArray *)nearbyPersons
+{
+    [_nearbyPersons setArray:nearbyPersons];
 }
 
 - (void) dealloc
@@ -42,6 +47,7 @@
 
     _model = [[SnaNearbyPersonsPageModel alloc] initWithNearbyPersons:self.dataService.nearbyPersons];
     
+    super.title     = @"Nearby Pesons";
     return self;
 }
 - (id) initWithStyle:(UITableViewStyle)style
@@ -58,14 +64,24 @@
 
 - (void) onPageRefresh
 {
-    super.title     = @"Nearby Persons";
     super.backTitle = @"Nearby Persons";
 
+    [super addPageRefreshTriggerWithBoundObject:[self dataService] propertyKey:@"timestamp"];
+
+    if (![_model.nearbyPersons isEqualToArray:self.dataService.nearbyPersons])
+    {
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshList:)] autorelease];
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    
     FxUiSection *dataSection = [super addSection];
     {
         for (SnaPerson *person in _model.nearbyPersons)
         {
-            [dataSection addItem1CellWithCaptionBoundObject:person captionPropertyKey:@"nick" contentBoundObject:person contentPropertyKey:@"mood" targetObject:self action:@selector(openPerson:) actionContext:person];
+            [dataSection addItem1CellWithCaptionBoundObject:person captionPropertyKey:@"nick" contentBoundObject:person contentPropertyKey:@"mood" targetObject:self action:@selector(openPerson:) actionContext:person accesoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
     }
     
@@ -81,6 +97,13 @@
     #endif
 }
 
+- (void) refreshList:(id)sender
+{
+    [_model refreshNearbyPersons:self.dataService.nearbyPersons];
+    
+    [self refreshPage];
+}
+
 - (void) openPerson:(SnaPerson *)person
 {
     [self showPersonPageForPerson:person];
@@ -88,6 +111,8 @@
 
 - (void) dealloc
 {
+    self.tabBarItem = nil;
+    
     [_model release];
     
     [super dealloc];
