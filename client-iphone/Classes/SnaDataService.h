@@ -2,40 +2,7 @@
 #import "_Fx.h"
 #import "_Domain.h"
 
-@interface SnaDataService : NSObject
-{
-    @private NSMutableArray      *_persons;
-    @private NSMutableArray      *_messages;
-
-    @private NSMutableDictionary *_friendshipRelations;
-    @private NSMutableDictionary *_friendshipRequests;
-    @private NSMutableDictionary *_rejections;
-
-    @private NSString            *_defaultLogInEmail;
-    @private NSString            *_defaultLogInPassword;
-    
-    @private SnaMutablePerson    *_currentUser;
-    
-    @private NSMutableArray      *_nearbyPersons;
-    @private NSMutableArray      *_friends;
-    @private NSMutableArray      *_waitingForMePersons;
-    @private NSMutableArray      *_waitingForHimPersons;
-    @private NSMutableArray      *_rejectedPersons;
-    
-    @private NSMutableArray      *_friendsWithMessages;
-    
-    @private SnaLocation         *_currentLocation;
-    @private NSArray             *_availableLocations;
-
-    #ifdef DEBUG
-    
-    @private SnaPerson           *_personA;
-    @private SnaPerson           *_personB;
-
-    #endif
-}
-
-+ (SnaDataService *) INSTANCE;
+@protocol SnaIDataService
 
 @property (nonatomic, assign, readonly) NSInteger timestamp;
 
@@ -90,5 +57,11 @@
 - (void) testMutateMessages;
 
 #endif
+
+@end
+
+@interface SnaDataService : NSObject <SnaIDataService>
+
++ (SnaDataService *) INSTANCE;
 
 @end
