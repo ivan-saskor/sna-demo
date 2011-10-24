@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     {
         ServerConnector * connector = [[ServerConnector alloc] init];
-        [connector sendDataRequest];
+        [connector populatePersons];
         
         retVal = UIApplicationMain(argc, argv, nil, nil);
     }

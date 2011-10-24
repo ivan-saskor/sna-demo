@@ -1,5 +1,6 @@
 #import "ServerConnector.h"
 #import "ServerConnectorCallback.h"
+#import "CJSONDeserializer.h"
 
 @implementation ServerConnector
 
@@ -9,6 +10,7 @@
     if (self) {
         serverCallback = [[ServerConnectorCallback alloc] init];
 
+        _persons = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -28,10 +30,51 @@
         NSData * receivedData = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
         
         NSLog(@"request sent");
+        
+        if (theError == nil) {
+			NSLog(@"no error loading json");
+			
+            //			id *emails = [theObject objectForKey:@"NearbyPersonsEmails"];
+			NSArray *emails = [theObject mutableArrayValueForKey:@"NearbyPersonsEmails"];
+			
+            
+			for (int i=0; i<[emails count]; i++)
+			{                           
+				NSLog(@"%@", [emails objectAtIndex:i]);
+			}
+            
+            //			NSArray *allKeys = [emails allKeys];
+            //			
+			
+			NSLog(@"%s", emails);		
+		}
+        else
+        {
+                @throw ([NSException exceptionWithName:@"parse error" reason:@"can't parse json" userInfo:nil]);
+        }
+        
         return receivedData;
     }
     
     @throw ([NSException exceptionWithName:@"no good" reason:@"no reason as well" userInfo:nil]);
+}
+
+- (void)populatePersons
+{
+    NSData * data = [self sendDataRequest];
+    
+    NSDictionary *theObject = [NSDictionary dictionaryWithDictionary:[[CJSONDeserializer deserializer] deserialize:data error:&theError]];
+    
+    
+}
+
+- (void)populateEmails
+{
+    NSData * data = [self sendDataRequest];
+    
+    NSDictionary *theObject = [NSDictionary dictionaryWithDictionary:[[CJSONDeserializer deserializer] deserialize:data error:&theError]];
+    
+    
 }
 
 @end

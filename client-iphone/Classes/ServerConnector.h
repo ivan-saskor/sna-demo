@@ -9,4 +9,6 @@
 }
 
 - (NSData *)sendDataRequest;
+- (void)populatePersons;
+- (void)populateEmails;
 @end
