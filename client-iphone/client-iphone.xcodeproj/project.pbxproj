@@ -9,6 +9,42 @@
 /* Begin PBXBuildFile section */
 		152CB10F14550456004DA5B4 /* ServerConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 152CB10C14550455004DA5B4 /* ServerConnector.m */; };
 		152CB11014550456004DA5B4 /* ServerConnectorCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 152CB10E14550456004DA5B4 /* ServerConnectorCallback.m */; };
+		154BB3E614550FD800025F7C /* config in Resources */ = {isa = PBXBuildFile; fileRef = 154BB39F14550FD800025F7C /* config */; };
+		154BB3E714550FD800025F7C /* description in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3A014550FD800025F7C /* description */; };
+		154BB3E814550FD800025F7C /* HEAD in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3A114550FD800025F7C /* HEAD */; };
+		154BB3E914550FD800025F7C /* applypatch-msg.sample in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3A314550FD800025F7C /* applypatch-msg.sample */; };
+		154BB3EA14550FD800025F7C /* commit-msg.sample in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3A414550FD800025F7C /* commit-msg.sample */; };
+		154BB3EB14550FD800025F7C /* post-commit.sample in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3A514550FD800025F7C /* post-commit.sample */; };
+		154BB3EC14550FD800025F7C /* post-receive.sample in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3A614550FD800025F7C /* post-receive.sample */; };
+		154BB3ED14550FD800025F7C /* post-update.sample in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3A714550FD800025F7C /* post-update.sample */; };
+		154BB3EE14550FD800025F7C /* pre-applypatch.sample in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3A814550FD800025F7C /* pre-applypatch.sample */; };
+		154BB3EF14550FD800025F7C /* pre-commit.sample in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3A914550FD800025F7C /* pre-commit.sample */; };
+		154BB3F014550FD800025F7C /* pre-rebase.sample in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3AA14550FD800025F7C /* pre-rebase.sample */; };
+		154BB3F114550FD800025F7C /* prepare-commit-msg.sample in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3AB14550FD800025F7C /* prepare-commit-msg.sample */; };
+		154BB3F214550FD800025F7C /* update.sample in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3AC14550FD800025F7C /* update.sample */; };
+		154BB3F314550FD800025F7C /* index in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3AD14550FD800025F7C /* index */; };
+		154BB3F414550FD800025F7C /* exclude in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3AF14550FD800025F7C /* exclude */; };
+		154BB3F514550FD800025F7C /* HEAD in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3B114550FD800025F7C /* HEAD */; };
+		154BB3F614550FD800025F7C /* master in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3B414550FD800025F7C /* master */; };
+		154BB3F714550FD800025F7C /* pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.idx in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3B814550FD800025F7C /* pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.idx */; };
+		154BB3F814550FD800025F7C /* pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.pack in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3B914550FD800025F7C /* pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.pack */; };
+		154BB3F914550FD800025F7C /* packed-refs in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3BA14550FD800025F7C /* packed-refs */; };
+		154BB3FA14550FD800025F7C /* master in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3BD14550FD800025F7C /* master */; };
+		154BB3FB14550FD800025F7C /* HEAD in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3C014550FD800025F7C /* HEAD */; };
+		154BB3FC14550FD800025F7C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3C214550FD800025F7C /* .gitignore */; };
+		154BB3FD14550FD800025F7C /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3C314550FD800025F7C /* Config.xcconfig */; };
+		154BB3FE14550FD800025F7C /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3C414550FD800025F7C /* LICENSE.txt */; };
+		154BB3FF14550FD800025F7C /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 154BB3C514550FD800025F7C /* README.markdown */; };
+		154BB40014550FD800025F7C /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 154BB3C814550FD800025F7C /* CDataScanner.m */; };
+		154BB40114550FD800025F7C /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 154BB3CB14550FD800025F7C /* CFilteringJSONSerializer.m */; };
+		154BB40214550FD800025F7C /* CJSONDeserializer_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 154BB3CD14550FD800025F7C /* CJSONDeserializer_BlocksExtensions.m */; };
+		154BB40314550FD800025F7C /* CJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 154BB3CF14550FD800025F7C /* CJSONSerialization.m */; };
+		154BB40414550FD800025F7C /* CJSONSerializedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 154BB3D114550FD800025F7C /* CJSONSerializedData.m */; };
+		154BB40514550FD800025F7C /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 154BB3D414550FD800025F7C /* CDataScanner_Extensions.m */; };
+		154BB40614550FD800025F7C /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 154BB3D614550FD800025F7C /* NSDictionary_JSONExtensions.m */; };
+		154BB40714550FD800025F7C /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 154BB3D914550FD800025F7C /* CJSONDeserializer.m */; };
+		154BB40814550FD800025F7C /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 154BB3DB14550FD800025F7C /* CJSONScanner.m */; };
+		154BB40914550FD800025F7C /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 154BB3DD14550FD800025F7C /* CJSONSerializer.m */; };
 		1592DCDA14227D7200DF0560 /* SnaRealDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1592DCD914227D7200DF0560 /* SnaRealDataService.m */; };
 		1592DD101422827B00DF0560 /* SnaFakeDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1592DD0F1422827B00DF0560 /* SnaFakeDataService.m */; };
 		1D3623260D0F684500981E51 /* SnaApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SnaApplicationDelegate.m */; };
@@ -74,6 +110,53 @@
 		152CB10C14550455004DA5B4 /* ServerConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnector.m; sourceTree = "<group>"; };
 		152CB10D14550456004DA5B4 /* ServerConnectorCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnectorCallback.h; sourceTree = "<group>"; };
 		152CB10E14550456004DA5B4 /* ServerConnectorCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnectorCallback.m; sourceTree = "<group>"; };
+		154BB39F14550FD800025F7C /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config; sourceTree = "<group>"; };
+		154BB3A014550FD800025F7C /* description */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = description; sourceTree = "<group>"; };
+		154BB3A114550FD800025F7C /* HEAD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HEAD; sourceTree = "<group>"; };
+		154BB3A314550FD800025F7C /* applypatch-msg.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "applypatch-msg.sample"; sourceTree = "<group>"; };
+		154BB3A414550FD800025F7C /* commit-msg.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "commit-msg.sample"; sourceTree = "<group>"; };
+		154BB3A514550FD800025F7C /* post-commit.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "post-commit.sample"; sourceTree = "<group>"; };
+		154BB3A614550FD800025F7C /* post-receive.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "post-receive.sample"; sourceTree = "<group>"; };
+		154BB3A714550FD800025F7C /* post-update.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "post-update.sample"; sourceTree = "<group>"; };
+		154BB3A814550FD800025F7C /* pre-applypatch.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "pre-applypatch.sample"; sourceTree = "<group>"; };
+		154BB3A914550FD800025F7C /* pre-commit.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "pre-commit.sample"; sourceTree = "<group>"; };
+		154BB3AA14550FD800025F7C /* pre-rebase.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "pre-rebase.sample"; sourceTree = "<group>"; };
+		154BB3AB14550FD800025F7C /* prepare-commit-msg.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "prepare-commit-msg.sample"; sourceTree = "<group>"; };
+		154BB3AC14550FD800025F7C /* update.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update.sample; sourceTree = "<group>"; };
+		154BB3AD14550FD800025F7C /* index */ = {isa = PBXFileReference; lastKnownFileType = file; path = index; sourceTree = "<group>"; };
+		154BB3AF14550FD800025F7C /* exclude */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exclude; sourceTree = "<group>"; };
+		154BB3B114550FD800025F7C /* HEAD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HEAD; sourceTree = "<group>"; };
+		154BB3B414550FD800025F7C /* master */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = master; sourceTree = "<group>"; };
+		154BB3B814550FD800025F7C /* pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.idx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.idx"; sourceTree = "<group>"; };
+		154BB3B914550FD800025F7C /* pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.pack */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.pack"; sourceTree = "<group>"; };
+		154BB3BA14550FD800025F7C /* packed-refs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "packed-refs"; sourceTree = "<group>"; };
+		154BB3BD14550FD800025F7C /* master */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = master; sourceTree = "<group>"; };
+		154BB3C014550FD800025F7C /* HEAD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HEAD; sourceTree = "<group>"; };
+		154BB3C214550FD800025F7C /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		154BB3C314550FD800025F7C /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		154BB3C414550FD800025F7C /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		154BB3C514550FD800025F7C /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		154BB3C714550FD800025F7C /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
+		154BB3C814550FD800025F7C /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
+		154BB3CA14550FD800025F7C /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
+		154BB3CB14550FD800025F7C /* CFilteringJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFilteringJSONSerializer.m; sourceTree = "<group>"; };
+		154BB3CC14550FD800025F7C /* CJSONDeserializer_BlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer_BlocksExtensions.h; sourceTree = "<group>"; };
+		154BB3CD14550FD800025F7C /* CJSONDeserializer_BlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer_BlocksExtensions.m; sourceTree = "<group>"; };
+		154BB3CE14550FD800025F7C /* CJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerialization.h; sourceTree = "<group>"; };
+		154BB3CF14550FD800025F7C /* CJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerialization.m; sourceTree = "<group>"; };
+		154BB3D014550FD800025F7C /* CJSONSerializedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializedData.h; sourceTree = "<group>"; };
+		154BB3D114550FD800025F7C /* CJSONSerializedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializedData.m; sourceTree = "<group>"; };
+		154BB3D314550FD800025F7C /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		154BB3D414550FD800025F7C /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		154BB3D514550FD800025F7C /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		154BB3D614550FD800025F7C /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		154BB3D814550FD800025F7C /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		154BB3D914550FD800025F7C /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		154BB3DA14550FD800025F7C /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		154BB3DB14550FD800025F7C /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		154BB3DC14550FD800025F7C /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		154BB3DD14550FD800025F7C /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		154BB3DE14550FD800025F7C /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		1592DCD814227D7200DF0560 /* SnaRealDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaRealDataService.h; sourceTree = "<group>"; };
 		1592DCD914227D7200DF0560 /* SnaRealDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaRealDataService.m; sourceTree = "<group>"; };
 		1592DD0E1422827B00DF0560 /* SnaFakeDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaFakeDataService.h; sourceTree = "<group>"; };
@@ -214,6 +297,268 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		154BB39C14550FD800025F7C /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				154BB39D14550FD800025F7C /* .git */,
+				154BB3C214550FD800025F7C /* .gitignore */,
+				154BB3C314550FD800025F7C /* Config.xcconfig */,
+				154BB3C414550FD800025F7C /* LICENSE.txt */,
+				154BB3C514550FD800025F7C /* README.markdown */,
+				154BB3C614550FD800025F7C /* Source */,
+				154BB3DF14550FD800025F7C /* Support */,
+			);
+			path = TouchJSON;
+			sourceTree = "<group>";
+		};
+		154BB39D14550FD800025F7C /* .git */ = {
+			isa = PBXGroup;
+			children = (
+				154BB39E14550FD800025F7C /* branches */,
+				154BB39F14550FD800025F7C /* config */,
+				154BB3A014550FD800025F7C /* description */,
+				154BB3A114550FD800025F7C /* HEAD */,
+				154BB3A214550FD800025F7C /* hooks */,
+				154BB3AD14550FD800025F7C /* index */,
+				154BB3AE14550FD800025F7C /* info */,
+				154BB3B014550FD800025F7C /* logs */,
+				154BB3B514550FD800025F7C /* objects */,
+				154BB3BA14550FD800025F7C /* packed-refs */,
+				154BB3BB14550FD800025F7C /* refs */,
+			);
+			path = .git;
+			sourceTree = "<group>";
+		};
+		154BB39E14550FD800025F7C /* branches */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = branches;
+			sourceTree = "<group>";
+		};
+		154BB3A214550FD800025F7C /* hooks */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3A314550FD800025F7C /* applypatch-msg.sample */,
+				154BB3A414550FD800025F7C /* commit-msg.sample */,
+				154BB3A514550FD800025F7C /* post-commit.sample */,
+				154BB3A614550FD800025F7C /* post-receive.sample */,
+				154BB3A714550FD800025F7C /* post-update.sample */,
+				154BB3A814550FD800025F7C /* pre-applypatch.sample */,
+				154BB3A914550FD800025F7C /* pre-commit.sample */,
+				154BB3AA14550FD800025F7C /* pre-rebase.sample */,
+				154BB3AB14550FD800025F7C /* prepare-commit-msg.sample */,
+				154BB3AC14550FD800025F7C /* update.sample */,
+			);
+			path = hooks;
+			sourceTree = "<group>";
+		};
+		154BB3AE14550FD800025F7C /* info */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3AF14550FD800025F7C /* exclude */,
+			);
+			path = info;
+			sourceTree = "<group>";
+		};
+		154BB3B014550FD800025F7C /* logs */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3B114550FD800025F7C /* HEAD */,
+				154BB3B214550FD800025F7C /* refs */,
+			);
+			path = logs;
+			sourceTree = "<group>";
+		};
+		154BB3B214550FD800025F7C /* refs */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3B314550FD800025F7C /* heads */,
+			);
+			path = refs;
+			sourceTree = "<group>";
+		};
+		154BB3B314550FD800025F7C /* heads */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3B414550FD800025F7C /* master */,
+			);
+			path = heads;
+			sourceTree = "<group>";
+		};
+		154BB3B514550FD800025F7C /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3B614550FD800025F7C /* info */,
+				154BB3B714550FD800025F7C /* pack */,
+			);
+			path = objects;
+			sourceTree = "<group>";
+		};
+		154BB3B614550FD800025F7C /* info */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = info;
+			sourceTree = "<group>";
+		};
+		154BB3B714550FD800025F7C /* pack */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3B814550FD800025F7C /* pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.idx */,
+				154BB3B914550FD800025F7C /* pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.pack */,
+			);
+			path = pack;
+			sourceTree = "<group>";
+		};
+		154BB3BB14550FD800025F7C /* refs */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3BC14550FD800025F7C /* heads */,
+				154BB3BE14550FD800025F7C /* remotes */,
+				154BB3C114550FD800025F7C /* tags */,
+			);
+			path = refs;
+			sourceTree = "<group>";
+		};
+		154BB3BC14550FD800025F7C /* heads */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3BD14550FD800025F7C /* master */,
+			);
+			path = heads;
+			sourceTree = "<group>";
+		};
+		154BB3BE14550FD800025F7C /* remotes */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3BF14550FD800025F7C /* origin */,
+			);
+			path = remotes;
+			sourceTree = "<group>";
+		};
+		154BB3BF14550FD800025F7C /* origin */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3C014550FD800025F7C /* HEAD */,
+			);
+			path = origin;
+			sourceTree = "<group>";
+		};
+		154BB3C114550FD800025F7C /* tags */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tags;
+			sourceTree = "<group>";
+		};
+		154BB3C614550FD800025F7C /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3C714550FD800025F7C /* CDataScanner.h */,
+				154BB3C814550FD800025F7C /* CDataScanner.m */,
+				154BB3C914550FD800025F7C /* Experimental */,
+				154BB3D214550FD800025F7C /* Extensions */,
+				154BB3D714550FD800025F7C /* JSON */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		154BB3C914550FD800025F7C /* Experimental */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3CA14550FD800025F7C /* CFilteringJSONSerializer.h */,
+				154BB3CB14550FD800025F7C /* CFilteringJSONSerializer.m */,
+				154BB3CC14550FD800025F7C /* CJSONDeserializer_BlocksExtensions.h */,
+				154BB3CD14550FD800025F7C /* CJSONDeserializer_BlocksExtensions.m */,
+				154BB3CE14550FD800025F7C /* CJSONSerialization.h */,
+				154BB3CF14550FD800025F7C /* CJSONSerialization.m */,
+				154BB3D014550FD800025F7C /* CJSONSerializedData.h */,
+				154BB3D114550FD800025F7C /* CJSONSerializedData.m */,
+			);
+			path = Experimental;
+			sourceTree = "<group>";
+		};
+		154BB3D214550FD800025F7C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3D314550FD800025F7C /* CDataScanner_Extensions.h */,
+				154BB3D414550FD800025F7C /* CDataScanner_Extensions.m */,
+				154BB3D514550FD800025F7C /* NSDictionary_JSONExtensions.h */,
+				154BB3D614550FD800025F7C /* NSDictionary_JSONExtensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		154BB3D714550FD800025F7C /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3D814550FD800025F7C /* CJSONDeserializer.h */,
+				154BB3D914550FD800025F7C /* CJSONDeserializer.m */,
+				154BB3DA14550FD800025F7C /* CJSONScanner.h */,
+				154BB3DB14550FD800025F7C /* CJSONScanner.m */,
+				154BB3DC14550FD800025F7C /* CJSONSerializer.h */,
+				154BB3DD14550FD800025F7C /* CJSONSerializer.m */,
+				154BB3DE14550FD800025F7C /* JSONRepresentation.h */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		154BB3DF14550FD800025F7C /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3E014550FD800025F7C /* Demo */,
+				154BB3E114550FD800025F7C /* NewBenchmark */,
+				154BB3E214550FD800025F7C /* Test Data */,
+				154BB3E314550FD800025F7C /* UnitTests */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		154BB3E014550FD800025F7C /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		154BB3E114550FD800025F7C /* NewBenchmark */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NewBenchmark;
+			sourceTree = "<group>";
+		};
+		154BB3E214550FD800025F7C /* Test Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Test Data";
+			sourceTree = "<group>";
+		};
+		154BB3E314550FD800025F7C /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3E414550FD800025F7C /* TestData */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		154BB3E414550FD800025F7C /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				154BB3E514550FD800025F7C /* JSONChecker */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
+		154BB3E514550FD800025F7C /* JSONChecker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = JSONChecker;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +627,7 @@
 		DF506A4113E4CFA4006E2566 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				154BB39C14550FD800025F7C /* TouchJSON */,
 				DF506D2013E769EE006E2566 /* _Fx.h */,
 				DFBF917913F1C9530092CFB1 /* System */,
 				DF5071C813EC51CF006E2566 /* Ui */,
@@ -610,6 +956,32 @@
 				DFFCA2491421C46900005A65 /* Messages.png in Resources */,
 				DFFCA24A1421C46900005A65 /* NearbyPersons.png in Resources */,
 				DFFCA24B1421C46900005A65 /* Profile.png in Resources */,
+				154BB3E614550FD800025F7C /* config in Resources */,
+				154BB3E714550FD800025F7C /* description in Resources */,
+				154BB3E814550FD800025F7C /* HEAD in Resources */,
+				154BB3E914550FD800025F7C /* applypatch-msg.sample in Resources */,
+				154BB3EA14550FD800025F7C /* commit-msg.sample in Resources */,
+				154BB3EB14550FD800025F7C /* post-commit.sample in Resources */,
+				154BB3EC14550FD800025F7C /* post-receive.sample in Resources */,
+				154BB3ED14550FD800025F7C /* post-update.sample in Resources */,
+				154BB3EE14550FD800025F7C /* pre-applypatch.sample in Resources */,
+				154BB3EF14550FD800025F7C /* pre-commit.sample in Resources */,
+				154BB3F014550FD800025F7C /* pre-rebase.sample in Resources */,
+				154BB3F114550FD800025F7C /* prepare-commit-msg.sample in Resources */,
+				154BB3F214550FD800025F7C /* update.sample in Resources */,
+				154BB3F314550FD800025F7C /* index in Resources */,
+				154BB3F414550FD800025F7C /* exclude in Resources */,
+				154BB3F514550FD800025F7C /* HEAD in Resources */,
+				154BB3F614550FD800025F7C /* master in Resources */,
+				154BB3F714550FD800025F7C /* pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.idx in Resources */,
+				154BB3F814550FD800025F7C /* pack-4ef960de79852f71a11b9a5cdb4ae00762a464ba.pack in Resources */,
+				154BB3F914550FD800025F7C /* packed-refs in Resources */,
+				154BB3FA14550FD800025F7C /* master in Resources */,
+				154BB3FB14550FD800025F7C /* HEAD in Resources */,
+				154BB3FC14550FD800025F7C /* .gitignore in Resources */,
+				154BB3FD14550FD800025F7C /* Config.xcconfig in Resources */,
+				154BB3FE14550FD800025F7C /* LICENSE.txt in Resources */,
+				154BB3FF14550FD800025F7C /* README.markdown in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +1039,16 @@
 				1592DD101422827B00DF0560 /* SnaFakeDataService.m in Sources */,
 				152CB10F14550456004DA5B4 /* ServerConnector.m in Sources */,
 				152CB11014550456004DA5B4 /* ServerConnectorCallback.m in Sources */,
+				154BB40014550FD800025F7C /* CDataScanner.m in Sources */,
+				154BB40114550FD800025F7C /* CFilteringJSONSerializer.m in Sources */,
+				154BB40214550FD800025F7C /* CJSONDeserializer_BlocksExtensions.m in Sources */,
+				154BB40314550FD800025F7C /* CJSONSerialization.m in Sources */,
+				154BB40414550FD800025F7C /* CJSONSerializedData.m in Sources */,
+				154BB40514550FD800025F7C /* CDataScanner_Extensions.m in Sources */,
+				154BB40614550FD800025F7C /* NSDictionary_JSONExtensions.m in Sources */,
+				154BB40714550FD800025F7C /* CJSONDeserializer.m in Sources */,
+				154BB40814550FD800025F7C /* CJSONScanner.m in Sources */,
+				154BB40914550FD800025F7C /* CJSONSerializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

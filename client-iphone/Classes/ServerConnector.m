@@ -30,29 +30,7 @@
         NSData * receivedData = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
         
         NSLog(@"request sent");
-        
-        if (theError == nil) {
-			NSLog(@"no error loading json");
-			
-            //			id *emails = [theObject objectForKey:@"NearbyPersonsEmails"];
-			NSArray *emails = [theObject mutableArrayValueForKey:@"NearbyPersonsEmails"];
-			
-            
-			for (int i=0; i<[emails count]; i++)
-			{                           
-				NSLog(@"%@", [emails objectAtIndex:i]);
-			}
-            
-            //			NSArray *allKeys = [emails allKeys];
-            //			
-			
-			NSLog(@"%s", emails);		
-		}
-        else
-        {
-                @throw ([NSException exceptionWithName:@"parse error" reason:@"can't parse json" userInfo:nil]);
-        }
-        
+                
         return receivedData;
     }
     
@@ -63,16 +41,40 @@
 {
     NSData * data = [self sendDataRequest];
     
+    NSError *theError = nil;
+    
     NSDictionary *theObject = [NSDictionary dictionaryWithDictionary:[[CJSONDeserializer deserializer] deserialize:data error:&theError]];
     
-    
+    if (theError == nil) 
+    {
+        NSLog(@"no error loading json");
+        
+        //			id *emails = [theObject objectForKey:@"NearbyPersonsEmails"];
+        NSArray *emails = [theObject mutableArrayValueForKey:@"NearbyPersonsEmails"];
+        
+        
+        for (int i=0; i<[emails count]; i++)
+        {                           
+            NSLog(@"%@", [emails objectAtIndex:i]);
+        }
+        
+        //			NSArray *allKeys = [emails allKeys];
+        //			
+        
+        //NSLog(@"%s", emails);		
+    }
+    else
+    {
+        @throw ([NSException exceptionWithName:@"parse error" reason:@"can't parse json" userInfo:nil]);
+    }
+
 }
 
 - (void)populateEmails
 {
     NSData * data = [self sendDataRequest];
     
-    NSDictionary *theObject = [NSDictionary dictionaryWithDictionary:[[CJSONDeserializer deserializer] deserialize:data error:&theError]];
+    //NSDictionary *theObject = [NSDictionary dictionaryWithDictionary:[[CJSONDeserializer deserializer] deserialize:data error:&theError]];
     
     
 }
