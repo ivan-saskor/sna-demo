@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		152CB10F14550456004DA5B4 /* ServerConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 152CB10C14550455004DA5B4 /* ServerConnector.m */; };
+		152CB11014550456004DA5B4 /* ServerConnectorCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 152CB10E14550456004DA5B4 /* ServerConnectorCallback.m */; };
 		1592DCDA14227D7200DF0560 /* SnaRealDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1592DCD914227D7200DF0560 /* SnaRealDataService.m */; };
 		1592DD101422827B00DF0560 /* SnaFakeDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1592DD0F1422827B00DF0560 /* SnaFakeDataService.m */; };
 		1D3623260D0F684500981E51 /* SnaApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SnaApplicationDelegate.m */; };
@@ -68,6 +70,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		152CB10B14550455004DA5B4 /* ServerConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnector.h; sourceTree = "<group>"; };
+		152CB10C14550455004DA5B4 /* ServerConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnector.m; sourceTree = "<group>"; };
+		152CB10D14550456004DA5B4 /* ServerConnectorCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnectorCallback.h; sourceTree = "<group>"; };
+		152CB10E14550456004DA5B4 /* ServerConnectorCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnectorCallback.m; sourceTree = "<group>"; };
 		1592DCD814227D7200DF0560 /* SnaRealDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaRealDataService.h; sourceTree = "<group>"; };
 		1592DCD914227D7200DF0560 /* SnaRealDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaRealDataService.m; sourceTree = "<group>"; };
 		1592DD0E1422827B00DF0560 /* SnaFakeDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaFakeDataService.h; sourceTree = "<group>"; };
@@ -312,6 +318,10 @@
 		DF506DCA13E784A0006E2566 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				152CB10B14550455004DA5B4 /* ServerConnector.h */,
+				152CB10C14550455004DA5B4 /* ServerConnector.m */,
+				152CB10D14550456004DA5B4 /* ServerConnectorCallback.h */,
+				152CB10E14550456004DA5B4 /* ServerConnectorCallback.m */,
 				DF506E9E13E881D5006E2566 /* _Services.h */,
 				DF506DCB13E7850C006E2566 /* SnaDataService.h */,
 				DF506DCC13E7850C006E2566 /* SnaDataService.m */,
@@ -655,6 +665,8 @@
 				DF51595F1421802800FC2F1D /* SnaNewMessagePage.m in Sources */,
 				1592DCDA14227D7200DF0560 /* SnaRealDataService.m in Sources */,
 				1592DD101422827B00DF0560 /* SnaFakeDataService.m in Sources */,
+				152CB10F14550456004DA5B4 /* ServerConnector.m in Sources */,
+				152CB11014550456004DA5B4 /* ServerConnectorCallback.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

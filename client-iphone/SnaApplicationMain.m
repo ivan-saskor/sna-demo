@@ -1,5 +1,6 @@
 
 #import <UIKit/UIKit.h>
+#import "ServerConnector.h"
 
 int main(int argc, char *argv[])
 {
@@ -7,6 +8,9 @@ int main(int argc, char *argv[])
     
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     {
+        ServerConnector * connector = [[ServerConnector alloc] init];
+        [connector sendDataRequest];
+        
         retVal = UIApplicationMain(argc, argv, nil, nil);
     }
     [pool release];
