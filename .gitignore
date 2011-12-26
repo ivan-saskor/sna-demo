@@ -2,6 +2,8 @@
 #/client-iphone/client-iphone.xcodeproj
 #!project.pbxproj
 
+.DS_Store
+
 # Xcode
 *.pbxuser
 !default.pbxuser
