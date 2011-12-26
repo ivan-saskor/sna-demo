@@ -38,6 +38,7 @@ typedef enum
 - (void) showProfilePage;
 - (void) showChangeMoodPage;
 - (void) showChangeLocationPage;
+- (void) showChangeTargetingRangePage;
 
 - (void) showNewMessagePageWithActionType:(SnaNewMessageActionType)actionType toPerson:(SnaPerson *)toPerson text:(NSString *)text;
 

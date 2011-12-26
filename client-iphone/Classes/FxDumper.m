@@ -102,6 +102,10 @@
 
 + (NSString *)dumpValue:(NSObject *)value
 {
+    if (value == nil)
+    {
+        return @"[nil]";
+    }
     if ([value conformsToProtocol:@protocol(FxIDumpableObject)])
     {
         return [FxDumper _dumpDumpableObject:(NSObject<FxIDumpableObject> *)value];
@@ -114,9 +118,17 @@
     {
         return [FxDumper _dumpArray:(NSArray *)value];
     }
+    if ([value isKindOfClass:[NSSet class]])
+    {
+        return [FxDumper _dumpSet:(NSSet *)value];
+    }
     if ([value isKindOfClass:[NSString class]])
     {
         return [FxDumper _dumpString:(NSString *)value];
+    }
+    if ([value isKindOfClass:[NSDate class]])
+    {
+        return [FxDumper _dumpDate:(NSDate *)value];
     }
     
     @throw [NSException exceptionWithName:@"Value type is not supported" reason:nil userInfo:nil];
@@ -204,6 +216,19 @@
         withDelimiter:FxStringTools.NEW_LINE
     ];
 }
++ (NSString *)_dumpSet         :(NSSet                    *)set
+{
+    return [FxStringTools
+            joinValues:[NSArray arrayWithObjects:
+                        [FxDumper _dumpClassNameAndMemoryAddressOfObject:set],
+                        FxDumper._ARRAY_LIST_START_DELIMITER,
+                        [FxStringTools indentString:[FxStringTools joinValues:[set allObjects] withDelimiter:FxStringTools.NEW_LINE]],
+                        FxDumper._ARRAY_LIST_END_DELIMITER,
+                        nil
+                        ]
+            withDelimiter:FxStringTools.NEW_LINE
+            ];
+}
 + (NSString *)_dumpString        :(NSString                   *)string
 {
     return [FxStringTools quoteValue:string];
@@ -219,6 +244,10 @@
 + (NSString *)_dumpDecimal       :(NSDecimal                   )decimal
 {
     return [[NSDecimalNumber decimalNumberWithDecimal:decimal] description];
+}
++ (NSString *)_dumpDate       :(NSDate                  *)date
+{
+    return [date description];
 }
 
 + (NSString *)_dumpClassNameAndMemoryAddressOfObject:(NSObject*)object

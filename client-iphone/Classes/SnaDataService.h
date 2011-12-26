@@ -22,10 +22,26 @@
 @property (nonatomic, retain, readonly) SnaLocation *currentLocation;
 @property (nonatomic        , readonly) NSArray     *availableLocations;
 
+@property (nonatomic, retain, readonly) SnaTargetingRange    *targetingRange;
+@property (nonatomic        , readonly) NSArray     *availableTargetingRanges;
+
 - (BOOL) tryLogInWithEmail :(NSString *)email password:(NSString *)password;
-- (BOOL) trySignUpWithEmail:(NSString *)email password:(NSString *)password nick:(NSString *)nick;
 - (void) logOut;
 
+- (BOOL) trySignUpWithEmail:(NSString *)email
+                   password:(NSString *)password
+                       nick:(NSString *)nick
+                       mood:(NSString *)mood
+                     bornOn:(NSDate *)bornOn
+                     gender:(SnaGender *)gender
+          lookingForGenders:(NSSet *)lookingForGenders
+              myDescription:(NSString *)myDescription
+                 occupation:(NSString *)occupation
+                      hobby:(NSString *)hobby
+               mainLocation:(NSString *)mainLocation
+                      phone:(NSString *)phone;
+
+//- (BOOL) trySignUpWithEmail:(NSString *)email password:(NSString *)password nick:(NSString *)nick;
 - (void) requestFriendshipToPerson:(SnaPerson *)person withMessage:(NSString *)message;
 - (void) acceptFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message;
 - (void) rejectFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message;
@@ -35,6 +51,7 @@
 
 - (void) changeMood    :(NSString    *)mood;
 - (void) changeLocation:(SnaLocation *)location;
+- (void) changeTargetingRange   :(SnaTargetingRange *) targetingRange;
 
 - (void) sendMessageWithText:(NSString *)text toPerson:(SnaPerson *)toPerson;
 
@@ -55,6 +72,8 @@
 - (void) testAddMessageWithFriend;
 - (void) testAddMessageWithPerson:(SnaPerson *)person;
 - (void) testMutateMessages;
+
+- (void) testMutateTargetRange;
 
 #endif
 

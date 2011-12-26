@@ -39,6 +39,7 @@ static SnaApplicationDelegate *_cachedInstance = nil;
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.window cache:YES];
         
         self.window.rootViewController = viewController;
+
     }
     [UIView commitAnimations];
 }
@@ -54,6 +55,11 @@ static SnaApplicationDelegate *_cachedInstance = nil;
         [[[UINavigationController alloc] initWithRootViewController:[[[SnaProfilePageController            alloc] init] autorelease]] autorelease],
         nil
     ];
+
+    for (UINavigationController * navigationController in ctls) 
+    {
+        navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    }
     
     ((UINavigationController *)[ctls objectAtIndex:0]).tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Nearbys"  image:[UIImage imageNamed:@"NearbyPersons.png"     ] tag:0] autorelease];
     ((UINavigationController *)[ctls objectAtIndex:1]).tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Friends"  image:[UIImage imageNamed:@"Friends.png"           ] tag:1] autorelease];
@@ -69,7 +75,11 @@ static SnaApplicationDelegate *_cachedInstance = nil;
 }
 - (UIViewController *) _createLoginPage
 {
-    return [[[UINavigationController alloc] initWithRootViewController:[[[SnaLogInPageController alloc] init] autorelease]] autorelease];
+    UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[SnaLogInPageController alloc] init] autorelease]] autorelease];
+    
+    navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    return navigationController;
 }
 
 - (void) flipToLoginPage
@@ -86,8 +96,19 @@ static SnaApplicationDelegate *_cachedInstance = nil;
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window.rootViewController = [self _createHomePage];
+    // startat thread
     
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+    
+    if ([SnaDataService INSTANCE].currentUser == nil)
+    {
+        self.window.rootViewController = [self _createLoginPage];
+    }
+    else
+    {
+        self.window.rootViewController = [self _createHomePage];
+    }
 
 //    self.window.rootViewController = nc;
     

@@ -56,7 +56,7 @@
 - (NSArray             *) messages          { @throw [FxException unsupportedMethodException]; }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Calculated Properties - CHAMPINS
+// Calculated Properties - CHAMPIONS
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 @synthesize bornOnAsString            = _bornOnAsString;
@@ -99,7 +99,7 @@
 }
 - (NSString            *) _calculateDistanceInMeetersAsString
 {
-    return [NSString stringWithFormat:@"%d mi", self.distanceInMeeters];
+    return [NSString stringWithFormat:@"%d m", self.distanceInMeeters];
 }
 
 - (SnaMessage          *) _calculateLastMessage
@@ -366,7 +366,7 @@
     
     _bornOn            = [bornOn            copy];
     _gender            =  gender                 ;
-    _lookingForGenders = [lookingForGenders copy];
+    _lookingForGenders = [[NSSet setWithSet:lookingForGenders] retain];
     
     _phone             = [phone             copy];
     _myDescription     = [myDescription     copy];
@@ -377,7 +377,7 @@
     _lastKnownLocation = [lastKnownLocation copy];
     _distanceInMeeters =  distanceInMeeters      ;
     
-    _messages          = [messages          copy];
+    _messages          = [[NSArray arrayWithArray:messages] retain];
 
     return self;
 }
@@ -695,7 +695,7 @@
     
     _bornOn            = [bornOn                   copy];
     _gender            =  gender                        ;
-    _lookingForGenders = [lookingForGenders mutableCopy];
+    _lookingForGenders = [[NSMutableSet setWithSet:lookingForGenders] retain];
     
     _phone             = [phone                    copy];
     _myDescription     = [myDescription            copy];
@@ -706,7 +706,7 @@
     _lastKnownLocation = [lastKnownLocation        copy];
     _distanceInMeeters =  distanceInMeeters             ;
     
-    _messages          = [messages          mutableCopy];
+    _messages          = [[NSMutableArray arrayWithArray:messages] retain];
 
     return self;
 }

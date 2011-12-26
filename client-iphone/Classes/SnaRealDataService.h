@@ -3,6 +3,7 @@
 #import "_Domain.h"
 
 #import "SnaDataService.h"
+#import "ServerConnector.h"
 
 @interface SnaRealDataService : NSObject <SnaIDataService>
 {
@@ -25,9 +26,15 @@
 	@private NSMutableArray      *_rejectedPersons;
 		
 	@private NSMutableArray      *_friendsWithMessages;
-		
+	
+    @private SnaLocation         *_gpsLocation;
 	@private SnaLocation         *_currentLocation;
 	@private NSArray             *_availableLocations;
+    
+    @private SnaTargetingRange   *_targetingRange;
+    @private NSArray             *_availableTargetingRanges;
+	
+	@private ServerConnector	*_connector;
 		
 	#ifdef DEBUG
 		

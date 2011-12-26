@@ -126,6 +126,13 @@
     [self pushViewController:pageController];
 }
 
+- (void) showChangeTargetingRangePage
+{
+    SnaChangeTargetingRangePageController *pageController = [[[SnaChangeTargetingRangePageController alloc] init] autorelease];
+    
+    [self pushViewController:pageController];
+}
+
 - (void) showNewMessagePageWithActionType:(SnaNewMessageActionType)actionType toPerson:(SnaPerson *)toPerson text:(NSString *)text
 {
     SnaNewMessagePageController *pageController = [[[SnaNewMessagePageController alloc] initWithActionType:actionType toPerson:toPerson text:text] autorelease];

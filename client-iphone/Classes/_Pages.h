@@ -17,5 +17,6 @@
 #import "SnaProfilePage.h"
 #import "SnaChangeMoodPage.h"
 #import "SnaChangeLocationPage.h"
+#import "SnaChangeTargetingRangePage.h"
 
 #import "SnaNewMessagePage.h"

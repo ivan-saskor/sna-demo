@@ -67,8 +67,8 @@
             
         [FxDumper dumpFieldWithName:@"id"      value  :self.id    ],
 
-        [FxDumper dumpFieldWithName:@"from"    value  :self.from  ],
-        [FxDumper dumpFieldWithName:@"to"      value  :self.to    ],
+        [FxDumper dumpFieldWithName:@"from"    value  :self.from.email  ],
+        [FxDumper dumpFieldWithName:@"to"      value  :self.to.email    ],
         
         [FxDumper dumpFieldWithName:@"text"    value  :self.text  ],
         

@@ -73,6 +73,14 @@
     {
         [changeMoodButtonSection addButtonCellWithCaption:@"Change Mood" targetObject:self action:@selector(openChangeMoodPage:)];
     }
+    FxUiSection *rangeSection = [super addSection];
+    {
+        [rangeSection addTextBlockCellWithCaption:@"range"  boundObject:self.dataService.targetingRange propertyKey:@"radiusInMetersAsString" ];
+    }
+    FxUiSection *changeRangeSection = [super addSection];
+    {
+        [changeRangeSection addButtonCellWithCaption:@"Change Range" targetObject:self action:@selector(openChangeRangePage:)];
+    }
     FxUiSection *mainDataSection = [super addSection];
     {
         [mainDataSection addTextBlockCellWithCaption:@"born on"     boundObject:_model.currentUser propertyKey:@"bornOnAsString"            ];
@@ -109,18 +117,23 @@
         FxUiSection *testSection = [super addSectionWithCaption:@"Test"];
         {
             [testSection addButtonCellWithCaption:@"Mutate Persons" targetObject:self action:@selector(testMutatePersons:)];
+            [testSection addButtonCellWithCaption:@"Mutate targeting range" targetObject:self action:@selector(testMutateTargetingRange:)];
         }
     }
     #endif
 }
 
-- (void) openChangeMoodPage:(id)sender
+- (void) openChangeMoodPage:(id) sender
 {
     [self showChangeMoodPage];
 }
-- (void) openChangeLocationPage:(id)sender
+- (void) openChangeLocationPage:(id) sender
 {
     [self showChangeLocationPage];
+}
+-  (void) openChangeRangePage:(id) sender
+{
+    [self showChangeTargetingRangePage];
 }
 
 - (void) logOut:(id)sender
@@ -144,6 +157,11 @@
 - (void) testMutatePersons:(id)sender
 {
     [self.dataService testMutatePersons];
+}
+
+- (void) testMutateTargetingRange:(id)sender
+{
+    [self.dataService testMutateTargetRange];
 }
 
 #endif

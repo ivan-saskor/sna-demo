@@ -6,3 +6,4 @@
 #import "SnaPerson.h"
 #import "SnaMessage.h"
 #import "SnaLocation.h"
+#import "SnaTargetingRange.h"

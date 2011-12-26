@@ -12,10 +12,25 @@
 
 @property (nonatomic, retain, readwrite) SnaLocation *currentLocation;
 
+@property (nonatomic, retain, readwrite) SnaTargetingRange *targetingRange;
+
 - (void) _fillTestData;
 
 - (SnaPerson  *) _registerPersonWithString :(NSString *)string;
-- (SnaPerson *)  _registerPersonWithEmail  :(NSString *)email password:(NSString *)password nick:(NSString *)nick;
+
+- (SnaPerson *)  _registerPersonWithEmail  :(NSString *)email
+                                   password:(NSString *)password
+                                       nick:(NSString *)nick
+                                       mood:(NSString *)mood
+                                     bornOn:(NSDate *)bornOn
+                                     gender:(SnaGender *)gender
+                          lookingForGenders:(NSSet *)lookingForGenders
+                              myDescription:(NSString *)myDescription
+                                 occupation:(NSString *)occupation
+                                      hobby:(NSString *)hobby
+                               mainLocation:(NSString *)mainLocation
+                                      phone:(NSString *)phone;
+
 - (SnaMessage *) _registerMessageWithString:(NSString *)string from:(SnaPerson *)personA to:(SnaPerson *)personB;
 
 - (void) _registerAsFriendsPerson:(SnaPerson *)personA andPerson:(SnaPerson *)personB;
@@ -71,7 +86,7 @@
 @synthesize defaultLogInEmail    = _defaultLogInEmail;
 @synthesize defaultLogInPassword = _defaultLogInPassword;
 
-@synthesize currentUser          = _currentUser;
+@synthesize currentUser          = _currentUser; //needed
 
 @synthesize nearbyPersons        = _nearbyPersons;
 @synthesize friends              = _friends;
@@ -83,6 +98,9 @@
 
 @synthesize currentLocation      = _currentLocation;
 @synthesize availableLocations   = _availableLocations;
+
+@synthesize targetingRange      = _targetingRange;
+@synthesize availableTargetingRanges   = _availableTargetingRanges;
 
 - (id) init
 {
@@ -112,13 +130,32 @@
     
     _friendsWithMessages  = [[NSMutableArray alloc] init];
 	
+    _gpsLocation = [[SnaMutableLocation alloc] initWithName:@"GPS Location" latitude:[FxDecimalTools decimalFromMantisa:0 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:0 exponent:0 isNegative:FALSE]];
+    
     _availableLocations   = [[NSArray alloc] initWithObjects:
-							 
-		[[SnaImmutableLocation alloc] initWithName:@"Split" latitude:[FxDecimalTools decimalFromMantisa:1 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:1 exponent:0 isNegative:FALSE]],
-		[[SnaImmutableLocation alloc] initWithName:@"Bol"   latitude:[FxDecimalTools decimalFromMantisa:2 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:2 exponent:0 isNegative:FALSE]],
-		[[SnaImmutableLocation alloc] initWithName:@"Čišla" latitude:[FxDecimalTools decimalFromMantisa:3 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:3 exponent:0 isNegative:FALSE]],
+        _gpsLocation,
+		[[SnaImmutableLocation alloc] initWithName:@"Bucharest" latitude:[FxDecimalTools decimalFromMantisa:1 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:1 exponent:0 isNegative:FALSE]],
+		[[SnaImmutableLocation alloc] initWithName:@"Prague"   latitude:[FxDecimalTools decimalFromMantisa:2 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:2 exponent:0 isNegative:FALSE]],
+		[[SnaImmutableLocation alloc] initWithName:@"London" latitude:[FxDecimalTools decimalFromMantisa:3 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:3 exponent:0 isNegative:FALSE]],
+        [[SnaImmutableLocation alloc] initWithName:@"Zagreb" latitude:[FxDecimalTools decimalFromMantisa:4 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:4 exponent:0 isNegative:FALSE]],
 		nil
 	];
+    
+    _availableTargetingRanges   = [[NSArray alloc] initWithObjects:
+							 
+                             [[SnaImmutableTargetingRange alloc] initWithRadiusInMeters:100],
+                             [[SnaImmutableTargetingRange alloc] initWithRadiusInMeters:500],
+                             [[SnaImmutableTargetingRange alloc] initWithRadiusInMeters:3000],
+                             [[SnaImmutableTargetingRange alloc] initWithRadiusInMeters:10000],
+                             nil
+                             ];
+    
+    _targetingRange = [_availableTargetingRanges objectAtIndex:2];
+	
+	NSLog(@"Inicijalizacija");
+	
+	//_connector = [[[ServerConnector alloc] initWithUrlPrefix:@"http://localhost:3000"] retain];
+    _connector = [[[ServerConnector alloc] initWithUrlPrefix:@"http://baltazar.fesb.hr/~lana/bvisible"] retain];
     
 	#if DEBUG
     {
@@ -127,10 +164,12 @@
     }
 	#endif
     
-    [self _fillTestData];
+    //[self _fillTestData];
     
-    [self _logInPerson:[_persons objectAtIndex:0]];
-    self.currentLocation = [self.availableLocations objectAtIndex:0];
+    //[self _logInPerson:[_persons objectAtIndex:0]];
+    
+	
+	self.currentLocation = [self.availableLocations objectAtIndex:0]; //gps
     
     return self;
 }
@@ -155,7 +194,15 @@
     [_waitingForHimPersons release];
     [_rejectedPersons      release];
     [_friendsWithMessages  release];
-	
+    
+    [_availableLocations   release];
+    [_currentLocation      release];
+    
+    [_availableTargetingRanges release];
+    [_targetingRange       release];
+    
+    [_connector release];
+    
 	#if DEBUG
     {
         [_personA          release];
@@ -166,6 +213,16 @@
 	[super dealloc];
 }
 
+
+- (void) getDataWithEmail :(NSString *)email password:(NSString *)password
+{
+    [_connector sendDataRequestForEmail:email withPassword:password];
+    
+	[_persons replaceObjectsInRange:NSMakeRange(0, [_persons count]) withObjectsFromArray:[_connector getPersons]];
+    [_messages replaceObjectsInRange:NSMakeRange(0, [_messages count]) withObjectsFromArray:[_connector getMessages]];
+}
+
+
 - (BOOL) tryLogInWithEmail :(NSString *)email password:(NSString *)password
 {
     [FxAssert isNotNullArgument:email    withName:@"email"   ];
@@ -173,12 +230,17 @@
 	
     [FxAssert isValidState:(self.currentUser == nil) reason:@"User is already logged in"];
 	
+    
     if ([email isEqual:@""] || [password isEqual:@""])
     {
         return NO;
     }
+	
+	[self getDataWithEmail:email password:password];
     
-    SnaPerson *person = [self _tryFindPersonWithEmail:email password:password];
+    [self _allignData];
+	
+	SnaPerson *person = [self _tryFindPersonWithEmail:email password:password];
 	
     if (person == nil)
     {
@@ -189,7 +251,18 @@
     
     return YES;
 }
-- (BOOL) trySignUpWithEmail:(NSString *)email password:(NSString *)password nick:(NSString *)nick
+- (BOOL) trySignUpWithEmail:(NSString *)email
+                   password:(NSString *)password
+                       nick:(NSString *)nick
+                       mood:(NSString *)mood
+                     bornOn:(NSDate *)bornOn
+                     gender:(SnaGender *)gender
+          lookingForGenders:(NSSet *)lookingForGenders
+              myDescription:(NSString *)myDescription
+                 occupation:(NSString *)occupation
+                      hobby:(NSString *)hobby
+               mainLocation:(NSString *)mainLocation
+                      phone:(NSString *)phone
 {
     [FxAssert isNotNullArgument:email    withName:@"email"   ];
     [FxAssert isNotNullArgument:password withName:@"password"];
@@ -207,12 +280,17 @@
         return NO;
     }
 	
-    SnaPerson *person = [self _registerPersonWithEmail:email password:password nick:nick];
+    SnaPerson *person = [self _registerPersonWithEmail:email password:password nick:nick mood:mood bornOn:bornOn gender:gender lookingForGenders:lookingForGenders myDescription:myDescription occupation:occupation hobby:hobby mainLocation:mainLocation phone:phone];
     
-    [self _logInPerson:person];
-	
-    return YES;
+    if (person != nil)
+    {
+        [self _logInPerson:person];
+        return YES;
+    }
+    
+    return NO;
 }
+
 - (void) logOut
 {
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
@@ -233,20 +311,23 @@
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus    ALIEN]
 							|| person.friendshipStatus == [SnaFriendshipStatus REJECTED]) reason:@"Invalid person status"];
 	
-    [FxAssert isValidState:(![self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    [FxAssert isValidState:(![self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    
+//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
+//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
     
-    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
-    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
+//    if ([self _areRejectedPerson:self.currentUser andPerson:person])
+//    {
+//        [self _unregisterRejectedPerson:self.currentUser andPerson:person];
+//    }
     
-    if ([self _areRejectedPerson:self.currentUser andPerson:person])
-    {
-        [self _unregisterRejectedPerson:self.currentUser andPerson:person];
-    }
+//    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
     
-    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    [self _registerFriendshipRequestFromPerson:self.currentUser toPerson:person];
+//    [self _registerMessageWithString:message from:self.currentUser to:person];
     
-    [self _registerFriendshipRequestFromPerson:self.currentUser toPerson:person];
-    [self _registerMessageWithString:message from:self.currentUser to:person];
+    [_connector sendFriendshipRequestFrom:[self currentUser] to:person withMessage:message];
+    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
     
     [self _allignData];
 }
@@ -260,18 +341,22 @@
     
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus WAITING_FOR_ME]) reason:@"Invalid person status"];
 	
-    [FxAssert isValidState:(![self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    [FxAssert isValidState:(![self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    
+//    [FxAssert isValidState:( [self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
+//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
+//	
+//    [self _unregisterFriendshipRequestFromPerson:person toPerson:self.currentUser];
+//    
+//    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    
+//    [self _registerAsFriendsPerson:self.currentUser andPerson:person];
+//    [self _registerMessageWithString:message from:self.currentUser to:person];
     
-    [FxAssert isValidState:( [self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
-    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
-	
-    [self _unregisterFriendshipRequestFromPerson:person toPerson:self.currentUser];
+	[_connector sendFriendshipRequestFrom:[self currentUser] to:person withMessage:message];
+    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
     
-    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
     
-    [self _registerAsFriendsPerson:self.currentUser andPerson:person];
-    [self _registerMessageWithString:message from:self.currentUser to:person];
-	
     [self _allignData];
 }
 - (void) rejectFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
@@ -284,18 +369,20 @@
 	
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus WAITING_FOR_ME]) reason:@"Invalid person status"];
     
-    [FxAssert isValidState:(![self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    [FxAssert isValidState:(![self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    
+//    [FxAssert isValidState:( [self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
+//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
+//    
+//    [self _unregisterFriendshipRequestFromPerson:person toPerson:self.currentUser];
+//    
+//    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    
+//    [self _registerAsRejectedPerson:self.currentUser andPerson:person];
+//    [self _registerMessageWithString:message from:self.currentUser to:person];
+    [_connector rejectFriendshipFor:[self currentUser] to:person withMessage:message];
     
-    [FxAssert isValidState:( [self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
-    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
-    
-    [self _unregisterFriendshipRequestFromPerson:person toPerson:self.currentUser];
-    
-    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
-    
-    [self _registerAsRejectedPerson:self.currentUser andPerson:person];
-    [self _registerMessageWithString:message from:self.currentUser to:person];
-    
+    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
     [self _allignData];
 }
 - (void) cancelFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
@@ -308,18 +395,21 @@
 	
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus FRIEND]) reason:@"Invalid person status"];
     
-    [FxAssert isValidState:( [self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    [FxAssert isValidState:( [self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    
+//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
+//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
+//    
+//    [self _unregisterFriendsPerson:self.currentUser andPerson:person];
+//	
+//    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
+//    
+//    [self _registerAsRejectedPerson:self.currentUser andPerson:person];
+//    [self _registerMessageWithString:message from:self.currentUser to:person];
+//    
+    [_connector rejectFriendshipFor:[self currentUser] to:person withMessage:message];
     
-    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
-    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
-    
-    [self _unregisterFriendsPerson:self.currentUser andPerson:person];
-	
-    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
-    
-    [self _registerAsRejectedPerson:self.currentUser andPerson:person];
-    [self _registerMessageWithString:message from:self.currentUser to:person];
-    
+    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
     [self _allignData];
 }
 
@@ -349,6 +439,10 @@
 	
     ((SnaMutablePerson *)self.currentUser).mood = mood;
     
+    [_connector updateProfileForPerson:[self currentUser]];
+    
+    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
+    
     [self _allignData];
 }
 - (void) changeLocation:(SnaLocation *)location
@@ -360,6 +454,16 @@
 	
     self.currentLocation = location;
     
+    //[_connector updateProfileForPerson:[self currentUser]];
+
+    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
+    [self _allignData];
+}
+
+- (void) changeTargetingRange:(SnaTargetingRange *) targetingRange
+{
+    self.targetingRange = targetingRange;
+    
     [self _allignData];
 }
 
@@ -369,10 +473,13 @@
     [FxAssert isNotNullArgument        :toPerson withName:@"toPerson"];
     [FxAssert isValidArgument          :toPerson withName:@"toPerson" validation:[_persons containsObject:toPerson]];
 	
-    [self _registerMessageWithString:text from:self.currentUser to:toPerson];
+    //[self _registerMessageWithString:text from:self.currentUser to:toPerson];
+    [_connector sendMessageFrom:[self currentUser] to:toPerson withText:text];
     
+    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
     [self _allignData];
 }
+
 
 - (void) _fillTestData
 {
@@ -422,6 +529,7 @@
 
 - (SnaPerson *)  _registerPersonWithString:(NSString *)string
 {
+    //TODO - vidit sta ce nam ovo uopce
     [FxAssert isNotNullNorEmptyArgument:string withName:@"string"];
 	
     [FxAssert isValidArgument:string withName:@"string" validation:![self _existsPersonWithEmail:string]];
@@ -457,14 +565,23 @@
     
     return person;
 }
-- (SnaPerson *)  _registerPersonWithEmail:(NSString *)email password:(NSString *)password nick:(NSString *)nick
+
+- (SnaPerson *)  _registerPersonWithEmail:(NSString *)email
+                                 password:(NSString *)password
+                                     nick:(NSString *)nick
+                                     mood:(NSString *)mood
+                                   bornOn:(NSDate *)bornOn
+                                   gender:(SnaGender *)gender
+                        lookingForGenders:(NSSet *)lookingForGenders
+                            myDescription:(NSString *)myDescription
+                               occupation:(NSString *)occupation
+                                    hobby:(NSString *)hobby
+                             mainLocation:(NSString *)mainLocation
+                                    phone:(NSString *)phone
 {
     [FxAssert isNotNullNorEmptyArgument:email    withName:@"email"   ];
     [FxAssert isNotNullNorEmptyArgument:password withName:@"password"];
     [FxAssert isNotNullNorEmptyArgument:nick     withName:@"nick"    ];
-    
-    [FxAssert isValidArgument:email withName:@"email" validation:![self _existsPersonWithEmail:email]];
-    [FxAssert isValidArgument:email withName:@"nick"  validation:![self _existsPersonWithNick:nick  ]];
     
     SnaPerson *person = [[[SnaMutablePerson alloc] initWithEmail:email
                                                         password:password
@@ -476,25 +593,29 @@
                                                       rejectedOn:nil
                           
                                                             nick:nick
-                                                            mood:@""
+                                                            mood:mood
                                                     gravatarCode:nil
                           
-                                                          bornOn:nil
-                                                          gender:nil
-                                               lookingForGenders:[NSSet set]
+                                                          bornOn:bornOn
+                                                          gender:gender
+                                               lookingForGenders:lookingForGenders
                           
-                                                           phone:@""
-                                                   myDescription:@""
-                                                      occupation:@""
-                                                           hobby:@""
-                                                    mainLocation:@""
+                                                           phone:phone
+                                                   myDescription:myDescription
+                                                      occupation:occupation
+                                                           hobby:hobby
+                                                    mainLocation:mainLocation
                           
                                                lastKnownLocation:nil
                                                distanceInMeeters:0] autorelease];
     
-    [_persons addObject:person];
-    
-    return person;
+    if([_connector createProfileForPerson:person])
+    {
+        [_persons addObject:person];
+        return person;
+    }
+
+    return nil;
 }
 - (SnaMessage *) _registerMessageWithString:(NSString *)string from:(SnaPerson *)personA to:(SnaPerson *)personB;
 {
@@ -511,7 +632,11 @@
                                                           sentOn:[NSDate date]
                                                           readOn:nil] autorelease];
     
-    [_messages addObject:message];
+    [_connector sendMessageFrom:personA to:personB withText:string];
+    [self getDataWithEmail:[_currentUser email] password:[_currentUser password]];
+    [self _allignData];
+    
+    //[_messages addObject:message];
     
     return message;
 }
@@ -737,7 +862,6 @@
 
 - (void) _allignData
 {
-    [self _allignPersons_relationshipStatuses            ];
     [self _allignPersons_messagess                       ];
     [self _allignPersons_refreshCalculatedFields_CHAMPION];
     
@@ -752,36 +876,6 @@
     self.timestamp++;
 }
 
-- (void) _allignPersons_relationshipStatuses
-{
-    for (SnaMutablePerson *person in _persons)
-    {
-        if (self.currentUser == nil || self.currentUser == person)
-        {
-            person.friendshipStatus = [SnaFriendshipStatus SELF];
-        }
-        else if ([self _areFriendsPerson:self.currentUser andPerson:person])
-        {
-            person.friendshipStatus = [SnaFriendshipStatus FRIEND];
-        }
-        else if ([self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person])
-        {
-            person.friendshipStatus = [SnaFriendshipStatus WAITING_FOR_HIM];
-        }
-        else if ([self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser])
-        {
-            person.friendshipStatus = [SnaFriendshipStatus WAITING_FOR_ME];
-        }
-        else if ([self _areRejectedPerson:self.currentUser andPerson:person])
-        {
-            person.friendshipStatus = [SnaFriendshipStatus REJECTED];
-        }
-        else
-        {
-            person.friendshipStatus = [SnaFriendshipStatus ALIEN];
-        }
-    }
-}
 - (void) _allignPersons_messagess
 {
     for (SnaMutablePerson *person in _persons)
@@ -892,7 +986,15 @@
 
 - (NSArray *) _findNearbyPersons
 {
-    NSMutableArray *result = [[_persons mutableCopy] autorelease];
+    NSMutableArray *result = [NSMutableArray array];
+    
+    for (SnaPerson *person in _persons)
+    {
+        if (person.distanceInMeeters <= _targetingRange.radiusInMeters)
+        {
+            [result addObject:person];
+        }
+    }
     
     [result removeObject:self.currentUser];
     
@@ -1036,6 +1138,18 @@
     
     return [[sortedResult reverseObjectEnumerator] allObjects];
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 #ifdef DEBUG
 
@@ -1243,6 +1357,16 @@
     
     testIndex++;
 }
+
+- (void) testMutateTargetRange
+{
+    int index = random() % [self.availableTargetingRanges count];
+    
+    self.targetingRange = [self.availableTargetingRanges objectAtIndex:index];
+    
+    [self _allignData];
+}
+
 - (void) testMutateMessages
 {
     BOOL shouldSetToRead = YES;
