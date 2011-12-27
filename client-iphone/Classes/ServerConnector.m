@@ -11,6 +11,7 @@
 - (NSDate *)dateFromRFC3339String:(NSString *)rfc3339DateTimeString;
 - (NSDate *)dateFromSmallRFC3339String:(NSString *)rfc3339DateTimeString;
 - (NSString *)stringFromSmallDate:(NSDate *) date;
+- (NSString *)_stringForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary;
 @end
 
 @implementation ServerConnector
@@ -97,6 +98,18 @@
     return [integerAsString integerValue];
 }
 
+- (NSString *)_stringForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary
+{
+    if ([[[dictionary keyEnumerator] allObjects] containsObject:field]) 
+    {
+        return [self _cleanString:[dictionary valueForKey:field]];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 - (void)populatePersons
 {
     NSError *theError = nil;
@@ -147,14 +160,16 @@
             NSString *offlineSinceAsString;
             NSString *friendshipStatusAsString;
             
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"Email"]) 
-            {
-                [person setEmail:[self _cleanString:[json_person valueForKey:@"Email"]]];
-            }
-            else
-            {
-                [person setEmail:nil];
-            }
+            [person setEmail:[self _stringForField:@"Email" FromDictionary:json_person]];
+            
+//            if ([[[json_person keyEnumerator] allObjects] containsObject:@"Email"]) 
+//            {
+//                [person setEmail:[self _cleanString:[json_person valueForKey:@"Email"]]];
+//            }
+//            else
+//            {
+//                [person setEmail:nil];
+//            }
             
             if ([[[json_person keyEnumerator] allObjects] containsObject:@"Password"]) 
             {
@@ -183,14 +198,16 @@
                 offlineSinceAsString  = nil;
             }
             
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"Nick"]) 
-            {
-                [person setNick:[self _cleanString:[json_person valueForKey:@"Nick"]]];
-            }
-            else
-            {
-                [person setNick:nil];
-            }
+            [person setNick:[self _stringForField:@"Nick" FromDictionary:json_person]];
+            
+//            if ([[[json_person keyEnumerator] allObjects] containsObject:@"Nick"]) 
+//            {
+//                [person setNick:[self _cleanString:[json_person valueForKey:@"Nick"]]];
+//            }
+//            else
+//            {
+//                [person setNick:nil];
+//            }
             
             if ([[[json_person keyEnumerator] allObjects] containsObject:@"FriendshipStatus"]) 
             {
@@ -269,14 +286,16 @@
                 @throw [FxException exceptionWithName:@"Impossible CP reached" reason:@"Invalid visibility status" userInfo:nil];
             }
                 
+            if ([[[json_person keyEnumerator] allObjects] containsObject:@"DistanceInMeters"]) 
+            {
+                [person setDistanceInMeeters:[self _cleanIntegerAsString:[json_person valueForKey:@"DistanceInMeters"]]];
+            }
 
             [FxAssert isNotNullValue:person.email];
             [FxAssert isNotNullValue:person.password];
             [FxAssert isNotNullValue:person.visibilityStatus];
             [FxAssert isNotNullValue:person.nick];
             [FxAssert isNotNullValue:person.friendshipStatus];
-
-            [person setDistanceInMeeters:0];
             
             continue;
             
