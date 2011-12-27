@@ -17,6 +17,7 @@
 		1502B04014A8E4CF005539A2 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502AFD214A8E4CF005539A2 /* CJSONDeserializer.m */; };
 		1502B04114A8E4CF005539A2 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502AFD414A8E4CF005539A2 /* CJSONScanner.m */; };
 		1502B04214A8E4CF005539A2 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502AFD614A8E4CF005539A2 /* CJSONSerializer.m */; };
+		1502B09314A97023005539A2 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502B09214A97023005539A2 /* Constants.m */; };
 		152CB10F14550456004DA5B4 /* ServerConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 152CB10C14550455004DA5B4 /* ServerConnector.m */; };
 		152CB11014550456004DA5B4 /* ServerConnectorCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 152CB10E14550456004DA5B4 /* ServerConnectorCallback.m */; };
 		152E1B77148E9F8600EE46E2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569C1B714831C6900A1BD2E /* SenTestingKit.framework */; };
@@ -118,6 +119,8 @@
 		1502AFD514A8E4CF005539A2 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
 		1502AFD614A8E4CF005539A2 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		1502AFD714A8E4CF005539A2 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		1502B09114A97023005539A2 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		1502B09214A97023005539A2 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		152CB10B14550455004DA5B4 /* ServerConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnector.h; sourceTree = "<group>"; };
 		152CB10C14550455004DA5B4 /* ServerConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnector.m; sourceTree = "<group>"; };
 		152CB10D14550456004DA5B4 /* ServerConnectorCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnectorCallback.h; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 				15CB1373148BFA5600A9169D /* SnaFileDataRetriever.m */,
 				15CB1375148BFA7000A9169D /* SnaHttpDataRetriever.h */,
 				15CB1376148BFA7000A9169D /* SnaHttpDataRetriever.m */,
+				1502B09114A97023005539A2 /* Constants.h */,
+				1502B09214A97023005539A2 /* Constants.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -942,6 +947,7 @@
 				1502B04014A8E4CF005539A2 /* CJSONDeserializer.m in Sources */,
 				1502B04114A8E4CF005539A2 /* CJSONScanner.m in Sources */,
 				1502B04214A8E4CF005539A2 /* CJSONSerializer.m in Sources */,
+				1502B09314A97023005539A2 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

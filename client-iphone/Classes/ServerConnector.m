@@ -3,15 +3,18 @@
 #import "CJSONDeserializer.h"
 #import "CJSONSerializer.h"
 #import "_Domain.h"
+#import "Constants.h"
 
 @interface ServerConnector()
 - (NSDictionary *)dictonarizePerson:(SnaPerson *) person;
 
 - (BOOL)isRequestSuccessfulForData:(NSData *)data;
-- (NSDate *)dateFromRFC3339String:(NSString *)rfc3339DateTimeString;
-- (NSDate *)dateFromSmallRFC3339String:(NSString *)rfc3339DateTimeString;
+- (NSDate *)dateFromRFC3339String:(NSString *)rfc3339DateTimeString withFormat:(NSString *) format;
 - (NSString *)stringFromSmallDate:(NSDate *) date;
 - (NSString *)_stringForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary;
+- (NSInteger)_integerForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary;
+- (NSDate *)_dateForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary withFormat:(NSString *) format;
+- (NSArray *)_arrayForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary;
 @end
 
 @implementation ServerConnector
@@ -110,6 +113,42 @@
     }
 }
 
+- (NSInteger)_integerForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary
+{
+    if ([[[dictionary keyEnumerator] allObjects] containsObject:field]) 
+    {
+        return [self _cleanIntegerAsString:[dictionary valueForKey:field]];
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+- (NSDate *)_dateForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary withFormat:(NSString *) format
+{
+    if ([[[dictionary keyEnumerator] allObjects] containsObject:field]) 
+    {
+        return [self dateFromRFC3339String:[self _cleanString:[dictionary valueForKey:field]] withFormat:format];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (NSArray *)_arrayForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary
+{
+    if ([[[dictionary keyEnumerator] allObjects] containsObject:field]) 
+    {
+        return [dictionary valueForKey:field];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 - (void)populatePersons
 {
     NSError *theError = nil;
@@ -159,64 +198,27 @@
             NSString *visibilityStatusAsString;
             NSString *offlineSinceAsString;
             NSString *friendshipStatusAsString;
+            NSString *genderAsString;
             
             [person setEmail:[self _stringForField:@"Email" FromDictionary:json_person]];
-            
-//            if ([[[json_person keyEnumerator] allObjects] containsObject:@"Email"]) 
-//            {
-//                [person setEmail:[self _cleanString:[json_person valueForKey:@"Email"]]];
-//            }
-//            else
-//            {
-//                [person setEmail:nil];
-//            }
-            
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"Password"]) 
-            {
-                [person setPassword:[self _cleanString:[json_person valueForKey:@"Password"]]];
-            }
-            else
-            {
-                [person setPassword:nil];
-            }
-            
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"VisibilityStatus"]) 
-            {
-                visibilityStatusAsString = [self _cleanString:[json_person valueForKey:@"VisibilityStatus"]];
-            }
-            else
-            {
-                visibilityStatusAsString = nil;
-            }
-            
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"OfflineSince"]) 
-            {
-                offlineSinceAsString = [self _cleanString:[json_person valueForKey:@"OfflineSince"]];
-            }
-            else
-            {
-                offlineSinceAsString  = nil;
-            }
-            
+            [person setPassword:[self _stringForField:@"Password" FromDictionary:json_person]];
             [person setNick:[self _stringForField:@"Nick" FromDictionary:json_person]];
             
-//            if ([[[json_person keyEnumerator] allObjects] containsObject:@"Nick"]) 
-//            {
-//                [person setNick:[self _cleanString:[json_person valueForKey:@"Nick"]]];
-//            }
-//            else
-//            {
-//                [person setNick:nil];
-//            }
+            [person setMood:[self _stringForField:@"Mood" FromDictionary:json_person]];
+            [person setPhone:[self _stringForField:@"Phone" FromDictionary:json_person]];
+            [person setOccupation:[self _stringForField:@"Occupation" FromDictionary:json_person]];
+            [person setHobby:[self _stringForField:@"Hoby" FromDictionary:json_person]];
+            [person setMainLocation:[self _stringForField:@"MainLocation" FromDictionary:json_person]];
+            [person setGravatarCode:[self _stringForField:@"GravatarCode" FromDictionary:json_person]];
             
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"FriendshipStatus"]) 
-            {
-                friendshipStatusAsString = [self _cleanString:[json_person valueForKey:@"FriendshipStatus"]];
-            }
-            else
-            {
-                friendshipStatusAsString = nil;
-            }
+            [person setBornOn:[self _dateForField:@"BornOn" FromDictionary:json_person withFormat:ShortDate]];
+            
+            [person setDistanceInMeeters:[self _integerForField:@"DistanceInMeters" FromDictionary:json_person]];
+            
+            visibilityStatusAsString = [self _stringForField:@"VisibilityStatus" FromDictionary:json_person];
+            offlineSinceAsString = [self _stringForField:@"OfflineSince" FromDictionary:json_person];
+            friendshipStatusAsString = [self _stringForField:@"FriendshipStatus" FromDictionary:json_person];
+            genderAsString = [self _stringForField:@"Gender" FromDictionary:json_person];
             
             if ([visibilityStatusAsString isEqualToString:@"Online"]) 
             {
@@ -245,13 +247,12 @@
             
             if (offlineSinceAsString != nil)
             {
-                [person setOfflineSince:[self dateFromRFC3339String:offlineSinceAsString]];
+                [person setOfflineSince:[self dateFromRFC3339String:offlineSinceAsString withFormat:LongDate]];
             }
             else
             {
                 [person setOfflineSince:nil];
             }
-            
             
             if ([friendshipStatusAsString isEqualToString:@"Alien"])
             {
@@ -283,12 +284,27 @@
             }
             else
             {
-                @throw [FxException exceptionWithName:@"Impossible CP reached" reason:@"Invalid visibility status" userInfo:nil];
+                @throw [FxException exceptionWithName:@"Impossible CP reached" reason:@"Invalid visibility status received from server" userInfo:nil];
             }
-                
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"DistanceInMeters"]) 
+            
+            if (genderAsString != nil && [genderAsString length] > 0)
             {
-                [person setDistanceInMeeters:[self _cleanIntegerAsString:[json_person valueForKey:@"DistanceInMeters"]]];
+                if ([genderAsString isEqualToString:@"Male"])
+                {
+                    [person setGender:[SnaGender MALE]];
+                }
+                else if ([genderAsString isEqualToString:@"Female"])
+                {
+                    [person setGender:[SnaGender FEMALE]];
+                }
+                else if ([genderAsString isEqualToString:@"Other"])
+                {
+                    [person setGender:[SnaGender OTHER]];
+                }
+                else
+                {
+                    @throw [FxException exceptionWithName:@"Impossible CP reached" reason:@"Invalid gender received from server" userInfo:nil];
+                }
             }
 
             [FxAssert isNotNullValue:person.email];
@@ -296,92 +312,28 @@
             [FxAssert isNotNullValue:person.visibilityStatus];
             [FxAssert isNotNullValue:person.nick];
             [FxAssert isNotNullValue:person.friendshipStatus];
-            
-            continue;
-            
-            NSLog(@"Mood: %@", [self _cleanString:[json_person valueForKey:@"Mood"]]);
-            
-            [person setMood:[self _cleanString:[json_person valueForKey:@"Mood"]]];
-            [person setGravatarCode:[self _cleanString:[json_person valueForKey:@"GravatarCode"]]];
-			[person setBornOn:[self dateFromSmallRFC3339String:[self _cleanString:[json_person valueForKey:@"BornOn"]]]];
-            
-            NSLog(@"%@", [self _cleanString:[json_person valueForKey:@"BornOn"]]);
-		   
-		   if ([self _cleanString:[json_person valueForKey:@"Gender"]] != nil) {
-			   NSString *gender = [self _cleanString:[json_person valueForKey:@"Gender"]];
-			   if ([gender isEqualToString:@"Male"]) {
-				   [person setGender:[SnaGender MALE]];
-			   }
-			   else if ([gender isEqualToString:@"Female"]) {
-				   [person setGender:[SnaGender FEMALE]];
-			   }
-			   else if ([gender isEqualToString:@"Other"]) {
-				   [person setGender:[SnaGender OTHER]];
-			   }
-			   else {
-				   @throw ([NSException exceptionWithName:@"parse error" reason:@"invalid gender in input json" userInfo:nil]);
-			   }
-		   }
-		   
-        [[person lookingForGenders]removeAllObjects];
-		   if ([self _cleanString:[json_person valueForKey:@"LookingForGenders"]] != nil) {
-			   
-			   
-				NSArray *genders = [json_person valueForKey:@"LookingForGenders"];
-							
-				for (int g=0; g<[genders count]; g++) {
-					if ([[genders objectAtIndex:g] isEqualToString:@"Male"]) {
+
+            [[person lookingForGenders]removeAllObjects];
+            NSArray *genders = [self _arrayForField:@"LookingForGenders" FromDictionary:json_person];
+            if (genders != nil)
+            {
+				for (int g=0; g<[genders count]; g++)
+                {
+					if ([[genders objectAtIndex:g] isEqualToString:@"Male"])
+                    {
 						[[person lookingForGenders]addObject:[SnaGender MALE]];
 					}
-					if ([[genders objectAtIndex:g] isEqualToString:@"Female"]) {
+					if ([[genders objectAtIndex:g] isEqualToString:@"Female"])
+                    {
 						[[person lookingForGenders]addObject:[SnaGender FEMALE]];
 					}
-					if ([[genders objectAtIndex:g] isEqualToString:@"Other"]) {
+					if ([[genders objectAtIndex:g] isEqualToString:@"Other"])
+                    {
 						[[person lookingForGenders]addObject:[SnaGender OTHER]];
 					}
-					
 				}
 			}
-
-            //NSLog(@"%@", [FxDumper dumpValue:person]);
             
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"Phone"]) 
-            {
-                [person setPhone:[self _cleanString:[json_person valueForKey:@"Phone"]]];
-            }
-            else
-            {
-                [person setPhone:nil];
-            }
-            
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"Occupation"]) 
-            {
-                [person setOccupation:[self _cleanString:[json_person valueForKey:@"Occupation"]]];
-            }
-            else
-            {
-                [person setOccupation:nil];
-            }
-            
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"Hoby"]) 
-            {
-                [person setHobby:[self _cleanString:[json_person valueForKey:@"Hoby"]]];
-            }
-            else
-            {
-                [person setHobby:nil];
-            }
-            
-            if ([[[json_person keyEnumerator] allObjects] containsObject:@"MainLocation"]) 
-            {
-                [person setMainLocation:[self _cleanString:[json_person valueForKey:@"MainLocation"]]];
-            }
-            else
-            {
-                [person setMainLocation:nil];
-            }
-            
-            [person setDistanceInMeeters:[self _cleanIntegerAsString:[json_person valueForKey:@"DistanceInMeters"]]];
         }
     }
     else
@@ -446,8 +398,8 @@
 			[message setFrom:[self FindPersonByEmail:[json_message valueForKey:@"FromEmail"]]];
 			[message setTo:[self FindPersonByEmail:[json_message valueForKey:@"ToEmail"]]];
 			[message setText:[json_message valueForKey:@"Text"]];
-			[message setSentOn:[self dateFromRFC3339String:[json_message valueForKey:@"SentOn"]]];
-			[message setReadOn:[json_message valueForKey:@"ReadOn"] == nil?nil : [self dateFromRFC3339String:[json_message valueForKey:@"ReadOn"]]];
+			[message setSentOn:[self dateFromRFC3339String:[json_message valueForKey:@"SentOn"] withFormat:LongDate]];
+			[message setReadOn:[json_message valueForKey:@"ReadOn"] == nil?nil : [self dateFromRFC3339String:[json_message valueForKey:@"ReadOn"] withFormat:LongDate]];
             
             NSLog(@"From email: %@", [[message from] email]);
             NSLog(@"Read on: %@", [message readOn]);
@@ -476,7 +428,7 @@
         
         for (int i=0; i<[emails count]; i++)
         {                           
-            NSDictionary *json_person;
+            //NSDictionary *json_person;
             NSValue *json_email = [emails objectAtIndex:i];
             
 //            [_persons addObject:person];
@@ -730,7 +682,7 @@
     return [personDict copy];
 }
 
-- (NSDate *)dateFromRFC3339String:(NSString *)rfc3339DateTimeString
+- (NSDate *)dateFromRFC3339String:(NSString *)rfc3339DateTimeString withFormat:(NSString *) format
 {
     NSDateFormatter *   rfc3339DateFormatter;
     NSLocale *          enUSPOSIXLocale;
@@ -745,30 +697,8 @@
     enUSPOSIXLocale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease];
     
     [rfc3339DateFormatter setLocale:enUSPOSIXLocale];
-    [rfc3339DateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
-    [rfc3339DateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    
-    date = [rfc3339DateFormatter dateFromString:rfc3339DateTimeString];
-    
-    return date;
-}
-
-- (NSDate *)dateFromSmallRFC3339String:(NSString *)rfc3339DateTimeString
-{
-    NSDateFormatter *   rfc3339DateFormatter;
-    NSLocale *          enUSPOSIXLocale;
-    NSDate *            date;
-    
-    NSLog(@"formatting date: %@", rfc3339DateTimeString);
-    
-    if ([rfc3339DateTimeString isKindOfClass:[NSNull class]] ) return nil;
-    
-    rfc3339DateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    
-    enUSPOSIXLocale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease];
-    
-    [rfc3339DateFormatter setLocale:enUSPOSIXLocale];
-    [rfc3339DateFormatter setDateFormat:@"yyyy'-'MM'-'dd'"];
+    //[rfc3339DateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    [rfc3339DateFormatter setDateFormat:format];
     [rfc3339DateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     
     date = [rfc3339DateFormatter dateFromString:rfc3339DateTimeString];
