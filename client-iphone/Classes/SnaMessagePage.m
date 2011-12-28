@@ -81,7 +81,7 @@
     super.title     = @"Message";
     super.backTitle = @"Message";
     
-    [super addPageRefreshTriggerWithBoundObject:_model.message propertyKey:@"friendshipStatus"];
+    [super addPageRefreshTriggerWithBoundObject:[self dataService] propertyKey:@"timestamp"];
     
     FxUiSection *dataSection = [super addSection];
     {

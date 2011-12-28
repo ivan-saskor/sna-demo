@@ -1,13 +1,10 @@
 #import <Foundation/Foundation.h>
-#import "ServerConnectorCallback.h"
 #import "_Domain.h"
 
 @interface ServerConnector : NSObject
 {
     @private NSMutableArray      *_persons;
     @private NSMutableArray     *_messages;
-    
-    @private ServerConnectorCallback *serverCallback;
     
     @private NSData *_data;
     

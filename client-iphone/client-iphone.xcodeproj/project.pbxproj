@@ -19,7 +19,6 @@
 		1502B04214A8E4CF005539A2 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502AFD614A8E4CF005539A2 /* CJSONSerializer.m */; };
 		1502B09314A97023005539A2 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502B09214A97023005539A2 /* Constants.m */; };
 		152CB10F14550456004DA5B4 /* ServerConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 152CB10C14550455004DA5B4 /* ServerConnector.m */; };
-		152CB11014550456004DA5B4 /* ServerConnectorCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 152CB10E14550456004DA5B4 /* ServerConnectorCallback.m */; };
 		152E1B77148E9F8600EE46E2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569C1B714831C6900A1BD2E /* SenTestingKit.framework */; };
 		152E1B78148E9F8600EE46E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		152E1B79148E9F8600EE46E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -123,8 +122,6 @@
 		1502B09214A97023005539A2 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		152CB10B14550455004DA5B4 /* ServerConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnector.h; sourceTree = "<group>"; };
 		152CB10C14550455004DA5B4 /* ServerConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnector.m; sourceTree = "<group>"; };
-		152CB10D14550456004DA5B4 /* ServerConnectorCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnectorCallback.h; sourceTree = "<group>"; };
-		152CB10E14550456004DA5B4 /* ServerConnectorCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnectorCallback.m; sourceTree = "<group>"; };
 		152E1B76148E9F8600EE46E2 /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		152E1B7C148E9F8600EE46E2 /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
 		152E1B7E148E9F8600EE46E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -514,8 +511,6 @@
 			children = (
 				152CB10B14550455004DA5B4 /* ServerConnector.h */,
 				152CB10C14550455004DA5B4 /* ServerConnector.m */,
-				152CB10D14550456004DA5B4 /* ServerConnectorCallback.h */,
-				152CB10E14550456004DA5B4 /* ServerConnectorCallback.m */,
 				DF506E9E13E881D5006E2566 /* _Services.h */,
 				DF506DCB13E7850C006E2566 /* SnaDataService.h */,
 				DF506DCC13E7850C006E2566 /* SnaDataService.m */,
@@ -932,7 +927,6 @@
 				1592DCDA14227D7200DF0560 /* SnaRealDataService.m in Sources */,
 				1592DD101422827B00DF0560 /* SnaFakeDataService.m in Sources */,
 				152CB10F14550456004DA5B4 /* ServerConnector.m in Sources */,
-				152CB11014550456004DA5B4 /* ServerConnectorCallback.m in Sources */,
 				15CB1374148BFA5600A9169D /* SnaFileDataRetriever.m in Sources */,
 				15CB1377148BFA7100A9169D /* SnaHttpDataRetriever.m in Sources */,
 				1596B6D11497E38100ECBD56 /* SnaTargetingRange.m in Sources */,
