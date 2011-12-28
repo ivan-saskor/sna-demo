@@ -191,7 +191,7 @@
 			
 			SnaMutablePerson *person = [self FindPersonByEmail:[self _cleanString:[json_person valueForKey:@"Email"]]];
 			if (person == nil) {
-				person = [[SnaMutablePerson alloc]init];
+				person = [[[SnaMutablePerson alloc]init] autorelease];
 				[_persons addObject:person];
 			}
             
@@ -391,22 +391,23 @@
 			SnaMutableMessage *message;
 			message = [self FindMessageById:[json_message valueForKey:@"Id"]];
 			if (message == nil) {
-				message = [[SnaMutableMessage alloc]init];
+				message = [[[SnaMutableMessage alloc]init] autorelease];
 				[_messages addObject:message];
 			}
 			
-			[message setFrom:[self FindPersonByEmail:[json_message valueForKey:@"FromEmail"]]];
-			[message setTo:[self FindPersonByEmail:[json_message valueForKey:@"ToEmail"]]];
-			[message setText:[json_message valueForKey:@"Text"]];
-			[message setSentOn:[self dateFromRFC3339String:[json_message valueForKey:@"SentOn"] withFormat:LongDate]];
-			[message setReadOn:[json_message valueForKey:@"ReadOn"] == nil?nil : [self dateFromRFC3339String:[json_message valueForKey:@"ReadOn"] withFormat:LongDate]];
+            [message setId:[self _stringForField:@"Id" FromDictionary:json_message]];
+			[message setFrom:[self FindPersonByEmail:[self _stringForField:@"FromEmail" FromDictionary:json_message]]];
+			[message setTo:[self FindPersonByEmail:[self _stringForField:@"ToEmail" FromDictionary:json_message]]];
+			[message setText:[self _stringForField:@"Text" FromDictionary:json_message]];
+			[message setSentOn:[self _dateForField:@"SentOn" FromDictionary:json_message withFormat:LongDate]];
+			[message setReadOn:[self _dateForField:@"ReadOn" FromDictionary:json_message withFormat:LongDate]];
             
-            NSLog(@"From email: %@", [[message from] email]);
-            NSLog(@"Read on: %@", [message readOn]);
-            NSLog(@"Sent on: %@", [message sentOn]);
-            NSLog(@"ToEmail: %@", [[message to] email]);
-            NSLog(@"Text: %@", [message text]);
-            NSLog(@"Id: %@", [message id]);
+            NSLog(@"From email: %@", message.from.email);
+            NSLog(@"Read on: %@", message.readOn);
+            NSLog(@"Sent on: %@", message.sentOn);
+            NSLog(@"ToEmail: %@", message.to.email);
+            NSLog(@"Text: %@", message.text);
+            NSLog(@"Id: %@", message.id);
         }
     }
     else
@@ -415,32 +416,32 @@
     }
 }
 
-- (void)populateEmails
-{
-    NSError *theError = nil;
-    NSDictionary *theObject = [NSDictionary dictionaryWithDictionary:[[CJSONDeserializer deserializer] deserialize:_data error:&theError]];
-    
-    if (theError == nil) 
-    {
-        //NSLog(@"no error loading json");
-        
-        NSArray *emails = [theObject mutableArrayValueForKey:@"NearbyPersonsEmails"];
-        
-        for (int i=0; i<[emails count]; i++)
-        {                           
-            //NSDictionary *json_person;
-            NSValue *json_email = [emails objectAtIndex:i];
-            
-//            [_persons addObject:person];
-            
-            NSLog(@"%@", json_email);
-        }
-    }
-    else
-    {
-        @throw ([NSException exceptionWithName:@"parse error" reason:@"can't parse json" userInfo:nil]);
-    }
-}
+//- (void)populateEmails
+//{
+//    NSError *theError = nil;
+//    NSDictionary *theObject = [NSDictionary dictionaryWithDictionary:[[CJSONDeserializer deserializer] deserialize:_data error:&theError]];
+//    
+//    if (theError == nil) 
+//    {
+//        //NSLog(@"no error loading json");
+//        
+//        NSArray *emails = [theObject mutableArrayValueForKey:@"NearbyPersonsEmails"];
+//        
+//        for (int i=0; i<[emails count]; i++)
+//        {                           
+//            //NSDictionary *json_person;
+//            NSValue *json_email = [emails objectAtIndex:i];
+//            
+////            [_persons addObject:person];
+//            
+//            NSLog(@"%@", json_email);
+//        }
+//    }
+//    else
+//    {
+//        @throw ([NSException exceptionWithName:@"parse error" reason:@"can't parse json" userInfo:nil]);
+//    }
+//}
 
 - (NSData *)sendFriendshipRequestFrom:(SnaPerson *)person1 to:(SnaPerson *)person2 withMessage:(NSString *)message
 {
@@ -636,13 +637,16 @@
 //        if ([person visibilityStatus] == [SnaVisibilityStatus OFFLINE]) {
 //            [personDict setValue:@"Offline" forKey:@"VisibilityStatus"];
 //        }
-        if ([person visibilityStatus] == [SnaVisibilityStatus ONLINE]) {
+        if ([person visibilityStatus] == [SnaVisibilityStatus ONLINE])
+        {
             [personDict setValue:@"Online" forKey:@"VisibilityStatus"];
         }
-        if ([person visibilityStatus] == [SnaVisibilityStatus INVISIBLE]) {
+        if ([person visibilityStatus] == [SnaVisibilityStatus INVISIBLE])
+        {
             [personDict setValue:@"Invisible" forKey:@"VisibilityStatus"];
         }
-        if ([person visibilityStatus] == [SnaVisibilityStatus CONTACT_ME]) {
+        if ([person visibilityStatus] == [SnaVisibilityStatus CONTACT_ME])
+        {
             [personDict setValue:@"ContactMe" forKey:@"VisibilityStatus"];
         }
     }
@@ -697,7 +701,6 @@
     enUSPOSIXLocale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease];
     
     [rfc3339DateFormatter setLocale:enUSPOSIXLocale];
-    //[rfc3339DateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
     [rfc3339DateFormatter setDateFormat:format];
     [rfc3339DateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     

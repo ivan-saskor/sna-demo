@@ -23,7 +23,7 @@
 - (NSMutableArray *)getMessages;
 
 - (void)populatePersons;
-- (void)populateEmails;
+//- (void)populateEmails;
 - (void)populateMessages;
 - (SnaMutablePerson *)FindPersonByEmail:(NSString *)email;
 - (SnaMutableMessage *)FindMessageById:(NSString *)id;
