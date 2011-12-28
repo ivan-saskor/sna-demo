@@ -56,7 +56,7 @@
 
 - (void) _allignData;
 
-- (void) _allignPersons_relationshipStatuses;
+//- (void) _allignPersons_relationshipStatuses;
 - (void) _allignPersons_messagess;
 - (void) _allignPersons_refreshCalculatedFields_CHAMPION;
 

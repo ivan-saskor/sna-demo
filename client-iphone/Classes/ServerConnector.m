@@ -12,6 +12,7 @@
 - (NSDate *)dateFromRFC3339String:(NSString *)rfc3339DateTimeString withFormat:(NSString *) format;
 - (NSString *)stringFromSmallDate:(NSDate *) date;
 - (NSString *)_stringForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary;
+- (NSString *)_stringForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary orDefault:(NSString *) defaultValue;
 - (NSInteger)_integerForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary;
 - (NSDate *)_dateForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary withFormat:(NSString *) format;
 - (NSArray *)_arrayForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary;
@@ -103,13 +104,18 @@
 
 - (NSString *)_stringForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary
 {
+    return [self _stringForField:field FromDictionary:dictionary orDefault:nil];
+}
+
+- (NSString *)_stringForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary orDefault:(NSString *) defaultValue
+{
     if ([[[dictionary keyEnumerator] allObjects] containsObject:field]) 
     {
         return [self _cleanString:[dictionary valueForKey:field]];
     }
     else
     {
-        return nil;
+        return defaultValue;
     }
 }
 
@@ -200,16 +206,17 @@
             NSString *friendshipStatusAsString;
             NSString *genderAsString;
             
-            [person setEmail:[self _stringForField:@"Email" FromDictionary:json_person]];
-            [person setPassword:[self _stringForField:@"Password" FromDictionary:json_person]];
-            [person setNick:[self _stringForField:@"Nick" FromDictionary:json_person]];
+            [person setEmail:       [self _stringForField:@"Email"          FromDictionary:json_person]];
+            [person setPassword:    [self _stringForField:@"Password"       FromDictionary:json_person]];
+            [person setNick:        [self _stringForField:@"Nick"           FromDictionary:json_person]];
             
-            [person setMood:[self _stringForField:@"Mood" FromDictionary:json_person]];
-            [person setPhone:[self _stringForField:@"Phone" FromDictionary:json_person]];
-            [person setOccupation:[self _stringForField:@"Occupation" FromDictionary:json_person]];
-            [person setHobby:[self _stringForField:@"Hoby" FromDictionary:json_person]];
-            [person setMainLocation:[self _stringForField:@"MainLocation" FromDictionary:json_person]];
-            [person setGravatarCode:[self _stringForField:@"GravatarCode" FromDictionary:json_person]];
+            [person setMyDescription:[self _stringForField:@"Description"   FromDictionary:json_person orDefault:@""]];
+            [person setMood:        [self _stringForField:@"Mood"           FromDictionary:json_person orDefault:@""]];
+            [person setPhone:       [self _stringForField:@"Phone"          FromDictionary:json_person orDefault:@""]];
+            [person setOccupation:  [self _stringForField:@"Occupation"     FromDictionary:json_person orDefault:@""]];
+            [person setHobby:       [self _stringForField:@"Hoby"           FromDictionary:json_person orDefault:@""]];
+            [person setMainLocation:[self _stringForField:@"MainLocation"   FromDictionary:json_person orDefault:@""]];
+            [person setGravatarCode:[self _stringForField:@"GravatarCode"   FromDictionary:json_person]];
             
             [person setBornOn:[self _dateForField:@"BornOn" FromDictionary:json_person withFormat:ShortDate]];
             
