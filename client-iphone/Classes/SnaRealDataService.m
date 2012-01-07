@@ -427,7 +427,7 @@
     //
     // http://developer.apple.com/library/ios/#featuredarticles/iPhoneURLScheme_Reference/Articles/PhoneLinks.html
     //
-    // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:1212121212121"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:1212121212121"]];
     //
 }
 
