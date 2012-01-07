@@ -1,5 +1,4 @@
 #import "ServerConnector.h"
-#import "ServerConnectorCallback.h"
 #import "CJSONDeserializer.h"
 #import "CJSONSerializer.h"
 #import "_Domain.h"
@@ -24,8 +23,6 @@
 {
     self = [super init];
     if (self) {
-        serverCallback = [[ServerConnectorCallback alloc] init];
-
         _persons = [[NSMutableArray alloc] init];
         _messages = [[NSMutableArray alloc] init];
         _urlPrefix = [prefix copy];
@@ -39,7 +36,6 @@
     [_persons release];
     [_messages release];
     [_urlPrefix release];
-    [serverCallback release];
     
     [super dealloc];
 }
@@ -55,22 +51,17 @@
 //    [_persons addObject:person];
 //    
 
-    NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/api/data", _urlPrefix]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    NSMutableURLRequest *dataRequest1=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/api/data", _urlPrefix]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     
-    NSURLConnection *dataConnection=[[NSURLConnection alloc] initWithRequest:dataRequest delegate:serverCallback];
-    [dataRequest addValue:email forHTTPHeaderField: @"EMAIL"];
-    [dataRequest addValue:password forHTTPHeaderField: @"PASSWORD"];
+    [dataRequest1 addValue:email forHTTPHeaderField: @"EMAIL"];
+    [dataRequest1 addValue:password forHTTPHeaderField: @"PASSWORD"];
     
-
-    if (dataConnection)
-    {
-        _data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
+        _data = [NSURLConnection sendSynchronousRequest:dataRequest1 returningResponse:nil error:nil];
 
         NSLog(@"data request sent");
                 
         [self populatePersons];
         [self populateMessages];
-    }
     
     return [self isRequestSuccessfulForData:_data];
 }
@@ -151,7 +142,7 @@
     }
     else
     {
-        return nil;
+        return [NSArray array];
     }
 }
 
@@ -210,12 +201,12 @@
             [person setPassword:    [self _stringForField:@"Password"       FromDictionary:json_person]];
             [person setNick:        [self _stringForField:@"Nick"           FromDictionary:json_person]];
             
-            [person setMyDescription:[self _stringForField:@"Description"   FromDictionary:json_person orDefault:@""]];
-            [person setMood:        [self _stringForField:@"Mood"           FromDictionary:json_person orDefault:@""]];
-            [person setPhone:       [self _stringForField:@"Phone"          FromDictionary:json_person orDefault:@""]];
-            [person setOccupation:  [self _stringForField:@"Occupation"     FromDictionary:json_person orDefault:@""]];
-            [person setHobby:       [self _stringForField:@"Hoby"           FromDictionary:json_person orDefault:@""]];
-            [person setMainLocation:[self _stringForField:@"MainLocation"   FromDictionary:json_person orDefault:@""]];
+            [person setMyDescription:[self _stringForField:@"Description"   FromDictionary:json_person]];
+            [person setMood:        [self _stringForField:@"Mood"           FromDictionary:json_person]];
+            [person setPhone:       [self _stringForField:@"Phone"          FromDictionary:json_person]];
+            [person setOccupation:  [self _stringForField:@"Occupation"     FromDictionary:json_person]];
+            [person setHobby:       [self _stringForField:@"Hobby"          FromDictionary:json_person]];
+            [person setMainLocation:[self _stringForField:@"MainLocation"   FromDictionary:json_person]];
             [person setGravatarCode:[self _stringForField:@"GravatarCode"   FromDictionary:json_person]];
             
             [person setBornOn:[self _dateForField:@"BornOn" FromDictionary:json_person withFormat:ShortDate]];
@@ -322,25 +313,22 @@
 
             [[person lookingForGenders]removeAllObjects];
             NSArray *genders = [self _arrayForField:@"LookingForGenders" FromDictionary:json_person];
-            if (genders != nil)
+           
+            for (int g=0; g<[genders count]; g++)
             {
-				for (int g=0; g<[genders count]; g++)
+                if ([[genders objectAtIndex:g] isEqualToString:@"Male"])
                 {
-					if ([[genders objectAtIndex:g] isEqualToString:@"Male"])
-                    {
-						[[person lookingForGenders]addObject:[SnaGender MALE]];
-					}
-					if ([[genders objectAtIndex:g] isEqualToString:@"Female"])
-                    {
-						[[person lookingForGenders]addObject:[SnaGender FEMALE]];
-					}
-					if ([[genders objectAtIndex:g] isEqualToString:@"Other"])
-                    {
-						[[person lookingForGenders]addObject:[SnaGender OTHER]];
-					}
-				}
-			}
-            
+                    [[person lookingForGenders]addObject:[SnaGender MALE]];
+                }
+                if ([[genders objectAtIndex:g] isEqualToString:@"Female"])
+                {
+                    [[person lookingForGenders]addObject:[SnaGender FEMALE]];
+                }
+                if ([[genders objectAtIndex:g] isEqualToString:@"Other"])
+                {
+                    [[person lookingForGenders]addObject:[SnaGender OTHER]];
+                }
+            }
         }
     }
     else

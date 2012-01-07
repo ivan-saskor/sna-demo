@@ -611,8 +611,11 @@
     
     if([_connector createProfileForPerson:person])
     {
-        [_persons addObject:person];
-        return person;
+        //[_persons addObject:person];
+        
+        [self getDataWithEmail:[person email] password:[person password]];
+        
+        return [self _tryFindPersonWithEmail:[person email] password:[person password]];
     }
 
     return nil;

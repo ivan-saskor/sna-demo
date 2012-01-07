@@ -78,7 +78,7 @@
 
 - (void) _startObserving
 {
-    [_boundObject addObserver:self forKeyPath:_propertyKey options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+    //[_boundObject addObserver:self forKeyPath:_propertyKey options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 
     if (_displayPropertyKey != nil)
     {
@@ -91,7 +91,7 @@
 }
 - (void) _stopObserving
 {
-    [_boundObject removeObserver:self forKeyPath:_propertyKey];
+    //[_boundObject removeObserver:self forKeyPath:_propertyKey];
 }
 
 @end
