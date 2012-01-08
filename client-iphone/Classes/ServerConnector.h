@@ -3,12 +3,12 @@
 
 @interface ServerConnector : NSObject
 {
-    @private NSMutableArray      *_persons;
+    @private NSMutableArray     *_persons;
     @private NSMutableArray     *_messages;
     
-    @private NSData *_data;
+    @private NSData             *_data;
     
-    @private NSString *_urlPrefix;
+    @private NSString           *_urlPrefix;
     
 }
 
@@ -20,7 +20,6 @@
 - (NSMutableArray *)getMessages;
 
 - (void)populatePersons;
-//- (void)populateEmails;
 - (void)populateMessages;
 - (SnaMutablePerson *)FindPersonByEmail:(NSString *)email;
 - (SnaMutableMessage *)FindMessageById:(NSString *)id;
@@ -32,4 +31,8 @@
 
 - (BOOL)createProfileForPerson:(SnaPerson *) person;
 - (BOOL)updateProfileForPerson:(SnaPerson *) person;
+
+- (NSData *)sendGetRequestWithURL:(NSString *)url httpParams:(NSDictionary *)params;
+- (NSData *)sendPostRequestWithURL:(NSString *)url httpParams:(NSDictionary *)params httpBodyParams:(NSDictionary *) bodyParams;
+- (NSData *)sendPutRequestWithURL:(NSString *)url httpParams:(NSDictionary *)params httpBodyParams:(NSDictionary *) bodyParams;
 @end

@@ -15,6 +15,8 @@
 - (NSInteger)_integerForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary;
 - (NSDate *)_dateForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary withFormat:(NSString *) format;
 - (NSArray *)_arrayForField:(NSString *)field FromDictionary:(NSDictionary *) dictionary;
+
+- (NSData *)sendHttpRequestWithUrl:(NSString *)url httpParams:(NSDictionary *)params httpBodyParams:(NSDictionary *) bodyParams httpMethod:(NSString *) method;
 @end
 
 @implementation ServerConnector
@@ -40,23 +42,72 @@
     [super dealloc];
 }
 
+- (NSData *)sendHttpRequestWithUrl:(NSString *)url httpParams:(NSDictionary *)params httpBodyParams:(NSDictionary *) bodyParams httpMethod:(NSString *) method
+{
+    NSString *escapedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:escapedUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    NSMutableString *httpBody = [NSMutableString string];
+    
+    if (params != nil && [params count] > 0)
+    {
+        for(NSString *key in params)
+        {
+            [dataRequest addValue:[params objectForKey:key] forHTTPHeaderField:key];
+        }
+    }
+    
+    if (method != nil && ([method isEqualToString:@"POST"] || [method isEqualToString:@"PUT"])) {
+        if (bodyParams != nil && [bodyParams count] > 0)
+        {
+            for(NSString *key in bodyParams)
+            {
+                [httpBody appendFormat:@"%@=%@&", key, [bodyParams objectForKey:key]];
+            }
+            
+            NSString *postParams = [[httpBody substringToIndex:[httpBody length]-1] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            NSData *postData = [NSData dataWithBytes: [postParams UTF8String] length: [postParams length]];
+            
+            [dataRequest setHTTPBody:postData];
+        }
+        
+        if ([method isEqualToString:@"POST"])
+        {
+            [dataRequest setHTTPMethod:@"POST"];
+        }
+        else
+        {
+            [dataRequest setHTTPMethod:@"PUT"];
+            [dataRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        }
+    }
+    
+    return [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
+}
+
+- (NSData *)sendGetRequestWithURL:(NSString *)url httpParams:(NSDictionary *)params
+{
+    NSLog(@"Sending GET request to %@", url);
+    return [self sendHttpRequestWithUrl:url httpParams:params httpBodyParams:nil httpMethod:nil];
+}
+
+- (NSData *)sendPostRequestWithURL:(NSString *)url httpParams:(NSDictionary *)params httpBodyParams:(NSDictionary *) bodyParams
+{
+    NSLog(@"Sending POST request to %@", url);
+    
+    return [self sendHttpRequestWithUrl:url httpParams:params httpBodyParams:bodyParams httpMethod:@"POST"];
+}
+
+- (NSData *)sendPutRequestWithURL:(NSString *)url httpParams:(NSDictionary *)params httpBodyParams:(NSDictionary *) bodyParams
+{
+    NSLog(@"Sending PUT request to %@", url);
+    return [self sendHttpRequestWithUrl:url httpParams:params httpBodyParams:bodyParams httpMethod:@"PUT"];
+}
+
 - (BOOL)sendDataRequestForEmail:(NSString *)email withPassword:(NSString *)password
 {
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:email, @"EMAIL", password, @"PASSWORD", nil];
     
-//    [_persons removeAllObjects];
-//    [_messages removeAllObjects];
-//    
-//    SnaPerson *person = [[SnaMutablePerson alloc] initWithEmail:email password:password visibilityStatus:[SnaVisibilityStatus ONLINE] offlineSince:nil friendshipStatus:[SnaFriendshipStatus SELF] rejectedOn:nil nick:@"Pero" mood:nil gravatarCode:nil bornOn:nil gender:nil lookingForGenders:[NSSet set] phone:nil myDescription:nil occupation:nil hobby:nil mainLocation:nil lastKnownLocation:nil distanceInMeeters:0];
-//    
-//    [_persons addObject:person];
-//    
-
-    NSMutableURLRequest *dataRequest1=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/api/data", _urlPrefix]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    [dataRequest1 addValue:email forHTTPHeaderField: @"EMAIL"];
-    [dataRequest1 addValue:password forHTTPHeaderField: @"PASSWORD"];
-    
-        _data = [NSURLConnection sendSynchronousRequest:dataRequest1 returningResponse:nil error:nil];
+    _data = [self sendGetRequestWithURL:[NSString stringWithFormat:@"%@/api/data", _urlPrefix] httpParams:params];
 
         NSLog(@"data request sent");
                 
@@ -440,22 +491,11 @@
 
 - (NSData *)sendFriendshipRequestFrom:(SnaPerson *)person1 to:(SnaPerson *)person2 withMessage:(NSString *)message
 {
-    NSString * postParams = [[NSString stringWithFormat:@"message=%@", message] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSData *postData = [NSData dataWithBytes: [postParams UTF8String] length: [postParams length]];
-    
     NSString *url = [NSString stringWithFormat:@"%@/api/persons/%@/request-friendship", _urlPrefix, [person2 email]];
-    NSString *escapedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSDictionary *bodyParams = [NSDictionary dictionaryWithObjectsAndKeys:message, @"message", nil];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[person1 email], @"EMAIL", [person1 password], @"PASSWORD", nil];
     
-    NSLog(@"url to send to: %@", escapedUrl);
-    
-    NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:escapedUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    [dataRequest setHTTPMethod:@"POST"];
-    [dataRequest addValue:[person1 email] forHTTPHeaderField: @"EMAIL"];
-    [dataRequest addValue:[person1 password] forHTTPHeaderField: @"PASSWORD"];
-    [dataRequest setHTTPBody:postData];
-
-    NSData *data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
+    NSData *data = [self sendPostRequestWithURL:url httpParams:params httpBodyParams:bodyParams];
     
     [self isRequestSuccessfulForData: data];
     
@@ -466,21 +506,11 @@
 
 - (NSData *)rejectFriendshipFor:(SnaPerson *)person1 to:(SnaPerson *)person2 withMessage:(NSString *)message
 {
-    NSString * postParams = [[NSString stringWithFormat:@"message=%@", message] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSData *postData = [NSData dataWithBytes: [postParams UTF8String] length: [postParams length]];
-    
     NSString *url = [NSString stringWithFormat:@"%@/api/persons/%@/reject-friendship", _urlPrefix, [person2 email]];
-    
-    NSLog(@"url to send to: %@", url);
-    
-    NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    [dataRequest setHTTPMethod:@"POST"];
-    [dataRequest addValue:[person1 email] forHTTPHeaderField: @"EMAIL"];
-    [dataRequest addValue:[person1 password] forHTTPHeaderField: @"PASSWORD"];
-    [dataRequest setHTTPBody:postData];
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
+    NSDictionary *bodyParams = [NSDictionary dictionaryWithObjectsAndKeys:message, @"message", nil];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[person1 email], @"EMAIL", [person1 password], @"PASSWORD", nil];
+
+    NSData *data = [self sendPostRequestWithURL:url httpParams:params httpBodyParams:bodyParams];
     
     [self isRequestSuccessfulForData: data];
     
@@ -491,20 +521,11 @@
 
 - (void)sendMessageFrom:(SnaPerson *)person1 to:(SnaPerson *)person2 withText:(NSString *)text
 {
-    NSString * postParams = [[NSString stringWithFormat:@"message=%@", text] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSData *postData = [NSData dataWithBytes: [postParams UTF8String] length: [postParams length]];
-    
     NSString *url = [NSString stringWithFormat:@"%@/api/messages/%@/send-message", _urlPrefix, [person2 email]];
-    NSString *escapedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSDictionary *bodyParams = [NSDictionary dictionaryWithObjectsAndKeys:text, @"message", nil];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[person1 email], @"EMAIL", [person1 password], @"PASSWORD", nil];
     
-    NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:escapedUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    [dataRequest setHTTPMethod:@"POST"];
-    [dataRequest addValue:[person1 email] forHTTPHeaderField: @"EMAIL"];
-    [dataRequest addValue:[person1 password] forHTTPHeaderField: @"PASSWORD"];
-    [dataRequest setHTTPBody:postData];
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
+    NSData *data = [self sendPostRequestWithURL:url httpParams:params httpBodyParams:bodyParams];
     
     [self isRequestSuccessfulForData: data];
     
@@ -550,26 +571,30 @@
 
 - (BOOL)createProfileForPerson:(SnaPerson *) person
 {
+    NSString *url = [NSString stringWithFormat:@"%@/api/profile", _urlPrefix];
+    
     NSDictionary *personDict = [self dictonarizePerson:person];
+    CJSONSerializer * serializer = [[[CJSONSerializer alloc] init] autorelease];
+    NSString *personJson = [[[NSString alloc] initWithData:[serializer serializeDictionary:personDict error:nil] encoding:NSUTF8StringEncoding] autorelease];
     
-    CJSONSerializer * serializer = [[CJSONSerializer alloc] init];
+    NSDictionary *bodyParams = [NSDictionary dictionaryWithObjectsAndKeys:personJson, @"profileJson", nil];
     
-    NSString *personJson = [[NSString alloc] initWithData:[serializer serializeDictionary:personDict error:nil] encoding:NSUTF8StringEncoding];
+    NSData *data = [self sendPostRequestWithURL:url httpParams:nil httpBodyParams:bodyParams];
     
-    NSLog(@"Logging person: %@", personJson);
-    
-    NSString * postParams = [[NSString stringWithFormat:@"profileJson=%@", personJson] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSData *postData = [NSData dataWithBytes: [postParams UTF8String] length: [postParams length]];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/api/profile", _urlPrefix, personJson];
-    NSString *escapedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    
-    
-    NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:escapedUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    [dataRequest setHTTPMethod:@"POST"];
-    [dataRequest setHTTPBody:postData];
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
+//    NSLog(@"Logging person: %@", personJson);
+//    
+//    NSString * postParams = [[NSString stringWithFormat:@"profileJson=%@", personJson] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+//    NSData *postData = [NSData dataWithBytes: [postParams UTF8String] length: [postParams length]];
+//    
+//    
+//    NSString *escapedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+//    
+//    
+//    NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:escapedUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+//    [dataRequest setHTTPMethod:@"POST"];
+//    [dataRequest setHTTPBody:postData];
+//    
+//    NSData *data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
     
     if([self isRequestSuccessfulForData: data])
     {
@@ -584,31 +609,16 @@
 - (BOOL)updateProfileForPerson:(SnaPerson *) person
 {
     NSDictionary *personDict = [self dictonarizePerson:person];
+    CJSONSerializer * serializer = [[[CJSONSerializer alloc] init] autorelease];
     
-    CJSONSerializer * serializer = [[CJSONSerializer alloc] init];
-    
-    NSString *personJson = [[NSString alloc] initWithData:[serializer serializeDictionary:personDict error:nil] encoding:NSUTF8StringEncoding];
-    
-    NSString * postParams = [[NSString stringWithFormat:@"profileJson=%@", personJson] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSData *postData = [NSData dataWithBytes: [postParams UTF8String] length: [postParams length]];
+    NSString *url = [NSString stringWithFormat:@"%@/api/profile", _urlPrefix];
+    NSString *personJson = [[[NSString alloc] initWithData:[serializer serializeDictionary:personDict error:nil] encoding:NSUTF8StringEncoding] autorelease];
+    NSDictionary *postParams = [NSDictionary dictionaryWithObjectsAndKeys:personJson, @"profileJson", nil];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[person email], @"EMAIL", [person password], @"PASSWORD", nil];
     
     NSLog(@"Serialized JSON: %@", personJson);
     
-    NSString *url = [NSString stringWithFormat:@"%@/api/profile", _urlPrefix];
-    NSString *escapedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    
-    NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:escapedUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    NSLog(@"HTTP Header EMAIL: %@", [person email]);
-    NSLog(@"HTTP Header PASSWORD: %@", [person password]);
-    
-    [dataRequest addValue:[person email] forHTTPHeaderField: @"EMAIL"];
-    [dataRequest addValue:[person password] forHTTPHeaderField: @"PASSWORD"];
-    [dataRequest setHTTPMethod:@"PUT"];
-    [dataRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [dataRequest setHTTPBody:postData];
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
+    NSData *data = [self sendPutRequestWithURL:url httpParams:params httpBodyParams:postParams];
     
     if([self isRequestSuccessfulForData: data])
     {

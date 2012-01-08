@@ -24,6 +24,8 @@
 		152E1B79148E9F8600EE46E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		152E1B7F148E9F8600EE46E2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 152E1B7D148E9F8600EE46E2 /* InfoPlist.strings */; };
 		152E1B82148E9F8600EE46E2 /* LogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 152E1B81148E9F8600EE46E2 /* LogicTests.m */; };
+		155E98E114B8D26C00D9E8BC /* SnaHttpDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 155E98E014B8D26C00D9E8BC /* SnaHttpDataRepository.m */; };
+		155E98E314B8D71000D9E8BC /* SnaHttpDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 155E98E014B8D26C00D9E8BC /* SnaHttpDataRepository.m */; };
 		15705B2B149412F00005C479 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 15705B29149412F00005C479 /* Icon.png */; };
 		15705B2C149412F00005C479 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15705B2A149412F00005C479 /* Icon@2x.png */; };
 		157835CE148FA17800B36533 /* get_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1545A11A148E471E000CF649 /* get_data.json */; };
@@ -133,6 +135,8 @@
 		154022F514977B07004D6BF7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		154022F714977B29004D6BF7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		1545A11A148E471E000CF649 /* get_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = get_data.json; path = Resources/get_data.json; sourceTree = "<group>"; };
+		155E98DF14B8D26C00D9E8BC /* SnaHttpDataRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaHttpDataRepository.h; sourceTree = "<group>"; };
+		155E98E014B8D26C00D9E8BC /* SnaHttpDataRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaHttpDataRepository.m; sourceTree = "<group>"; };
 		1569C1B714831C6900A1BD2E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		15705B29149412F00005C479 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		15705B2A149412F00005C479 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
@@ -525,6 +529,8 @@
 				15CB1376148BFA7000A9169D /* SnaHttpDataRetriever.m */,
 				1502B09114A97023005539A2 /* Constants.h */,
 				1502B09214A97023005539A2 /* Constants.m */,
+				155E98DF14B8D26C00D9E8BC /* SnaHttpDataRepository.h */,
+				155E98E014B8D26C00D9E8BC /* SnaHttpDataRepository.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -874,6 +880,7 @@
 				157835D21490080200B36533 /* SnaFileDataRetrieverTests.m in Sources */,
 				157835D31490212900B36533 /* SnaHttpDataRetriever.m in Sources */,
 				157835D61490215800B36533 /* SnaHttpDataRetrieverTests.m in Sources */,
+				155E98E314B8D71000D9E8BC /* SnaHttpDataRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -942,6 +949,7 @@
 				1502B04114A8E4CF005539A2 /* CJSONScanner.m in Sources */,
 				1502B04214A8E4CF005539A2 /* CJSONSerializer.m in Sources */,
 				1502B09314A97023005539A2 /* Constants.m in Sources */,
+				155E98E114B8D26C00D9E8BC /* SnaHttpDataRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
