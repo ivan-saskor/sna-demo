@@ -12,10 +12,7 @@
 @interface SnaHttpDataRepository : NSObject
 {
     @private ServerConnector    *_connector;
-    
-    @private NSMutableArray     *_persons;
-    @private NSMutableArray     *_messages;
-    @private NSData             *_data;
 }
 - (id) initWithConnector:(ServerConnector *)connector;
+
 @end

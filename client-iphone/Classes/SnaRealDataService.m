@@ -16,6 +16,8 @@
 
 - (void) _fillTestData;
 
+- (void) _refreshData;
+
 - (SnaPerson  *) _registerPersonWithString :(NSString *)string;
 
 - (SnaPerson *)  _registerPersonWithEmail  :(NSString *)email
@@ -216,14 +218,21 @@
 }
 
 
-- (void) getDataWithEmail :(NSString *)email password:(NSString *)password
+- (void) _refreshData
 {
-    [_connector sendDataRequestForEmail:email withPassword:password];
-    
-	[_persons replaceObjectsInRange:NSMakeRange(0, [_persons count]) withObjectsFromArray:[_connector getPersons]];
+    [_persons replaceObjectsInRange:NSMakeRange(0, [_persons count]) withObjectsFromArray:[_connector getPersons]];
     [_messages replaceObjectsInRange:NSMakeRange(0, [_messages count]) withObjectsFromArray:[_connector getMessages]];
 }
 
+- (BOOL) getDataWithEmail :(NSString *)email password:(NSString *)password
+{
+    if ([_connector sendDataRequestForEmail:email withPassword:password]) {
+        [self _refreshData];
+        
+        return YES;
+    }
+    return NO;
+}
 
 - (BOOL) tryLogInWithEmail :(NSString *)email password:(NSString *)password
 {
@@ -253,6 +262,7 @@
     
     return YES;
 }
+
 - (BOOL) trySignUpWithEmail:(NSString *)email
                    password:(NSString *)password
                        nick:(NSString *)nick
@@ -314,8 +324,8 @@
 							|| person.friendshipStatus == [SnaFriendshipStatus REJECTED]) reason:@"Invalid person status"];
     
     [_connector sendFriendshipRequestFrom:[self currentUser] to:person withMessage:message];
-    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
     
+    [self _refreshData];
     [self _allignData];
 }
 - (void) acceptFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
@@ -329,9 +339,8 @@
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus WAITING_FOR_ME]) reason:@"Invalid person status"];
     
 	[_connector sendFriendshipRequestFrom:[self currentUser] to:person withMessage:message];
-    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
     
-    
+    [self _refreshData];
     [self _allignData];
 }
 - (void) rejectFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
@@ -346,7 +355,7 @@
 
     [_connector rejectFriendshipFor:[self currentUser] to:person withMessage:message];
     
-    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
+    [self _refreshData];
     [self _allignData];
 }
 - (void) cancelFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
@@ -361,7 +370,7 @@
 
     [_connector rejectFriendshipFor:[self currentUser] to:person withMessage:message];
     
-    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
+    [self _refreshData];
     [self _allignData];
 }
 
@@ -393,8 +402,7 @@
     
     [_connector updateProfileForPerson:[self currentUser]];
     
-    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
-    
+    [self _refreshData];
     [self _allignData];
 }
 - (void) changeLocation:(SnaLocation *)location
@@ -424,11 +432,10 @@
     [FxAssert isNotNullNorEmptyArgument:text   withName:@"text"];
     [FxAssert isNotNullArgument        :toPerson withName:@"toPerson"];
     [FxAssert isValidArgument          :toPerson withName:@"toPerson" validation:[_persons containsObject:toPerson]];
-	
-    //[self _registerMessageWithString:text from:self.currentUser to:toPerson];
+
     [_connector sendMessageFrom:[self currentUser] to:toPerson withText:text];
     
-    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
+    [self _refreshData];
     [self _allignData];
 }
 

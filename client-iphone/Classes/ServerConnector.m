@@ -107,14 +107,20 @@
 {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:email, @"EMAIL", password, @"PASSWORD", nil];
     
-    _data = [self sendGetRequestWithURL:[NSString stringWithFormat:@"%@/api/data", _urlPrefix] httpParams:params];
+    NSData * data = [self sendGetRequestWithURL:[NSString stringWithFormat:@"%@/api/data", _urlPrefix] httpParams:params];
 
-        NSLog(@"data request sent");
-                
+    NSLog(@"data request sent");
+    
+    if ([self isRequestSuccessfulForData:data]) {
+        [_data release];
+        _data = data;
+        [_data retain];
+        
         [self populatePersons];
         [self populateMessages];
-    
-    return [self isRequestSuccessfulForData:_data];
+        return YES;
+    }
+    return NO;
 }
 
 - (NSMutableArray *)getPersons
@@ -489,7 +495,7 @@
 //    }
 //}
 
-- (NSData *)sendFriendshipRequestFrom:(SnaPerson *)person1 to:(SnaPerson *)person2 withMessage:(NSString *)message
+- (BOOL)sendFriendshipRequestFrom:(SnaPerson *)person1 to:(SnaPerson *)person2 withMessage:(NSString *)message
 {
     NSString *url = [NSString stringWithFormat:@"%@/api/persons/%@/request-friendship", _urlPrefix, [person2 email]];
     NSDictionary *bodyParams = [NSDictionary dictionaryWithObjectsAndKeys:message, @"message", nil];
@@ -497,14 +503,21 @@
     
     NSData *data = [self sendPostRequestWithURL:url httpParams:params httpBodyParams:bodyParams];
     
-    [self isRequestSuccessfulForData: data];
-    
     NSLog(@"friendship request sent");
+    
+    if ([self isRequestSuccessfulForData:data]) {
+        [_data release];
+        _data = data;
+        [_data retain];
         
-    return data;
+        [self populatePersons];
+        [self populateMessages];
+        return YES;
+    }
+    return NO;
 }
 
-- (NSData *)rejectFriendshipFor:(SnaPerson *)person1 to:(SnaPerson *)person2 withMessage:(NSString *)message
+- (BOOL)rejectFriendshipFor:(SnaPerson *)person1 to:(SnaPerson *)person2 withMessage:(NSString *)message
 {
     NSString *url = [NSString stringWithFormat:@"%@/api/persons/%@/reject-friendship", _urlPrefix, [person2 email]];
     NSDictionary *bodyParams = [NSDictionary dictionaryWithObjectsAndKeys:message, @"message", nil];
@@ -512,24 +525,40 @@
 
     NSData *data = [self sendPostRequestWithURL:url httpParams:params httpBodyParams:bodyParams];
     
-    [self isRequestSuccessfulForData: data];
-    
     NSLog(@"friendship rejection sent");
     
-    return data;
+    if ([self isRequestSuccessfulForData:data]) {
+        [_data release];
+        _data = data;
+        [_data retain];
+        
+        [self populatePersons];
+        [self populateMessages];
+        return YES;
+    }
+    return NO;
 }
 
-- (void)sendMessageFrom:(SnaPerson *)person1 to:(SnaPerson *)person2 withText:(NSString *)text
+- (BOOL)sendMessageFrom:(SnaPerson *)person1 to:(SnaPerson *)person2 withText:(NSString *)text
 {
     NSString *url = [NSString stringWithFormat:@"%@/api/messages/%@/send-message", _urlPrefix, [person2 email]];
     NSDictionary *bodyParams = [NSDictionary dictionaryWithObjectsAndKeys:text, @"message", nil];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[person1 email], @"EMAIL", [person1 password], @"PASSWORD", nil];
     
     NSData *data = [self sendPostRequestWithURL:url httpParams:params httpBodyParams:bodyParams];
-    
-    [self isRequestSuccessfulForData: data];
-    
+
     NSLog(@"message sent");
+    
+    if ([self isRequestSuccessfulForData:data]) {
+        [_data release];
+        _data = data;
+        [_data retain];
+        
+        [self populatePersons];
+        [self populateMessages];
+        return YES;
+    }
+    return NO;
 }
 
 - (void)markMessage:(SnaMessage *)message asReadForPerson:(SnaPerson *) person
@@ -620,12 +649,16 @@
     
     NSData *data = [self sendPutRequestWithURL:url httpParams:params httpBodyParams:postParams];
     
-    if([self isRequestSuccessfulForData: data])
-    {
+    if ([self isRequestSuccessfulForData:data]) {
+        [_data release];
+        _data = data;
+        [_data retain];
+        
+        [self populatePersons];
+        [self populateMessages];
         NSLog(@"profile updated");
         return YES;
     }
-    
     NSLog(@"profile NOT updated");
     return NO;
 }
@@ -675,7 +708,16 @@
             [personDict setValue:@"Other" forKey:@"Gender"];
         }
     }
-    //if ([person lookingForGendersAsString] != nil)  [personDict setValue:[person lookingForGendersAsString] forKey:@"LookingForGenders"];
+    
+    if ([[person lookingForGenders] count] > 0) {
+        NSMutableArray *genders = [NSMutableArray array];
+        for (SnaGender *g in [person lookingForGenders])
+        {
+            [genders addObject:[g name]];
+        }
+        //[genders addObject:@"Female"];
+        [personDict setValue:genders forKey:@"LookingForGenders"];
+    }
     if ([person phone] != nil)                      [personDict setValue:[person phone] forKey:@"Phone"];
     if ([person myDescription] != nil)              [personDict setValue:[person myDescription] forKey:@"Description"];
     if ([person occupation] != nil)                 [personDict setValue:[person occupation] forKey:@"Occupation"];
