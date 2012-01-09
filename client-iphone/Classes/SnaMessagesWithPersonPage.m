@@ -82,7 +82,7 @@
     {
         for (SnaMessage *message in [_model.person.messages reverseObjectEnumerator])
         {
-            [dataSection addItem2CellWithCaptionBoundObject:message.from captionPropertyKey:@"nick" contentBoundObject:message contentPropertyKey:@"text"  accesoryType:UITableViewCellAccessoryNone];
+            [dataSection addItem1CellWithCaptionBoundObject:message.from captionPropertyKey:@"nick" contentBoundObject:message contentPropertyKey:@"text" targetObject:self action:@selector(openMessage:) actionContext:message  accesoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
     }
     
@@ -105,7 +105,7 @@
 
 - (void) openMessage:(SnaMessage *)message
 {
-    [self showMessagePageForMessage:message];
+    [[[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"From: %@", message.from.nick] message:message.text delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
 }
 
 - (void) dealloc

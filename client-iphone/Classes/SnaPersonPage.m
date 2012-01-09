@@ -96,9 +96,16 @@
         [mainDataSection addTextBlockCellWithCaption:@"gender"      boundObject:_model.person propertyKey:@"gender"                    displayPropertyKey:@"name"];
         [mainDataSection addTextBlockCellWithCaption:@"looking for" boundObject:_model.person propertyKey:@"lookingForGendersAsString" ];
     }
+    FxUiSection *descriptionSection = [super addSection];
+    {
+        [descriptionSection addTextBlockCellWithCaption:@"description" boundObject:_model.person propertyKey:@"myDescription"];
+    }
+    FxUiSection *showDescriptionButtonSection = [super addSection];
+    {
+        [showDescriptionButtonSection addButtonCellWithCaption:@"Show Description" targetObject:self action:@selector(showDescription:)];
+    }
     FxUiSection *otherDataSection = [super addSection];
     {
-        [otherDataSection addTextBlockCellWithCaption:@"description"   boundObject:_model.person propertyKey:@"myDescription"];
         [otherDataSection addTextBlockCellWithCaption:@"occupation"    boundObject:_model.person propertyKey:@"occupation"   ];
         [otherDataSection addTextBlockCellWithCaption:@"hobby"         boundObject:_model.person propertyKey:@"hobby"        ];
         [otherDataSection addTextBlockCellWithCaption:@"main location" boundObject:_model.person propertyKey:@"mainLocation" ];
@@ -159,6 +166,11 @@
         }
     }
     #endif
+}
+
+-  (void) showDescription:(id) sender
+{
+    [[[[UIAlertView alloc] initWithTitle:@"Description" message:_model.person.myDescription delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
 }
 
 - (void) call:(id)sender

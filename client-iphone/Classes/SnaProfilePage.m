@@ -66,12 +66,12 @@
 
     FxUiSection *dataSection = [super addSection];
     {
-        [dataSection addTextBlockCellWithCaption:@"nick"  boundObject:_model.currentUser propertyKey:@"nick" ];
-        [dataSection addTextBlockCellWithCaption:@"mood"  boundObject:_model.currentUser propertyKey:@"mood" ];
+        [dataSection addTextBlockCellWithCaption:@"nick"     boundObject:_model.currentUser propertyKey:@"nick"       ];
+        [dataSection addTextBlockCellWithCaption:@"my mood"  boundObject:@""                propertyKey:@"description"];
     }
     FxUiSection *changeMoodButtonSection = [super addSection];
     {
-        [changeMoodButtonSection addButtonCellWithCaption:@"Change Mood" targetObject:self action:@selector(openChangeMoodPage:)];
+        [changeMoodButtonSection addButtonCellWithCaption:_model.currentUser.mood targetObject:self action:@selector(openChangeMoodPage:)];
     }
     FxUiSection *rangeSection = [super addSection];
     {
@@ -87,9 +87,16 @@
         [mainDataSection addTextBlockCellWithCaption:@"gender"      boundObject:_model.currentUser propertyKey:@"gender"                    displayPropertyKey:@"name"];
         [mainDataSection addTextBlockCellWithCaption:@"looking for" boundObject:_model.currentUser propertyKey:@"lookingForGendersAsString" ];
     }
+    FxUiSection *descriptionSection = [super addSection];
+    {
+        [descriptionSection addTextBlockCellWithCaption:@"description" boundObject:_model.currentUser propertyKey:@"myDescription"];
+    }
+    FxUiSection *showDescriptionButtonSection = [super addSection];
+    {
+        [showDescriptionButtonSection addButtonCellWithCaption:@"Show Description" targetObject:self action:@selector(showDescription:)];
+    }
     FxUiSection *otherDataSection = [super addSection];
     {
-        [otherDataSection addTextBlockCellWithCaption:@"description"   boundObject:_model.currentUser propertyKey:@"myDescription"];
         [otherDataSection addTextBlockCellWithCaption:@"occupation"    boundObject:_model.currentUser propertyKey:@"occupation"   ];
         [otherDataSection addTextBlockCellWithCaption:@"hobby"         boundObject:_model.currentUser propertyKey:@"hobby"        ];
         [otherDataSection addTextBlockCellWithCaption:@"main location" boundObject:_model.currentUser propertyKey:@"mainLocation" ];
@@ -134,6 +141,11 @@
 -  (void) openChangeRangePage:(id) sender
 {
     [self showChangeTargetingRangePage];
+}
+
+-  (void) showDescription:(id) sender
+{
+    [[[[UIAlertView alloc] initWithTitle:@"Description" message:_model.currentUser.myDescription delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
 }
 
 - (void) logOut:(id)sender
