@@ -24,4 +24,14 @@
     [_connector release];
     [super dealloc];
 }
+
+- (NSMutableArray *)getPersons
+{
+	return _persons;
+}
+
+- (NSMutableArray *)getMessages
+{
+	return _messages;
+}
 @end

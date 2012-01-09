@@ -157,6 +157,7 @@
 	//_connector = [[[ServerConnector alloc] initWithUrlPrefix:@"http://localhost:3000"] retain];
     _connector = [[[ServerConnector alloc] initWithUrlPrefix:@"http://baltazar.fesb.hr/~lana/bvisible"] retain];
     
+    _dataRepository = [[[SnaHttpDataRepository alloc]initWithConnector:_connector] retain];
 	#if DEBUG
     {
         _personA = nil;
@@ -202,6 +203,7 @@
     [_targetingRange       release];
     
     [_connector release];
+    [_dataRepository release];
     
 	#if DEBUG
     {
@@ -310,21 +312,6 @@
     
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus    ALIEN]
 							|| person.friendshipStatus == [SnaFriendshipStatus REJECTED]) reason:@"Invalid person status"];
-	
-//    [FxAssert isValidState:(![self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
-//    
-//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
-//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
-    
-//    if ([self _areRejectedPerson:self.currentUser andPerson:person])
-//    {
-//        [self _unregisterRejectedPerson:self.currentUser andPerson:person];
-//    }
-    
-//    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
-    
-//    [self _registerFriendshipRequestFromPerson:self.currentUser toPerson:person];
-//    [self _registerMessageWithString:message from:self.currentUser to:person];
     
     [_connector sendFriendshipRequestFrom:[self currentUser] to:person withMessage:message];
     [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
@@ -340,18 +327,6 @@
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
     
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus WAITING_FOR_ME]) reason:@"Invalid person status"];
-	
-//    [FxAssert isValidState:(![self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
-//    
-//    [FxAssert isValidState:( [self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
-//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
-//	
-//    [self _unregisterFriendshipRequestFromPerson:person toPerson:self.currentUser];
-//    
-//    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
-//    
-//    [self _registerAsFriendsPerson:self.currentUser andPerson:person];
-//    [self _registerMessageWithString:message from:self.currentUser to:person];
     
 	[_connector sendFriendshipRequestFrom:[self currentUser] to:person withMessage:message];
     [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
@@ -368,18 +343,7 @@
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
 	
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus WAITING_FOR_ME]) reason:@"Invalid person status"];
-    
-//    [FxAssert isValidState:(![self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
-//    
-//    [FxAssert isValidState:( [self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
-//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
-//    
-//    [self _unregisterFriendshipRequestFromPerson:person toPerson:self.currentUser];
-//    
-//    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
-//    
-//    [self _registerAsRejectedPerson:self.currentUser andPerson:person];
-//    [self _registerMessageWithString:message from:self.currentUser to:person];
+
     [_connector rejectFriendshipFor:[self currentUser] to:person withMessage:message];
     
     [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
@@ -394,19 +358,7 @@
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
 	
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus FRIEND]) reason:@"Invalid person status"];
-    
-//    [FxAssert isValidState:( [self _areFriendsPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
-//    
-//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:person toPerson:self.currentUser]) reason:@"Corrupted data"];
-//    [FxAssert isValidState:(![self _existsFriendshipRequestFromPerson:self.currentUser toPerson:person]) reason:@"Corrupted data"];
-//    
-//    [self _unregisterFriendsPerson:self.currentUser andPerson:person];
-//	
-//    [FxAssert isValidState:(![self _areInRelationPerson:self.currentUser andPerson:person]) reason:@"Corrupted data"];
-//    
-//    [self _registerAsRejectedPerson:self.currentUser andPerson:person];
-//    [self _registerMessageWithString:message from:self.currentUser to:person];
-//    
+
     [_connector rejectFriendshipFor:[self currentUser] to:person withMessage:message];
     
     [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
@@ -427,7 +379,7 @@
     //
     // http://developer.apple.com/library/ios/#featuredarticles/iPhoneURLScheme_Reference/Articles/PhoneLinks.html
     //
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:1212121212121"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [person phone]]]];
     //
 }
 
