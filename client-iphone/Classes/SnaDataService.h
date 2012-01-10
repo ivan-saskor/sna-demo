@@ -25,6 +25,9 @@
 @property (nonatomic, retain, readonly) SnaTargetingRange    *targetingRange;
 @property (nonatomic        , readonly) NSArray     *availableTargetingRanges;
 
+@property (nonatomic, assign, readonly) NSInteger unreadMessagesCount;
+@property (nonatomic, assign, readonly) NSInteger incommingRequestsCount;
+
 - (BOOL) tryLogInWithEmail :(NSString *)email password:(NSString *)password;
 - (void) logOut;
 
@@ -54,6 +57,8 @@
 - (void) changeTargetingRange   :(SnaTargetingRange *) targetingRange;
 
 - (void) sendMessageWithText:(NSString *)text toPerson:(SnaPerson *)toPerson;
+
+- (void) markAsReadAllMessagesFromPerson:(SnaPerson *)person;
 
 #ifdef DEBUG
 

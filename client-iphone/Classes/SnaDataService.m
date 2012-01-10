@@ -9,7 +9,7 @@
     
     if (cachedResult == nil)
     {
-        cachedResult = [[SnaRealDataService alloc] init];
+        cachedResult = (id)[[SnaRealDataService alloc] init];
     }
     
     return cachedResult;
@@ -36,6 +36,9 @@
 @synthesize targetingRange = _targetingRange;
 @synthesize availableTargetingRanges = _availableTargetingRanges;
 
+@synthesize unreadMessagesCount    = _unreadMessagesCount;
+@synthesize incommingRequestsCount = _incommingRequestsCount;
+
 - (BOOL) tryLogInWithEmail :(NSString *)email password:(NSString *)password { return NO; }
 
 - (BOOL) trySignUpWithEmail:(NSString *)email
@@ -54,7 +57,6 @@
     return NO;
 }
 
-
 //- (BOOL) trySignUpWithEmail:(NSString *)email password:(NSString *)password nick:(NSString *)nick { return NO; }
 - (void) logOut {}
 
@@ -70,6 +72,8 @@
 - (void) changeTargetingRange   :(SnaTargetingRange *) targetingRange {}
 
 - (void) sendMessageWithText:(NSString *)text toPerson:(SnaPerson *)toPerson {}
+
+- (void) markAsReadAllMessagesFromPerson:(SnaPerson *)person {}
 
 #ifdef DEBUG
 

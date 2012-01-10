@@ -7,6 +7,9 @@
 {
     UIWindow               *_window;
     UINavigationController *_navigationController;
+    
+    UITabBarItem           *_messagesTabBarItem;
+    UITabBarItem           *_requestsTabBarItem;
 }
 
 @property(nonatomic, retain) IBOutlet UIWindow *window;

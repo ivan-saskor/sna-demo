@@ -31,6 +31,26 @@
     return self.readOn != nil;
 }
 
+- (NSString  *) friendlySentOn
+{    
+    if (self.sentOn.timeIntervalSinceNow < -(60 * 60 * 24))
+    {
+        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+        [formatter setDateFormat:@"dd'. 'MMM"];
+        [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+        
+        return [formatter stringFromDate:self.sentOn];
+    }
+    else
+    {
+        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+        [formatter setDateFormat:@"HH':'mm"];
+        [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+
+        return [formatter stringFromDate:self.sentOn];
+    }
+}
+
 + (NSSet *)keyPathsForValuesAffectingIsRead
 {
     return [NSSet setWithObjects:@"readOn", nil];

@@ -14,6 +14,9 @@
 
 @property (nonatomic, retain, readwrite) SnaTargetingRange *targetingRange;
 
+@property (nonatomic, assign, readwrite) NSInteger    unreadMessagesCount;
+@property (nonatomic, assign, readwrite) NSInteger    incommingRequestsCount;
+
 - (void) _fillTestData;
 
 - (void) _refreshData;
@@ -70,6 +73,8 @@
 
 - (void) _allignFriendsWithMessages;
 
+- (void) _allignUnreadCounts;
+
 - (NSArray *) _findMessagesWithPerson:(SnaPerson *)person;
 
 - (NSArray *) _findNearbyPersons;
@@ -103,6 +108,9 @@
 
 @synthesize targetingRange      = _targetingRange;
 @synthesize availableTargetingRanges   = _availableTargetingRanges;
+
+@synthesize unreadMessagesCount    = _unreadMessagesCount;
+@synthesize incommingRequestsCount = _incommingRequestsCount;
 
 - (id) init
 {
@@ -153,6 +161,9 @@
                              ];
     
     _targetingRange = [_availableTargetingRanges objectAtIndex:2];
+    
+    _unreadMessagesCount    = 0;
+    _incommingRequestsCount = 0;
 	
 	NSLog(@"Inicijalizacija");
 	
@@ -422,6 +433,8 @@
 
 - (void) changeTargetingRange:(SnaTargetingRange *) targetingRange
 {
+    [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
+
     self.targetingRange = targetingRange;
     
     [self _allignData];
@@ -433,12 +446,33 @@
     [FxAssert isNotNullArgument        :toPerson withName:@"toPerson"];
     [FxAssert isValidArgument          :toPerson withName:@"toPerson" validation:[_persons containsObject:toPerson]];
 
+    [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
+
     [_connector sendMessageFrom:[self currentUser] to:toPerson withText:text];
     
     [self _refreshData];
     [self _allignData];
 }
 
+- (void) markAsReadAllMessagesFromPerson:(SnaPerson *)person
+{
+    [FxAssert isNotNullArgument:person withName:@"person"];
+    [FxAssert isValidArgument  :person withName:@"person" validation:[_persons containsObject:person]];
+    [FxAssert isValidArgument  :person withName:@"person" validation:person != self.currentUser];
+
+    [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
+
+    for (SnaMessage *message in person.messages)
+    {
+        if (message.to == self.currentUser && !message.isRead)
+        {
+            // zovi
+        }
+    }
+    
+    [self _refreshData];
+    [self _allignData];
+}
 
 - (void) _fillTestData
 {
@@ -835,6 +869,8 @@
     
     [self _allignFriendsWithMessages                     ];
     
+    [self _allignUnreadCounts                            ];
+    
     self.timestamp++;
 }
 
@@ -925,6 +961,34 @@
     else
     {
         [_friendsWithMessages replaceObjectsInRange:NSMakeRange(0, [_friendsWithMessages count]) withObjectsFromArray:[self _findFriendsWithMessages]];
+    }
+}
+
+- (void) _allignUnreadCounts
+{
+    int unreadMessagesCount = 0;
+    
+    if (self.currentUser == nil)
+    {
+        self.unreadMessagesCount    = 0;
+        self.incommingRequestsCount = 0;
+    }
+    else
+    {
+        for (SnaPerson *friend in self.friendsWithMessages)
+        {
+            for (SnaMessage *message in friend.messages)
+            {
+                if (message.to == self.currentUser && !message.isRead)
+                {
+                    unreadMessagesCount ++;
+                }
+            }
+        }
+        
+        self.unreadMessagesCount = unreadMessagesCount;
+        
+        self.incommingRequestsCount = self.waitingForMePersons.count;
     }
 }
 

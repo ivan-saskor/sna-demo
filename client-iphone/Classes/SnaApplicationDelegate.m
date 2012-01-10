@@ -5,6 +5,11 @@
 #import "_Services.h"
 #import "_Pages.h"
 
+@interface SnaApplicationDelegate()
+
+- (void) _updateBadges;
+
+@end
 @implementation SnaApplicationDelegate
 
 @synthesize window               = _window;
@@ -67,6 +72,13 @@ static SnaApplicationDelegate *_cachedInstance = nil;
     ((UINavigationController *)[ctls objectAtIndex:3]).tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Requests" image:[UIImage imageNamed:@"FriendshipRequests.png"] tag:3] autorelease];
     ((UINavigationController *)[ctls objectAtIndex:4]).tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Profile"  image:[UIImage imageNamed:@"Profile.png"           ] tag:4] autorelease];
     
+    _messagesTabBarItem = ((UINavigationController *)[ctls objectAtIndex:2]).tabBarItem;
+    _requestsTabBarItem = ((UINavigationController *)[ctls objectAtIndex:3]).tabBarItem;
+    
+    [self _updateBadges];
+
+    [[SnaDataService INSTANCE] addObserver:self forKeyPath:@"timestamp" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+    
     tbc.viewControllers = ctls;
     
     tbc.selectedIndex = 4;
@@ -81,10 +93,37 @@ static SnaApplicationDelegate *_cachedInstance = nil;
     
     return navigationController;
 }
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [self _updateBadges];
+}
+
+- (void) _updateBadges
+{
+    if ([SnaDataService INSTANCE].unreadMessagesCount == 0)
+    {
+        _messagesTabBarItem.badgeValue = nil;
+    }
+    else
+    {
+        _messagesTabBarItem.badgeValue = [NSString stringWithFormat:@"%d", [SnaDataService INSTANCE].unreadMessagesCount];
+    }
+
+    if ([SnaDataService INSTANCE].incommingRequestsCount == 0)
+    {
+        _requestsTabBarItem.badgeValue = nil;
+    }
+    else
+    {
+        _requestsTabBarItem.badgeValue = [NSString stringWithFormat:@"%d", [SnaDataService INSTANCE].incommingRequestsCount];
+    }
+}
 
 - (void) flipToLoginPage
 {
     [self _flipViewController:[self _createLoginPage]];
+    
+    [[SnaDataService INSTANCE] removeObserver:self forKeyPath:@"timestamp"];
 }
 - (void) flipToHomePage
 {
@@ -185,6 +224,8 @@ static SnaApplicationDelegate *_cachedInstance = nil;
 {
 	[_navigationController release];
 	[_window               release];
+
+    [[SnaDataService INSTANCE] removeObserver:self forKeyPath:@"timestamp"];
 
 	[super dealloc];
 }

@@ -19,7 +19,8 @@
 @property(nonatomic, readonly, copy  ) NSDate    *sentOn;
 @property(nonatomic, readonly, copy  ) NSDate    *readOn;
 
-@property(nonatomic, readonly, assign) BOOL       isRead; // CALCULATED
+@property(nonatomic, readonly, copy  ) NSString  *friendlySentOn; // CALCULATED
+@property(nonatomic, readonly, assign) BOOL       isRead;         // CALCULATED
 
 @end
 

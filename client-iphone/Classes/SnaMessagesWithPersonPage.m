@@ -82,7 +82,7 @@
     {
         for (SnaMessage *message in [_model.person.messages reverseObjectEnumerator])
         {
-            [dataSection addItem1CellWithCaptionBoundObject:message.from captionPropertyKey:@"nick" contentBoundObject:message contentPropertyKey:@"text" targetObject:self action:@selector(openMessage:) actionContext:message  accesoryType:UITableViewCellAccessoryDisclosureIndicator];
+            [dataSection addItem1CellWithCaptionBoundObject:[NSString stringWithFormat:@"[%@] %@", message.friendlySentOn, message.from.nick] captionPropertyKey:@"description" contentBoundObject:message contentPropertyKey:@"text" targetObject:self action:@selector(openMessage:) actionContext:message  accesoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
     }
     
