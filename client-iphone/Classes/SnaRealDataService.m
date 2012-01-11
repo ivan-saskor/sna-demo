@@ -466,7 +466,8 @@
     {
         if (message.to == self.currentUser && !message.isRead)
         {
-            // zovi
+            NSLog(@"Message: %@ with ID %@", message.text, message.id);
+            [_connector markMessage:message asReadForPerson:self.currentUser];
         }
     }
     

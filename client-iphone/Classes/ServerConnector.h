@@ -27,7 +27,7 @@
 - (BOOL)sendFriendshipRequestFrom:(SnaPerson *)person1 to:(SnaPerson *)person2 withMessage:(NSString *)message;
 - (BOOL)rejectFriendshipFor:(SnaPerson *)person1 to:(SnaPerson *)person2 withMessage:(NSString *)message;
 - (BOOL)sendMessageFrom:(SnaPerson *)person1 to:(SnaPerson *)person2 withText:(NSString *)text;
-- (void)markMessage:(SnaMessage *)message asReadForPerson:(SnaPerson *) person;
+- (BOOL)markMessage:(SnaMessage *)message asReadForPerson:(SnaPerson *) person;
 
 - (BOOL)createProfileForPerson:(SnaPerson *) person;
 - (BOOL)updateProfileForPerson:(SnaPerson *) person;

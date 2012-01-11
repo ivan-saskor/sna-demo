@@ -78,6 +78,8 @@
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"+" style:UIBarButtonItemStylePlain target:self action:@selector(openNewMessagePage:)] autorelease];
 
+    [[SnaDataService INSTANCE] markAsReadAllMessagesFromPerson:_model.person];
+    
     FxUiSection *dataSection = [super addSection];
     {
         for (SnaMessage *message in [_model.person.messages reverseObjectEnumerator])

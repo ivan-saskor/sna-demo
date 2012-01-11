@@ -561,24 +561,38 @@
     return NO;
 }
 
-- (void)markMessage:(SnaMessage *)message asReadForPerson:(SnaPerson *) person
+- (BOOL)markMessage:(SnaMessage *)message asReadForPerson:(SnaPerson *) person
 {
     NSString *url = [NSString stringWithFormat:@"%@/api/messages/%@/mark-as-read", _urlPrefix, [message id]];
-    NSString *escapedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[person email], @"EMAIL", [person password], @"PASSWORD", nil];
+    NSLog(@"URL: %@", url);
+    //NSString *escapedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
-    NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:escapedUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    //NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:escapedUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     
-    [dataRequest setHTTPMethod:@"PUT"];
-    [dataRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    //[dataRequest setHTTPMethod:@"PUT"];
+    //[dataRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
-    [dataRequest addValue:[person email] forHTTPHeaderField: @"EMAIL"];
-    [dataRequest addValue:[person password] forHTTPHeaderField: @"PASSWORD"];
+    //[dataRequest addValue:[person email] forHTTPHeaderField: @"EMAIL"];
+    //[dataRequest addValue:[person password] forHTTPHeaderField: @"PASSWORD"];
     
-    NSData* data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
+    //NSData* data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
     
-    [self isRequestSuccessfulForData: data];
+    //[self isRequestSuccessfulForData: data];
+    NSData *data = [self sendGetRequestWithURL:url httpParams:params];
     
-    NSLog(@"message marked as read");
+    NSLog(@"Mark message as read request sent");
+    
+    if ([self isRequestSuccessfulForData:data]) {
+        [_data release];
+        _data = data;
+        [_data retain];
+        
+        [self populatePersons];
+        [self populateMessages];
+        return YES;
+    }
+    return NO;
 }
 
 - (BOOL)isRequestSuccessfulForData:(NSData *)data
