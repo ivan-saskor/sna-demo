@@ -30,9 +30,7 @@
 		15705B2C149412F00005C479 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15705B2A149412F00005C479 /* Icon@2x.png */; };
 		157835CE148FA17800B36533 /* get_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1545A11A148E471E000CF649 /* get_data.json */; };
 		157835D21490080200B36533 /* SnaFileDataRetrieverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 157835D11490080200B36533 /* SnaFileDataRetrieverTests.m */; };
-		157835D31490212900B36533 /* SnaHttpDataRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CB1376148BFA7000A9169D /* SnaHttpDataRetriever.m */; };
 		157835D61490215800B36533 /* SnaHttpDataRetrieverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 157835D51490215800B36533 /* SnaHttpDataRetrieverTests.m */; };
-		15845E32148EEB0600664006 /* SnaFileDataRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CB1373148BFA5600A9169D /* SnaFileDataRetriever.m */; };
 		1592DCDA14227D7200DF0560 /* SnaRealDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1592DCD914227D7200DF0560 /* SnaRealDataService.m */; };
 		1592DD101422827B00DF0560 /* SnaFakeDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1592DD0F1422827B00DF0560 /* SnaFakeDataService.m */; };
 		15932E5C149416C0001D4B41 /* NavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 15932E5B149416C0001D4B41 /* NavigationBar.png */; };
@@ -43,8 +41,8 @@
 		15932E6614941874001D4B41 /* Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 15932E6514941874001D4B41 /* Profile.png */; };
 		1596B6D11497E38100ECBD56 /* SnaTargetingRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 1596B6D01497E38100ECBD56 /* SnaTargetingRange.m */; };
 		1596B6D41497F52D00ECBD56 /* SnaChangeTargetingRangePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1596B6D31497F52D00ECBD56 /* SnaChangeTargetingRangePage.m */; };
-		15CB1374148BFA5600A9169D /* SnaFileDataRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CB1373148BFA5600A9169D /* SnaFileDataRetriever.m */; };
-		15CB1377148BFA7100A9169D /* SnaHttpDataRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CB1376148BFA7000A9169D /* SnaHttpDataRetriever.m */; };
+		15DBFCA514BE6071007696F9 /* SnaJsonWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DBFCA414BE6071007696F9 /* SnaJsonWrapper.m */; };
+		15DBFCAA14BE6673007696F9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DBFCA914BE6673007696F9 /* JSONKit.m */; };
 		15FFB76A1498C1C400391159 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		1D3623260D0F684500981E51 /* SnaApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SnaApplicationDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* SnaApplicationMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* SnaApplicationMain.m */; };
@@ -158,11 +156,10 @@
 		1596B6D01497E38100ECBD56 /* SnaTargetingRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaTargetingRange.m; sourceTree = "<group>"; };
 		1596B6D21497F52D00ECBD56 /* SnaChangeTargetingRangePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaChangeTargetingRangePage.h; sourceTree = "<group>"; };
 		1596B6D31497F52D00ECBD56 /* SnaChangeTargetingRangePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaChangeTargetingRangePage.m; sourceTree = "<group>"; };
-		15CB136E148BF8F700A9169D /* SnaDataRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaDataRetriever.h; sourceTree = "<group>"; };
-		15CB1372148BFA5600A9169D /* SnaFileDataRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaFileDataRetriever.h; sourceTree = "<group>"; };
-		15CB1373148BFA5600A9169D /* SnaFileDataRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaFileDataRetriever.m; sourceTree = "<group>"; };
-		15CB1375148BFA7000A9169D /* SnaHttpDataRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaHttpDataRetriever.h; sourceTree = "<group>"; };
-		15CB1376148BFA7000A9169D /* SnaHttpDataRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaHttpDataRetriever.m; sourceTree = "<group>"; };
+		15DBFCA314BE6071007696F9 /* SnaJsonWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaJsonWrapper.h; sourceTree = "<group>"; };
+		15DBFCA414BE6071007696F9 /* SnaJsonWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaJsonWrapper.m; sourceTree = "<group>"; };
+		15DBFCA814BE6673007696F9 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		15DBFCA914BE6673007696F9 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SnaApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaApplicationDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SnaApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaApplicationDelegate.m; sourceTree = "<group>"; };
@@ -396,6 +393,15 @@
 			name = JsonData;
 			sourceTree = "<group>";
 		};
+		15DBFCA714BE65FA007696F9 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				15DBFCA814BE6673007696F9 /* JSONKit.h */,
+				15DBFCA914BE6673007696F9 /* JSONKit.m */,
+			);
+			name = JSONKit;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +480,7 @@
 		DF506A4113E4CFA4006E2566 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				15DBFCA714BE65FA007696F9 /* JSONKit */,
 				1502AFBB14A8E4CE005539A2 /* TouchJSON */,
 				DF506D2013E769EE006E2566 /* _Fx.h */,
 				DFBF917913F1C9530092CFB1 /* System */,
@@ -522,15 +529,12 @@
 				1592DCD914227D7200DF0560 /* SnaRealDataService.m */,
 				1592DD0E1422827B00DF0560 /* SnaFakeDataService.h */,
 				1592DD0F1422827B00DF0560 /* SnaFakeDataService.m */,
-				15CB136E148BF8F700A9169D /* SnaDataRetriever.h */,
-				15CB1372148BFA5600A9169D /* SnaFileDataRetriever.h */,
-				15CB1373148BFA5600A9169D /* SnaFileDataRetriever.m */,
-				15CB1375148BFA7000A9169D /* SnaHttpDataRetriever.h */,
-				15CB1376148BFA7000A9169D /* SnaHttpDataRetriever.m */,
 				1502B09114A97023005539A2 /* Constants.h */,
 				1502B09214A97023005539A2 /* Constants.m */,
 				155E98DF14B8D26C00D9E8BC /* SnaHttpDataRepository.h */,
 				155E98E014B8D26C00D9E8BC /* SnaHttpDataRepository.m */,
+				15DBFCA314BE6071007696F9 /* SnaJsonWrapper.h */,
+				15DBFCA414BE6071007696F9 /* SnaJsonWrapper.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -875,10 +879,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15845E32148EEB0600664006 /* SnaFileDataRetriever.m in Sources */,
 				152E1B82148E9F8600EE46E2 /* LogicTests.m in Sources */,
 				157835D21490080200B36533 /* SnaFileDataRetrieverTests.m in Sources */,
-				157835D31490212900B36533 /* SnaHttpDataRetriever.m in Sources */,
 				157835D61490215800B36533 /* SnaHttpDataRetrieverTests.m in Sources */,
 				155E98E314B8D71000D9E8BC /* SnaHttpDataRepository.m in Sources */,
 			);
@@ -934,8 +936,6 @@
 				1592DCDA14227D7200DF0560 /* SnaRealDataService.m in Sources */,
 				1592DD101422827B00DF0560 /* SnaFakeDataService.m in Sources */,
 				152CB10F14550456004DA5B4 /* ServerConnector.m in Sources */,
-				15CB1374148BFA5600A9169D /* SnaFileDataRetriever.m in Sources */,
-				15CB1377148BFA7100A9169D /* SnaHttpDataRetriever.m in Sources */,
 				1596B6D11497E38100ECBD56 /* SnaTargetingRange.m in Sources */,
 				1596B6D41497F52D00ECBD56 /* SnaChangeTargetingRangePage.m in Sources */,
 				1502B03914A8E4CF005539A2 /* CDataScanner.m in Sources */,
@@ -950,6 +950,8 @@
 				1502B04214A8E4CF005539A2 /* CJSONSerializer.m in Sources */,
 				1502B09314A97023005539A2 /* Constants.m in Sources */,
 				155E98E114B8D26C00D9E8BC /* SnaHttpDataRepository.m in Sources */,
+				15DBFCA514BE6071007696F9 /* SnaJsonWrapper.m in Sources */,
+				15DBFCAA14BE6673007696F9 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

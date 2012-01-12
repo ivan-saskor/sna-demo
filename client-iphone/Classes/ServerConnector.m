@@ -1,6 +1,5 @@
 #import "ServerConnector.h"
-#import "CJSONDeserializer.h"
-#import "CJSONSerializer.h"
+#import "SnaJsonWrapper.h"
 #import "_Domain.h"
 #import "Constants.h"
 
@@ -205,14 +204,7 @@
 
 - (void)populatePersons
 {
-    NSError *theError = nil;
-
-    CJSONDeserializer *theDeserializer = [CJSONDeserializer deserializer];
-    theDeserializer.nullObject = NULL;
-    
-    
-    
-    NSDictionary *theObject = [NSDictionary dictionaryWithDictionary:[theDeserializer deserialize:_data error:&theError]];
+    NSDictionary * theObject = [SnaJsonWrapper deserializeJsonData:_data];
 
 //    NSMutableDictionary *theObject = [NSMutableDictionary dictionary];
 //    
@@ -231,168 +223,158 @@
 //    [x addObject:y];
 //    
 //    [theObject setObject:x forKey:@"Persons"];
+        
+    NSArray *persons = [theObject mutableArrayValueForKey:@"Persons"];
     
-    if (theError == nil) 
-    {
-        //NSLog(@"no error loading json");
+    for (int i=0; i < [persons count]; i++)
+    {                           
+        NSDictionary *json_person;
+        json_person = [persons objectAtIndex:i];
         
-        NSArray *persons = [theObject mutableArrayValueForKey:@"Persons"];
+        SnaMutablePerson *person = [self FindPersonByEmail:[self _cleanString:[json_person valueForKey:@"Email"]]];
+        if (person == nil) {
+            person = [[[SnaMutablePerson alloc]init] autorelease];
+            [_persons addObject:person];
+        }
         
-        for (int i=0; i < [persons count]; i++)
-        {                           
-            NSDictionary *json_person;
-            json_person = [persons objectAtIndex:i];
-			
-			SnaMutablePerson *person = [self FindPersonByEmail:[self _cleanString:[json_person valueForKey:@"Email"]]];
-			if (person == nil) {
-				person = [[[SnaMutablePerson alloc]init] autorelease];
-				[_persons addObject:person];
-			}
-            
-            NSString *visibilityStatusAsString;
-            NSString *offlineSinceAsString;
-            NSString *friendshipStatusAsString;
-            NSString *genderAsString;
-            
-            [person setEmail:       [self _stringForField:@"Email"          FromDictionary:json_person]];
-            [person setPassword:    [self _stringForField:@"Password"       FromDictionary:json_person]];
-            [person setNick:        [self _stringForField:@"Nick"           FromDictionary:json_person]];
-            
-            [person setMyDescription:[self _stringForField:@"Description"   FromDictionary:json_person]];
-            [person setMood:        [self _stringForField:@"Mood"           FromDictionary:json_person]];
-            [person setPhone:       [self _stringForField:@"Phone"          FromDictionary:json_person]];
-            [person setOccupation:  [self _stringForField:@"Occupation"     FromDictionary:json_person]];
-            [person setHobby:       [self _stringForField:@"Hobby"          FromDictionary:json_person]];
-            [person setMainLocation:[self _stringForField:@"MainLocation"   FromDictionary:json_person]];
-            [person setGravatarCode:[self _stringForField:@"GravatarCode"   FromDictionary:json_person]];
-            
-            [person setBornOn:[self _dateForField:@"BornOn" FromDictionary:json_person withFormat:ShortDate]];
-            
-            [person setDistanceInMeeters:[self _integerForField:@"DistanceInMeters" FromDictionary:json_person]];
-            
-            visibilityStatusAsString = [self _stringForField:@"VisibilityStatus" FromDictionary:json_person];
-            offlineSinceAsString = [self _stringForField:@"OfflineSince" FromDictionary:json_person];
-            friendshipStatusAsString = [self _stringForField:@"FriendshipStatus" FromDictionary:json_person];
-            genderAsString = [self _stringForField:@"Gender" FromDictionary:json_person];
-            
-            if ([visibilityStatusAsString isEqualToString:@"Online"]) 
+        NSString *visibilityStatusAsString;
+        NSString *offlineSinceAsString;
+        NSString *friendshipStatusAsString;
+        NSString *genderAsString;
+        
+        [person setEmail:       [self _stringForField:@"Email"          FromDictionary:json_person]];
+        [person setPassword:    [self _stringForField:@"Password"       FromDictionary:json_person]];
+        [person setNick:        [self _stringForField:@"Nick"           FromDictionary:json_person]];
+        
+        [person setMyDescription:[self _stringForField:@"Description"   FromDictionary:json_person]];
+        [person setMood:        [self _stringForField:@"Mood"           FromDictionary:json_person]];
+        [person setPhone:       [self _stringForField:@"Phone"          FromDictionary:json_person]];
+        [person setOccupation:  [self _stringForField:@"Occupation"     FromDictionary:json_person]];
+        [person setHobby:       [self _stringForField:@"Hobby"          FromDictionary:json_person]];
+        [person setMainLocation:[self _stringForField:@"MainLocation"   FromDictionary:json_person]];
+        [person setGravatarCode:[self _stringForField:@"GravatarCode"   FromDictionary:json_person]];
+        
+        [person setBornOn:[self _dateForField:@"BornOn" FromDictionary:json_person withFormat:ShortDate]];
+        
+        [person setDistanceInMeeters:[self _integerForField:@"DistanceInMeters" FromDictionary:json_person]];
+        
+        visibilityStatusAsString = [self _stringForField:@"VisibilityStatus" FromDictionary:json_person];
+        offlineSinceAsString = [self _stringForField:@"OfflineSince" FromDictionary:json_person];
+        friendshipStatusAsString = [self _stringForField:@"FriendshipStatus" FromDictionary:json_person];
+        genderAsString = [self _stringForField:@"Gender" FromDictionary:json_person];
+        
+        if ([visibilityStatusAsString isEqualToString:@"Online"]) 
+        {
+            [person setVisibilityStatus:[SnaVisibilityStatus ONLINE]];
+        }
+        else if ([visibilityStatusAsString isEqualToString:@"Offline"]) 
+        {
+            [person setVisibilityStatus:[SnaVisibilityStatus OFFLINE]];
+        }
+        else if ([visibilityStatusAsString isEqualToString:@"ContactMe"])
+        {
+            [person setVisibilityStatus:[SnaVisibilityStatus CONTACT_ME]];
+        }
+        else if ([visibilityStatusAsString isEqualToString:@"Invisible"])
+        {
+            [person setVisibilityStatus:[SnaVisibilityStatus INVISIBLE]];
+        }
+        else if (visibilityStatusAsString == nil)
+        {
+            [person setVisibilityStatus:nil];
+        }
+        else
+        {
+            @throw [FxException exceptionWithName:@"Impossible CP reached" reason:@"Invalid visibility status" userInfo:nil];
+        }
+        
+        if (offlineSinceAsString != nil)
+        {
+            [person setOfflineSince:[self dateFromRFC3339String:offlineSinceAsString withFormat:LongDate]];
+        }
+        else
+        {
+            [person setOfflineSince:nil];
+        }
+        
+        if ([friendshipStatusAsString isEqualToString:@"Alien"])
+        {
+            [person setFriendshipStatus:[SnaFriendshipStatus ALIEN]];
+        }
+        else if ([friendshipStatusAsString isEqualToString:@"Self"])
+        {
+            [person setFriendshipStatus:[SnaFriendshipStatus SELF]];
+        }
+        else if ([friendshipStatusAsString isEqualToString:@"WaitingForHim"])
+        {
+            [person setFriendshipStatus:[SnaFriendshipStatus WAITING_FOR_HIM]];
+        }
+        else if ([friendshipStatusAsString isEqualToString:@"WaitingForMe"])
+        {
+            [person setFriendshipStatus:[SnaFriendshipStatus WAITING_FOR_ME]];
+        }
+        else if ([friendshipStatusAsString isEqualToString:@"Rejected"])
+        {
+            [person setFriendshipStatus:[SnaFriendshipStatus REJECTED]];
+        }
+        else if ([friendshipStatusAsString isEqualToString:@"Friend"])
+        {
+            [person setFriendshipStatus:[SnaFriendshipStatus FRIEND]];
+        }
+        else if (friendshipStatusAsString == nil)
+        {
+            [person setFriendshipStatus:nil];
+        }
+        else
+        {
+            @throw [FxException exceptionWithName:@"Impossible CP reached" reason:@"Invalid visibility status received from server" userInfo:nil];
+        }
+        
+        if (genderAsString != nil && [genderAsString length] > 0)
+        {
+            if ([genderAsString isEqualToString:@"Male"])
             {
-                [person setVisibilityStatus:[SnaVisibilityStatus ONLINE]];
+                [person setGender:[SnaGender MALE]];
             }
-            else if ([visibilityStatusAsString isEqualToString:@"Offline"]) 
+            else if ([genderAsString isEqualToString:@"Female"])
             {
-                [person setVisibilityStatus:[SnaVisibilityStatus OFFLINE]];
+                [person setGender:[SnaGender FEMALE]];
             }
-            else if ([visibilityStatusAsString isEqualToString:@"ContactMe"])
+            else if ([genderAsString isEqualToString:@"Other"])
             {
-                [person setVisibilityStatus:[SnaVisibilityStatus CONTACT_ME]];
-            }
-            else if ([visibilityStatusAsString isEqualToString:@"Invisible"])
-            {
-                [person setVisibilityStatus:[SnaVisibilityStatus INVISIBLE]];
-            }
-            else if (visibilityStatusAsString == nil)
-            {
-                [person setVisibilityStatus:nil];
+                [person setGender:[SnaGender OTHER]];
             }
             else
             {
-                @throw [FxException exceptionWithName:@"Impossible CP reached" reason:@"Invalid visibility status" userInfo:nil];
+                @throw [FxException exceptionWithName:@"Impossible CP reached" reason:@"Invalid gender received from server" userInfo:nil];
             }
-            
-            if (offlineSinceAsString != nil)
-            {
-                [person setOfflineSince:[self dateFromRFC3339String:offlineSinceAsString withFormat:LongDate]];
-            }
-            else
-            {
-                [person setOfflineSince:nil];
-            }
-            
-            if ([friendshipStatusAsString isEqualToString:@"Alien"])
-            {
-                [person setFriendshipStatus:[SnaFriendshipStatus ALIEN]];
-            }
-            else if ([friendshipStatusAsString isEqualToString:@"Self"])
-            {
-                [person setFriendshipStatus:[SnaFriendshipStatus SELF]];
-            }
-            else if ([friendshipStatusAsString isEqualToString:@"WaitingForHim"])
-            {
-                [person setFriendshipStatus:[SnaFriendshipStatus WAITING_FOR_HIM]];
-            }
-            else if ([friendshipStatusAsString isEqualToString:@"WaitingForMe"])
-            {
-                [person setFriendshipStatus:[SnaFriendshipStatus WAITING_FOR_ME]];
-            }
-            else if ([friendshipStatusAsString isEqualToString:@"Rejected"])
-            {
-                [person setFriendshipStatus:[SnaFriendshipStatus REJECTED]];
-            }
-            else if ([friendshipStatusAsString isEqualToString:@"Friend"])
-            {
-                [person setFriendshipStatus:[SnaFriendshipStatus FRIEND]];
-            }
-            else if (friendshipStatusAsString == nil)
-            {
-                [person setFriendshipStatus:nil];
-            }
-            else
-            {
-                @throw [FxException exceptionWithName:@"Impossible CP reached" reason:@"Invalid visibility status received from server" userInfo:nil];
-            }
-            
-            if (genderAsString != nil && [genderAsString length] > 0)
-            {
-                if ([genderAsString isEqualToString:@"Male"])
-                {
-                    [person setGender:[SnaGender MALE]];
-                }
-                else if ([genderAsString isEqualToString:@"Female"])
-                {
-                    [person setGender:[SnaGender FEMALE]];
-                }
-                else if ([genderAsString isEqualToString:@"Other"])
-                {
-                    [person setGender:[SnaGender OTHER]];
-                }
-                else
-                {
-                    @throw [FxException exceptionWithName:@"Impossible CP reached" reason:@"Invalid gender received from server" userInfo:nil];
-                }
-            }
+        }
 
-            [FxAssert isNotNullValue:person.email];
-            [FxAssert isNotNullValue:person.password];
-            [FxAssert isNotNullValue:person.visibilityStatus];
-            [FxAssert isNotNullValue:person.nick];
-            [FxAssert isNotNullValue:person.friendshipStatus];
+        [FxAssert isNotNullValue:person.email];
+        [FxAssert isNotNullValue:person.password];
+        [FxAssert isNotNullValue:person.visibilityStatus];
+        [FxAssert isNotNullValue:person.nick];
+        [FxAssert isNotNullValue:person.friendshipStatus];
 
-            [[person lookingForGenders]removeAllObjects];
-            NSArray *genders = [self _arrayForField:@"LookingForGenders" FromDictionary:json_person];
-           
-            for (int g=0; g<[genders count]; g++)
+        [[person lookingForGenders]removeAllObjects];
+        NSArray *genders = [self _arrayForField:@"LookingForGenders" FromDictionary:json_person];
+       
+        for (int g=0; g<[genders count]; g++)
+        {
+            if ([[genders objectAtIndex:g] isEqualToString:@"Male"])
             {
-                if ([[genders objectAtIndex:g] isEqualToString:@"Male"])
-                {
-                    [[person lookingForGenders]addObject:[SnaGender MALE]];
-                }
-                if ([[genders objectAtIndex:g] isEqualToString:@"Female"])
-                {
-                    [[person lookingForGenders]addObject:[SnaGender FEMALE]];
-                }
-                if ([[genders objectAtIndex:g] isEqualToString:@"Other"])
-                {
-                    [[person lookingForGenders]addObject:[SnaGender OTHER]];
-                }
+                [[person lookingForGenders]addObject:[SnaGender MALE]];
+            }
+            if ([[genders objectAtIndex:g] isEqualToString:@"Female"])
+            {
+                [[person lookingForGenders]addObject:[SnaGender FEMALE]];
+            }
+            if ([[genders objectAtIndex:g] isEqualToString:@"Other"])
+            {
+                [[person lookingForGenders]addObject:[SnaGender OTHER]];
             }
         }
     }
-    else
-    {
-        @throw ([NSException exceptionWithName:@"parse error" reason:@"can't parse json" userInfo:nil]);
-    }
-
 }
 
 - (SnaMutablePerson *)FindPersonByEmail:(NSString *)email
@@ -404,7 +386,6 @@
             return [_persons objectAtIndex:i];
         }
     }
-    
     return nil;
 }
 
@@ -425,46 +406,33 @@
 
 - (void)populateMessages
 {
-    NSError *theError = nil;
-    
-    CJSONDeserializer *theDeserializer = [CJSONDeserializer deserializer];
-    theDeserializer.nullObject = NULL;
-    
-    NSDictionary *theObject = [NSDictionary dictionaryWithDictionary:[theDeserializer deserialize:_data error:&theError]];
-    
-    if (theError == nil) 
-    {   
-        NSArray *messages = [theObject mutableArrayValueForKey:@"Messages"];
+    NSDictionary * theObject = [SnaJsonWrapper deserializeJsonData:_data];
+    NSArray *messages = [theObject mutableArrayValueForKey:@"Messages"];
         
-        for (int i=0; i<[messages count]; i++)
-        {                           
-            NSDictionary *json_message = [messages objectAtIndex:i];
-			
-			SnaMutableMessage *message;
-			message = [self FindMessageById:[json_message valueForKey:@"Id"]];
-			if (message == nil) {
-				message = [[[SnaMutableMessage alloc]init] autorelease];
-				[_messages addObject:message];
-			}
-			
-            [message setId:[self _stringForField:@"Id" FromDictionary:json_message]];
-			[message setFrom:[self FindPersonByEmail:[self _stringForField:@"FromEmail" FromDictionary:json_message]]];
-			[message setTo:[self FindPersonByEmail:[self _stringForField:@"ToEmail" FromDictionary:json_message]]];
-			[message setText:[self _stringForField:@"Text" FromDictionary:json_message]];
-			[message setSentOn:[self _dateForField:@"SentOn" FromDictionary:json_message withFormat:LongDate]];
-			[message setReadOn:[self _dateForField:@"ReadOn" FromDictionary:json_message withFormat:LongDate]];
-            
-            NSLog(@"From email: %@", message.from.email);
-            NSLog(@"Read on: %@", message.readOn);
-            NSLog(@"Sent on: %@", message.sentOn);
-            NSLog(@"ToEmail: %@", message.to.email);
-            NSLog(@"Text: %@", message.text);
-            NSLog(@"Id: %@", message.id);
+    for (int i=0; i<[messages count]; i++)
+    {                           
+        NSDictionary *json_message = [messages objectAtIndex:i];
+        
+        SnaMutableMessage *message;
+        message = [self FindMessageById:[json_message valueForKey:@"Id"]];
+        if (message == nil) {
+            message = [[[SnaMutableMessage alloc]init] autorelease];
+            [_messages addObject:message];
         }
-    }
-    else
-    {
-        @throw ([NSException exceptionWithName:@"parse error" reason:@"can't parse json" userInfo:nil]);
+        
+        [message setId:[self _stringForField:@"Id" FromDictionary:json_message]];
+        [message setFrom:[self FindPersonByEmail:[self _stringForField:@"FromEmail" FromDictionary:json_message]]];
+        [message setTo:[self FindPersonByEmail:[self _stringForField:@"ToEmail" FromDictionary:json_message]]];
+        [message setText:[self _stringForField:@"Text" FromDictionary:json_message]];
+        [message setSentOn:[self _dateForField:@"SentOn" FromDictionary:json_message withFormat:LongDate]];
+        [message setReadOn:[self _dateForField:@"ReadOn" FromDictionary:json_message withFormat:LongDate]];
+        
+        NSLog(@"From email: %@", message.from.email);
+        NSLog(@"Read on: %@", message.readOn);
+        NSLog(@"Sent on: %@", message.sentOn);
+        NSLog(@"ToEmail: %@", message.to.email);
+        NSLog(@"Text: %@", message.text);
+        NSLog(@"Id: %@", message.id);
     }
 }
 
@@ -566,19 +534,7 @@
     NSString *url = [NSString stringWithFormat:@"%@/api/messages/%@/mark-as-read", _urlPrefix, [message id]];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[person email], @"EMAIL", [person password], @"PASSWORD", nil];
     NSLog(@"URL: %@", url);
-    //NSString *escapedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    
-    //NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:escapedUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    //[dataRequest setHTTPMethod:@"PUT"];
-    //[dataRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    
-    //[dataRequest addValue:[person email] forHTTPHeaderField: @"EMAIL"];
-    //[dataRequest addValue:[person password] forHTTPHeaderField: @"PASSWORD"];
-    
-    //NSData* data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
-    
-    //[self isRequestSuccessfulForData: data];
+
     NSData *data = [self sendGetRequestWithURL:url httpParams:params];
     
     NSLog(@"Mark message as read request sent");
@@ -597,8 +553,7 @@
 
 - (BOOL)isRequestSuccessfulForData:(NSData *)data
 {
-    NSError *theError = nil;
-    NSDictionary *theObject = [NSDictionary dictionaryWithDictionary:[[CJSONDeserializer deserializer] deserialize:data error:&theError]];
+    NSDictionary * theObject = [SnaJsonWrapper deserializeJsonData:data];
     
     NSString * response = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"Server response: %@", response);
@@ -617,27 +572,12 @@
     NSString *url = [NSString stringWithFormat:@"%@/api/profile", _urlPrefix];
     
     NSDictionary *personDict = [self dictonarizePerson:person];
-    CJSONSerializer * serializer = [[[CJSONSerializer alloc] init] autorelease];
-    NSString *personJson = [[[NSString alloc] initWithData:[serializer serializeDictionary:personDict error:nil] encoding:NSUTF8StringEncoding] autorelease];
+    
+    NSString *personJson = [SnaJsonWrapper stringFromJsonDictionary:personDict];
     
     NSDictionary *bodyParams = [NSDictionary dictionaryWithObjectsAndKeys:personJson, @"profileJson", nil];
     
     NSData *data = [self sendPostRequestWithURL:url httpParams:nil httpBodyParams:bodyParams];
-    
-//    NSLog(@"Logging person: %@", personJson);
-//    
-//    NSString * postParams = [[NSString stringWithFormat:@"profileJson=%@", personJson] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-//    NSData *postData = [NSData dataWithBytes: [postParams UTF8String] length: [postParams length]];
-//    
-//    
-//    NSString *escapedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-//    
-//    
-//    NSMutableURLRequest *dataRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:escapedUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-//    [dataRequest setHTTPMethod:@"POST"];
-//    [dataRequest setHTTPBody:postData];
-//    
-//    NSData *data = [NSURLConnection sendSynchronousRequest:dataRequest returningResponse:nil error:nil];
     
     if([self isRequestSuccessfulForData: data])
     {
@@ -652,10 +592,9 @@
 - (BOOL)updateProfileForPerson:(SnaPerson *) person
 {
     NSDictionary *personDict = [self dictonarizePerson:person];
-    CJSONSerializer * serializer = [[[CJSONSerializer alloc] init] autorelease];
     
     NSString *url = [NSString stringWithFormat:@"%@/api/profile", _urlPrefix];
-    NSString *personJson = [[[NSString alloc] initWithData:[serializer serializeDictionary:personDict error:nil] encoding:NSUTF8StringEncoding] autorelease];
+    NSString *personJson = [SnaJsonWrapper stringFromJsonDictionary:personDict];
     NSDictionary *postParams = [NSDictionary dictionaryWithObjectsAndKeys:personJson, @"profileJson", nil];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[person email], @"EMAIL", [person password], @"PASSWORD", nil];
     
@@ -729,7 +668,6 @@
         {
             [genders addObject:[g name]];
         }
-        //[genders addObject:@"Female"];
         [personDict setValue:genders forKey:@"LookingForGenders"];
     }
     if ([person phone] != nil)                      [personDict setValue:[person phone] forKey:@"Phone"];
