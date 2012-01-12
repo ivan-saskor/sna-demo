@@ -228,6 +228,8 @@
     
     for (int i=0; i < [persons count]; i++)
     {                           
+        NSLog(@"Person number: %d", i);
+        
         NSDictionary *json_person;
         json_person = [persons objectAtIndex:i];
         

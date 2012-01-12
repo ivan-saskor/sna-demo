@@ -5,7 +5,7 @@
 // Read-only Abstract
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-@interface SnaTargetingRange : NSObject<NSCopying, NSMutableCopying, FxIDumpableObject>
+@interface SnaTargetingRange : NSObject<NSCopying, FxIDumpableObject>
 
 @property(nonatomic, readonly, assign) NSInteger radiusInMeters;
 @property(nonatomic, readonly, copy  ) NSString  *radiusInMetersAsString;

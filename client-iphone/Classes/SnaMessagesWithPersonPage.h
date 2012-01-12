@@ -16,4 +16,7 @@
     
     @private SnaMessagesWithPersonPageModel *_model;
 }
+
+- (id) initWithPerson:(SnaPerson *)person;
+
 @end

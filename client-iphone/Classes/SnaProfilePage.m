@@ -93,7 +93,7 @@
     }
     FxUiSection *showDescriptionButtonSection = [super addSection];
     {
-        [showDescriptionButtonSection addButtonCellWithCaption:@"Show Description" targetObject:self action:@selector(showDescription:)];
+        [showDescriptionButtonSection addButtonCellWithCaption:@"Show Full Description" targetObject:self action:@selector(showDescription:)];
     }
     FxUiSection *otherDataSection = [super addSection];
     {

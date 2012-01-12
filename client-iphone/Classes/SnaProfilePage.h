@@ -16,4 +16,5 @@
 
     @private SnaProfilePageModel *_model;
 }
+
 @end

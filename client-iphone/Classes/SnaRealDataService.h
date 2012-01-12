@@ -39,7 +39,7 @@
     @private SnaHttpDataRepository  *_dataRepository;
     
     @private NSOperationQueue       *_queue;
-    @private NSTimer *_timer;
+    @private NSTimer                *_timer;
 	#ifdef DEBUG
 		
 	@private SnaPerson           *_personA;

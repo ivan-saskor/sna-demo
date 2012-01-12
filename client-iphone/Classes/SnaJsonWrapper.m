@@ -7,32 +7,32 @@
 //
 
 #import "SnaJsonWrapper.h"
-//#import "CJSONSerializer.h"
-//#import "CJSONDeserializer.h"
+#import "CJSONSerializer.h"
+#import "CJSONDeserializer.h"
 
-#import "JSONKit.h"
+//#import "JSONKit.h"
 
 @implementation SnaJsonWrapper
 + (NSString *) stringFromJsonDictionary:(NSDictionary *) dictionary
 {
-//    CJSONSerializer * serializer = [[[CJSONSerializer alloc] init] autorelease];
-//    NSString *stringJson = [[[NSString alloc] initWithData:[serializer serializeDictionary:dictionary error:nil] encoding:NSUTF8StringEncoding] autorelease];
-//    
-//    return stringJson;
+    CJSONSerializer * serializer = [[[CJSONSerializer alloc] init] autorelease];
+    NSString *stringJson = [[[NSString alloc] initWithData:[serializer serializeDictionary:dictionary error:nil] encoding:NSUTF8StringEncoding] autorelease];
     
-    return [dictionary JSONString];
+    return stringJson;
+    
+//    return [dictionary JSONString];
     
 }
 + (NSDictionary *) deserializeJsonData:(NSData *) data
 {
-//    NSError *theError = nil;
-//    CJSONDeserializer *theDeserializer = [CJSONDeserializer deserializer];
-//    theDeserializer.nullObject = NULL;
+    NSError *theError = nil;
+    CJSONDeserializer *theDeserializer = [CJSONDeserializer deserializer];
+    theDeserializer.nullObject = NULL;
 
-//    return [NSDictionary dictionaryWithDictionary:[theDeserializer deserialize:data error:&theError]];
+    return [NSDictionary dictionaryWithDictionary:[theDeserializer deserialize:data error:&theError]];
     
-    JSONDecoder *decoder = [JSONDecoder decoder];
-    
-    return (NSDictionary *)[decoder objectWithData:data];
+//    JSONDecoder *decoder = [JSONDecoder decoder];
+//    
+//    return (NSDictionary *)[decoder objectWithData:data];
 }
 @end

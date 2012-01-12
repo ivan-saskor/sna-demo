@@ -532,17 +532,24 @@
     
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
     
+    BOOL isRefreshNeeded = NO;
+    
     for (SnaMessage *message in person.messages)
     {
         if (message.to == self.currentUser && !message.isRead)
         {
             NSLog(@"Message: %@ with ID %@", message.text, message.id);
             [_connector markMessage:message asReadForPerson:self.currentUser];
+            
+            isRefreshNeeded = YES;
         }
     }
     
-    [self _refreshData];
-    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
+    if (isRefreshNeeded)
+    {
+        [self _refreshData];
+        [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
+    }
 }
 
 - (void) markAsReadAllMessagesFromPerson:(SnaPerson *)person

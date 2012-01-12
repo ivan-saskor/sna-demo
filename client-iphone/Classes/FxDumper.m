@@ -20,10 +20,12 @@
 + (NSString *)_dumpDumpableObject:(NSObject<FxIDumpableObject> *)dumpableObject;
 + (NSString *)_dumpDumpableEnum  :(NSObject<FxIDumpableEnum>   *)dumpableEnum;
 + (NSString *)_dumpArray         :(NSArray                     *)array;
++ (NSString *)_dumpSet           :(NSSet                       *)set;
 + (NSString *)_dumpString        :(NSString                    *)string;
 + (NSString *)_dumpBoolean       :(BOOL                         )boolean;
 + (NSString *)_dumpInteger       :(NSInteger                    )integer;
 + (NSString *)_dumpDecimal       :(NSDecimal                    )decimal;
++ (NSString *)_dumpDate          :(NSDate                      *)date;
 
 + (NSString *)_dumpClassNameAndMemoryAddressOfObject:(NSObject*)object;
 
@@ -203,7 +205,7 @@
         withDelimiter:FxDumper._ENUM_CLASS_IDENTIFIER_DELIMITER
     ];
 }
-+ (NSString *)_dumpArray         :(NSArray                    *)array
++ (NSString *)_dumpArray         :(NSArray                     *)array
 {
     return [FxStringTools
         joinValues:[NSArray arrayWithObjects:
@@ -216,7 +218,7 @@
         withDelimiter:FxStringTools.NEW_LINE
     ];
 }
-+ (NSString *)_dumpSet         :(NSSet                    *)set
++ (NSString *)_dumpSet           :(NSSet                       *)set
 {
     return [FxStringTools
             joinValues:[NSArray arrayWithObjects:
@@ -229,23 +231,23 @@
             withDelimiter:FxStringTools.NEW_LINE
             ];
 }
-+ (NSString *)_dumpString        :(NSString                   *)string
++ (NSString *)_dumpString        :(NSString                    *)string
 {
     return [FxStringTools quoteValue:string];
 }
-+ (NSString *)_dumpBoolean       :(BOOL                        )boolean
++ (NSString *)_dumpBoolean       :(BOOL                         )boolean
 {
     return boolean ? @"YES" : @"NO";
 }
-+ (NSString *)_dumpInteger       :(NSInteger                   )integer
++ (NSString *)_dumpInteger       :(NSInteger                    )integer
 {
     return [NSString stringWithFormat:@"%d", integer];
 }
-+ (NSString *)_dumpDecimal       :(NSDecimal                   )decimal
++ (NSString *)_dumpDecimal       :(NSDecimal                    )decimal
 {
     return [[NSDecimalNumber decimalNumberWithDecimal:decimal] description];
 }
-+ (NSString *)_dumpDate       :(NSDate                  *)date
++ (NSString *)_dumpDate          :(NSDate                      *)date
 {
     return [date description];
 }
