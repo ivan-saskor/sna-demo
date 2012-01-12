@@ -1,7 +1,7 @@
 
 #import "_Services.h"
 
-@interface SnaRealDataService()
+@interface SnaRealDataService() 
 
 @property (nonatomic, assign, readwrite) NSInteger    timestamp;
 
@@ -171,6 +171,10 @@
     _connector = [[[ServerConnector alloc] initWithUrlPrefix:@"http://baltazar.fesb.hr/~lana/bvisible"] retain];
     
     _dataRepository = [[[SnaHttpDataRepository alloc]initWithConnector:_connector] retain];
+    
+    _queue = [[NSOperationQueue alloc] init];
+    [_queue setMaxConcurrentOperationCount:1];
+    
 	#if DEBUG
     {
         _personA = nil;
@@ -187,7 +191,6 @@
     
     return self;
 }
-
 - (void) dealloc
 {
     [_persons              release];
@@ -218,6 +221,8 @@
     [_connector release];
     [_dataRepository release];
     
+    [_queue release];
+    [_timer invalidate];
 	#if DEBUG
     {
         [_personA          release];
@@ -318,13 +323,20 @@
 {
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
 	
+    [_timer invalidate];
+    
     self.currentUser = nil;
     
     [self _allignData];
 }
 
-- (void) requestFriendshipToPerson:(SnaPerson *)person withMessage:(NSString *)message
+- (void) requestFriendshipToQueue:(NSDictionary *) methodData
 {
+    [FxAssert isNotNullArgument:methodData withName:@"methodData"];
+    
+    SnaPerson *person  = [methodData objectForKey:@"person"];
+    NSString  *message = [methodData objectForKey:@"message"];
+    
     [FxAssert isNotNullArgument        :person  withName:@"person"];
     [FxAssert isValidArgument          :person  withName:@"person" validation:[_persons containsObject:person]];
     [FxAssert isNotNullNorEmptyArgument:message withName:@"message"];
@@ -337,10 +349,22 @@
     [_connector sendFriendshipRequestFrom:[self currentUser] to:person withMessage:message];
     
     [self _refreshData];
-    [self _allignData];
+    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
 }
-- (void) acceptFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
+- (void) requestFriendshipToPerson:(SnaPerson *)person withMessage:(NSString *)message
 {
+    NSDictionary *dataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:person, @"person", message, @"message" , nil];
+    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(requestFriendshipToQueue:) object:dataDictionary] autorelease];
+    [_queue addOperation:operation];
+}
+
+- (void) acceptFriendshipToQueue:(NSDictionary *) methodData
+{
+    [FxAssert isNotNullArgument:methodData withName:@"methodData"];
+    
+    SnaPerson *person  = [methodData objectForKey:@"person"];
+    NSString  *message = [methodData objectForKey:@"message"];
+    
     [FxAssert isNotNullArgument        :person  withName:@"person"];
     [FxAssert isValidArgument          :person  withName:@"person" validation:[_persons containsObject:person]];
     [FxAssert isNotNullNorEmptyArgument:message withName:@"message"];
@@ -352,25 +376,48 @@
 	[_connector sendFriendshipRequestFrom:[self currentUser] to:person withMessage:message];
     
     [self _refreshData];
-    [self _allignData];
+    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
 }
-- (void) rejectFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
+- (void) acceptFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
 {
+    NSDictionary *dataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:person, @"person", message, @"message" , nil];
+    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(acceptFriendshipToQueue:) object:dataDictionary] autorelease];
+    [_queue addOperation:operation];
+}
+
+- (void) rejectFriendshipToQueue:(NSDictionary *) methodData
+{
+    [FxAssert isNotNullArgument:methodData  withName:@"methodData"];
+    
+    SnaPerson *person  = [methodData objectForKey:@"person"];
+    NSString  *message = [methodData objectForKey:@"message"];
+    
     [FxAssert isNotNullArgument        :person  withName:@"person"];
     [FxAssert isValidArgument          :person  withName:@"person" validation:[_persons containsObject:person]];
     [FxAssert isNotNullNorEmptyArgument:message withName:@"message"];
     
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
-	
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus WAITING_FOR_ME]) reason:@"Invalid person status"];
-
+    
     [_connector rejectFriendshipFor:[self currentUser] to:person withMessage:message];
     
     [self _refreshData];
-    [self _allignData];
+    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
 }
-- (void) cancelFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
+- (void) rejectFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
 {
+    NSDictionary *dataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:person, @"person", message, @"message" , nil];
+    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(rejectFriendshipToQueue:) object:dataDictionary] autorelease];
+    [_queue addOperation:operation];
+}
+
+- (void) cancelFriendshipToQueue:(NSDictionary *) methodData
+{
+    [FxAssert isNotNullArgument:methodData  withName:@"methodData"];
+    
+    SnaPerson *person =  [methodData objectForKey:@"person"];
+    NSString  *message = [methodData objectForKey:@"message"];
+    
     [FxAssert isNotNullArgument        :person  withName:@"person"];
     [FxAssert isValidArgument          :person  withName:@"person" validation:[_persons containsObject:person]];
     [FxAssert isNotNullNorEmptyArgument:message withName:@"message"];
@@ -378,11 +425,17 @@
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
 	
     [FxAssert isValidState:(person.friendshipStatus == [SnaFriendshipStatus FRIEND]) reason:@"Invalid person status"];
-
+    
     [_connector rejectFriendshipFor:[self currentUser] to:person withMessage:message];
     
     [self _refreshData];
-    [self _allignData];
+    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
+}
+- (void) cancelFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
+{
+    NSDictionary *dataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:person, @"person", message, @"message" , nil];
+    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(cancelFriendshipToQueue:) object:dataDictionary] autorelease];
+    [_queue addOperation:operation];
 }
 
 - (void) callPerson               :(SnaPerson *)person
@@ -403,7 +456,7 @@
     //
 }
 
-- (void) changeMood:(NSString *)mood
+- (void)changeMoodInQueue:(NSString *)mood
 {
     [FxAssert isNotNullArgument:mood withName:@"mood"];
     
@@ -412,10 +465,16 @@
     ((SnaMutablePerson *)self.currentUser).mood = mood;
     
     [_connector updateProfileForPerson:[self currentUser]];
-    
     [self _refreshData];
-    [self _allignData];
+    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
 }
+
+- (void) changeMood:(NSString *)mood
+{
+    NSInvocationOperation * operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(changeMoodInQueue:) object:mood] autorelease];
+    [_queue addOperation:operation];
+}
+
 - (void) changeLocation:(SnaLocation *)location
 {
     [FxAssert isNotNullArgument:location withName:@"location"];
@@ -440,28 +499,39 @@
     [self _allignData];
 }
 
-- (void) sendMessageWithText:(NSString *)text toPerson:(SnaPerson *)toPerson
-{
+- (void) sendMessageInQueue:(NSDictionary *)methodData{
+    [FxAssert isNotNullArgument        :methodData  withName:@"methodData"];
+    
+    NSString *text =      [methodData objectForKey:@"text"];
+    SnaPerson *toPerson = [methodData objectForKey:@"toPerson"];
+    
     [FxAssert isNotNullNorEmptyArgument:text   withName:@"text"];
     [FxAssert isNotNullArgument        :toPerson withName:@"toPerson"];
     [FxAssert isValidArgument          :toPerson withName:@"toPerson" validation:[_persons containsObject:toPerson]];
-
+    
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
-
+    
     [_connector sendMessageFrom:[self currentUser] to:toPerson withText:text];
     
     [self _refreshData];
-    [self _allignData];
+    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
+
+}
+- (void) sendMessageWithText:(NSString *)text toPerson:(SnaPerson *)toPerson
+{
+    NSDictionary *dataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:text, @"text", toPerson, @"toPerson", nil];
+    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(sendMessageInQueue:) object:dataDictionary] autorelease];
+    [_queue addOperation:operation];
 }
 
-- (void) markAsReadAllMessagesFromPerson:(SnaPerson *)person
+- (void) markAsReadAllMessagesFromPersonInQueue:(SnaPerson *)person
 {
     [FxAssert isNotNullArgument:person withName:@"person"];
     [FxAssert isValidArgument  :person withName:@"person" validation:[_persons containsObject:person]];
     [FxAssert isValidArgument  :person withName:@"person" validation:person != self.currentUser];
-
+    
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
-
+    
     for (SnaMessage *message in person.messages)
     {
         if (message.to == self.currentUser && !message.isRead)
@@ -472,7 +542,13 @@
     }
     
     [self _refreshData];
-    [self _allignData];
+    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
+}
+
+- (void) markAsReadAllMessagesFromPerson:(SnaPerson *)person
+{
+    NSInvocationOperation * operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(markAsReadAllMessagesFromPersonInQueue:) object:person] autorelease];
+    [_queue addOperation:operation];
 }
 
 - (void) _fillTestData
@@ -841,7 +917,6 @@
             return YES;
         }
     }
-    
     return NO;
 }
 
@@ -855,6 +930,20 @@
     self.currentUser = person;
     
     [self _allignData];
+    
+   _timer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(reloadUserDataInQueue) userInfo:nil repeats:YES];
+
+}
+- (void)reloadUserDataInQueue{
+
+    NSInvocationOperation *operation = [[[NSInvocationOperation alloc] initWithTarget:self selector:@selector(reloadUserData) object:nil] autorelease];
+    
+    [_queue addOperation:operation];
+}
+
+- (void)reloadUserData{
+    [self getDataWithEmail:self.currentUser.email password:self.currentUser.password];
+    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
 }
 
 - (void) _allignData

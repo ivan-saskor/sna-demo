@@ -58,16 +58,16 @@
 
 - (void) _startObserving
 {
-    [_contentBoundObject addObserver:self forKeyPath:_contentPropertyKey options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-    [_captionBoundObject addObserver:self forKeyPath:_captionPropertyKey options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+    //[_contentBoundObject addObserver:self forKeyPath:_contentPropertyKey options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+    //[_captionBoundObject addObserver:self forKeyPath:_captionPropertyKey options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
     
     self.textLabel.text       = [_captionBoundObject valueForKey:_captionPropertyKey];
     self.detailTextLabel.text = [_contentBoundObject valueForKey:_contentPropertyKey];
 }
 - (void) _stopObserving
 {
-    [_contentBoundObject removeObserver:self forKeyPath:_contentPropertyKey];
-    [_captionBoundObject removeObserver:self forKeyPath:_captionPropertyKey];
+    //[_contentBoundObject removeObserver:self forKeyPath:_contentPropertyKey];
+    //[_captionBoundObject removeObserver:self forKeyPath:_captionPropertyKey];
 }
 
 @end
