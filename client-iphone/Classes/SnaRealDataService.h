@@ -6,7 +6,9 @@
 #import "ServerConnector.h"
 #import "SnaHttpDataRepository.h"
 
-@interface SnaRealDataService : NSObject <SnaIDataService>
+#import <CoreLocation/CoreLocation.h>
+
+@interface SnaRealDataService : NSObject <SnaIDataService, CLLocationManagerDelegate>
 {
 	@private NSMutableArray      *_persons;
 	@private NSMutableArray      *_messages;
@@ -40,6 +42,8 @@
     
     @private NSOperationQueue       *_queue;
     @private NSTimer                *_timer;
+    @private CLLocationManager      *_locationManager;
+    
 	#ifdef DEBUG
 		
 	@private SnaPerson           *_personA;
@@ -48,4 +52,5 @@
 	#endif
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
 @end

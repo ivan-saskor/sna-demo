@@ -175,6 +175,11 @@
     _queue = [[NSOperationQueue alloc] init];
     [_queue setMaxConcurrentOperationCount:1];
     
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.distanceFilter = 20; // triger delegate every 20 meters
+    _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters; // 10 m
+    
 	#if DEBUG
     {
         _personA = nil;
@@ -223,6 +228,7 @@
     
     [_queue release];
     [_timer invalidate];
+    [_locationManager release];
 	#if DEBUG
     {
         [_personA          release];
@@ -324,6 +330,8 @@
     [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
 	
     [_timer invalidate];
+    
+    [_locationManager stopUpdatingLocation];
     
     self.currentUser = nil;
  
@@ -939,6 +947,34 @@
     return NO;
 }
 
+- (void)updateLocationInQueue:(SnaLocation *)location
+{
+    [FxAssert isNotNullArgument:location withName:@"location"];
+    
+    [FxAssert isValidState:(self.currentUser != nil) reason:@"User is not logged in"];
+	
+    //((SnaMutablePerson *)self.currentUser).lastKnownLocation = location;
+    
+    [_connector updateProfileForPerson:[self currentUser] withLocation:location];
+    
+    [self _refreshData];
+    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
+}
+
+- (void) updateLocation:(SnaLocation *)location
+{
+    NSInvocationOperation * operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(updateLocationInQueue:) object:location] autorelease];
+    [_queue addOperation:operation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    SnaLocation *location = [[[SnaImmutableLocation alloc] initWithName:@"Custom" latitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude] autorelease];
+
+    [self updateLocation:location];
+    NSLog(@"CURRENT POSITION: LAT: %.4f, LNG: %.4f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+}
+
 - (void) _logInPerson:(SnaPerson *)person
 {
     [FxAssert isNotNullArgument:person withName:@"person"];
@@ -951,6 +987,8 @@
     [self _allignData];
     
    _timer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(reloadUserDataInQueue) userInfo:nil repeats:YES];
+    
+    [_locationManager startUpdatingLocation];
 
 }
 - (void)reloadUserDataInQueue{
