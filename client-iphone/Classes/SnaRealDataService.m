@@ -326,6 +326,8 @@
     [_timer invalidate];
     
     self.currentUser = nil;
+ 
+    [_connector resetData];
     
     [self _allignData];
 }
@@ -354,8 +356,9 @@
 - (void) requestFriendshipToPerson:(SnaPerson *)person withMessage:(NSString *)message
 {
     NSDictionary *dataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:person, @"person", message, @"message" , nil];
-    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(requestFriendshipToQueue:) object:dataDictionary] autorelease];
-    [_queue addOperation:operation];
+    [self requestFriendshipToQueue:dataDictionary];
+//    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(requestFriendshipToQueue:) object:dataDictionary] autorelease];
+//    [_queue addOperation:operation];
 }
 
 - (void) acceptFriendshipToQueue:(NSDictionary *) methodData
@@ -381,8 +384,9 @@
 - (void) acceptFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
 {
     NSDictionary *dataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:person, @"person", message, @"message" , nil];
-    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(acceptFriendshipToQueue:) object:dataDictionary] autorelease];
-    [_queue addOperation:operation];
+    [self acceptFriendshipToQueue:dataDictionary];
+//    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(acceptFriendshipToQueue:) object:dataDictionary] autorelease];
+//    [_queue addOperation:operation];
 }
 
 - (void) rejectFriendshipToQueue:(NSDictionary *) methodData
@@ -407,8 +411,9 @@
 - (void) rejectFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
 {
     NSDictionary *dataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:person, @"person", message, @"message" , nil];
-    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(rejectFriendshipToQueue:) object:dataDictionary] autorelease];
-    [_queue addOperation:operation];
+    [self rejectFriendshipToQueue:dataDictionary];
+//    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(rejectFriendshipToQueue:) object:dataDictionary] autorelease];
+//    [_queue addOperation:operation];
 }
 
 - (void) cancelFriendshipToQueue:(NSDictionary *) methodData
@@ -434,8 +439,9 @@
 - (void) cancelFriendshipToPerson :(SnaPerson *)person withMessage:(NSString *)message
 {
     NSDictionary *dataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:person, @"person", message, @"message" , nil];
-    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(cancelFriendshipToQueue:) object:dataDictionary] autorelease];
-    [_queue addOperation:operation];
+    [self cancelFriendshipToQueue:dataDictionary];
+//    NSInvocationOperation *operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(cancelFriendshipToQueue:) object:dataDictionary] autorelease];
+//    [_queue addOperation:operation];
 }
 
 - (void) callPerson               :(SnaPerson *)person

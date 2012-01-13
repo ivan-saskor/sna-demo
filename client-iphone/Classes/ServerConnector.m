@@ -122,6 +122,12 @@
     return NO;
 }
 
+- (void) resetData
+{
+    [_messages removeAllObjects];
+    [_persons removeAllObjects];
+}
+
 - (NSMutableArray *)getPersons
 {
 	return _persons;

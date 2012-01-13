@@ -16,6 +16,7 @@
 
 - (BOOL)sendDataRequestForEmail:(NSString *)email withPassword:(NSString *)password;
 
+- (void) resetData;
 - (NSMutableArray *)getPersons;
 - (NSMutableArray *)getMessages;
 
