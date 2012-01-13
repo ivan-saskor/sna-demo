@@ -685,12 +685,12 @@
     }
     if (location != nil)
     {
-        NSString *longitude = [NSString stringWithFormat:@"%@", location.longitude];
-        NSString *latitude = [NSString stringWithFormat:@"%@", location.latitude];
+        double longitude = location.longitude;
+        double latitude =  location.latitude;
         
-        NSLog(@"NEW LOCATION: %@ %@", longitude, latitude);
+        NSLog(@"NEW LOCATION: %.4f %.4f", longitude, latitude);
         
-        NSDictionary *location = [NSDictionary dictionaryWithObjectsAndKeys:longitude, @"Longitude", latitude, @"Latitude", nil];
+        NSDictionary *location = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%.4f", longitude], @"Longitude", [NSString stringWithFormat:@"%.4f", latitude], @"Latitude", nil];
         [personDict setValue:location forKey:@"LastKnownLocation"];
     }
     else

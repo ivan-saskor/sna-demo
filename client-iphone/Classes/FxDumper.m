@@ -24,7 +24,7 @@
 + (NSString *)_dumpString        :(NSString                    *)string;
 + (NSString *)_dumpBoolean       :(BOOL                         )boolean;
 + (NSString *)_dumpInteger       :(NSInteger                    )integer;
-+ (NSString *)_dumpDecimal       :(NSDecimalNumber             *)decimal;
++ (NSString *)_dumpDecimal       :(double                       )decimal;
 + (NSString *)_dumpDate          :(NSDate                      *)date;
 
 + (NSString *)_dumpClassNameAndMemoryAddressOfObject:(NSObject*)object;
@@ -169,7 +169,7 @@
         withDelimiter:FxDumper._FIELD_NAME_VALUE_DELIMITER
     ];
 }
-+ (NSString *)dumpFieldWithName:(NSString *)name decimal:(NSDecimalNumber *)value
++ (NSString *)dumpFieldWithName:(NSString *)name decimal:(double)value
 {
     return [FxStringTools
         joinValues:[NSArray arrayWithObjects:
@@ -243,9 +243,9 @@
 {
     return [NSString stringWithFormat:@"%d", integer];
 }
-+ (NSString *)_dumpDecimal       :(NSDecimalNumber             *)decimal
++ (NSString *)_dumpDecimal       :(double                       )decimal
 {
-    return [decimal description];
+    return [NSString stringWithFormat:@"%f", decimal];
 }
 + (NSString *)_dumpDate          :(NSDate                      *)date
 {

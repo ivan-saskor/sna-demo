@@ -140,14 +140,14 @@
     
     _friendsWithMessages  = [[NSMutableArray alloc] init];
 	
-    _gpsLocation = [[SnaMutableLocation alloc] initWithName:@"GPS Location" latitude:[NSDecimalNumber decimalNumberWithString:@"0"] longitude:[NSDecimalNumber decimalNumberWithString:@"0"]];
+    _gpsLocation = [[SnaMutableLocation alloc] initWithName:@"GPS Location" latitude:0 longitude:0];
     
     _availableLocations   = [[NSArray alloc] initWithObjects:
         _gpsLocation,
-		[[SnaImmutableLocation alloc] initWithName:@"Bucharest" latitude:[NSDecimalNumber decimalNumberWithString:@"1"] longitude:[NSDecimalNumber decimalNumberWithString:@"1"]],
-		[[SnaImmutableLocation alloc] initWithName:@"Prague"    latitude:[NSDecimalNumber decimalNumberWithString:@"2"] longitude:[NSDecimalNumber decimalNumberWithString:@"2"]],
-		[[SnaImmutableLocation alloc] initWithName:@"London"    latitude:[NSDecimalNumber decimalNumberWithString:@"3"] longitude:[NSDecimalNumber decimalNumberWithString:@"3"]],
-        [[SnaImmutableLocation alloc] initWithName:@"Zagreb"    latitude:[NSDecimalNumber decimalNumberWithString:@"4"] longitude:[NSDecimalNumber decimalNumberWithString:@"4"]],
+		[[SnaImmutableLocation alloc] initWithName:@"Bucharest" latitude:1 longitude:1],
+		[[SnaImmutableLocation alloc] initWithName:@"Prague"    latitude:2 longitude:2],
+		[[SnaImmutableLocation alloc] initWithName:@"London"    latitude:3 longitude:3],
+        [[SnaImmutableLocation alloc] initWithName:@"Zagreb"    latitude:4 longitude:4],
 		nil
 	];
     
