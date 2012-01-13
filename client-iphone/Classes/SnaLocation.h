@@ -11,8 +11,8 @@
 
 @property(nonatomic, readonly, copy  ) NSString  *name;
 
-@property(nonatomic, readonly, assign) NSDecimal latitude;
-@property(nonatomic, readonly, assign) NSDecimal longitude;
+@property(nonatomic, readonly, assign) NSDecimalNumber * latitude;
+@property(nonatomic, readonly, assign) NSDecimalNumber * longitude;
 
 @end
 
@@ -24,13 +24,13 @@
 {
     @private NSString  *_name;
         
-    @private NSDecimal _latitude;
-    @private NSDecimal _longitude;
+    @private NSDecimalNumber * _latitude;
+    @private NSDecimalNumber * _longitude;
 }
 
 - (id) initWithName:(NSString  *)name
-           latitude:(NSDecimal  )latitude
-          longitude:(NSDecimal  )longitude;
+           latitude:(NSDecimalNumber *  )latitude
+          longitude:(NSDecimalNumber *  )longitude;
 
 @end
 
@@ -42,17 +42,17 @@
 {
     @private NSString  *_name;
         
-    @private NSDecimal  _latitude;
-    @private NSDecimal  _longitude;
+    @private NSDecimalNumber *  _latitude;
+    @private NSDecimalNumber *  _longitude;
 }
 
 @property(nonatomic, readwrite, copy  ) NSString  *name;
 
-@property(nonatomic, readwrite, assign) NSDecimal  latitude;
-@property(nonatomic, readwrite, assign) NSDecimal  longitude;
+@property(nonatomic, readwrite, assign) NSDecimalNumber *  latitude;
+@property(nonatomic, readwrite, assign) NSDecimalNumber *  longitude;
 
 - (id) initWithName:(NSString  *)name
-           latitude:(NSDecimal  )latitude
-          longitude:(NSDecimal  )longitude;
+           latitude:(NSDecimalNumber *  )latitude
+          longitude:(NSDecimalNumber *  )longitude;
 
 @end

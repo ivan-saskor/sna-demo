@@ -114,9 +114,9 @@
 	
     _availableLocations   = [[NSArray alloc] initWithObjects:
 							 
-							 [[SnaImmutableLocation alloc] initWithName:@"Split" latitude:[FxDecimalTools decimalFromMantisa:1 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:1 exponent:0 isNegative:FALSE]],
-							 [[SnaImmutableLocation alloc] initWithName:@"Bol"   latitude:[FxDecimalTools decimalFromMantisa:2 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:2 exponent:0 isNegative:FALSE]],
-							 [[SnaImmutableLocation alloc] initWithName:@"Čišla" latitude:[FxDecimalTools decimalFromMantisa:3 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:3 exponent:0 isNegative:FALSE]],
+							 [[SnaImmutableLocation alloc] initWithName:@"Split" latitude:[NSDecimalNumber decimalNumberWithString:@"1"] longitude:[NSDecimalNumber decimalNumberWithString:@"1"]],
+							 [[SnaImmutableLocation alloc] initWithName:@"Bol"   latitude:[NSDecimalNumber decimalNumberWithString:@"2"] longitude:[NSDecimalNumber decimalNumberWithString:@"2"]],
+							 [[SnaImmutableLocation alloc] initWithName:@"Čišla" latitude:[NSDecimalNumber decimalNumberWithString:@"3"] longitude:[NSDecimalNumber decimalNumberWithString:@"3"]],
 							 nil
 							 ];
     

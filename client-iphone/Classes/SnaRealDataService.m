@@ -140,14 +140,14 @@
     
     _friendsWithMessages  = [[NSMutableArray alloc] init];
 	
-    _gpsLocation = [[SnaMutableLocation alloc] initWithName:@"GPS Location" latitude:[FxDecimalTools decimalFromMantisa:0 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:0 exponent:0 isNegative:FALSE]];
+    _gpsLocation = [[SnaMutableLocation alloc] initWithName:@"GPS Location" latitude:[NSDecimalNumber decimalNumberWithString:@"0"] longitude:[NSDecimalNumber decimalNumberWithString:@"0"]];
     
     _availableLocations   = [[NSArray alloc] initWithObjects:
         _gpsLocation,
-		[[SnaImmutableLocation alloc] initWithName:@"Bucharest" latitude:[FxDecimalTools decimalFromMantisa:1 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:1 exponent:0 isNegative:FALSE]],
-		[[SnaImmutableLocation alloc] initWithName:@"Prague"   latitude:[FxDecimalTools decimalFromMantisa:2 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:2 exponent:0 isNegative:FALSE]],
-		[[SnaImmutableLocation alloc] initWithName:@"London" latitude:[FxDecimalTools decimalFromMantisa:3 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:3 exponent:0 isNegative:FALSE]],
-        [[SnaImmutableLocation alloc] initWithName:@"Zagreb" latitude:[FxDecimalTools decimalFromMantisa:4 exponent:0 isNegative:FALSE] longitude:[FxDecimalTools decimalFromMantisa:4 exponent:0 isNegative:FALSE]],
+		[[SnaImmutableLocation alloc] initWithName:@"Bucharest" latitude:[NSDecimalNumber decimalNumberWithString:@"1"] longitude:[NSDecimalNumber decimalNumberWithString:@"1"]],
+		[[SnaImmutableLocation alloc] initWithName:@"Prague"    latitude:[NSDecimalNumber decimalNumberWithString:@"2"] longitude:[NSDecimalNumber decimalNumberWithString:@"2"]],
+		[[SnaImmutableLocation alloc] initWithName:@"London"    latitude:[NSDecimalNumber decimalNumberWithString:@"3"] longitude:[NSDecimalNumber decimalNumberWithString:@"3"]],
+        [[SnaImmutableLocation alloc] initWithName:@"Zagreb"    latitude:[NSDecimalNumber decimalNumberWithString:@"4"] longitude:[NSDecimalNumber decimalNumberWithString:@"4"]],
 		nil
 	];
     
@@ -481,7 +481,8 @@
     [_queue addOperation:operation];
 }
 
-- (void) changeLocation:(SnaLocation *)location
+
+- (void) changeLocationInQueue:(SnaLocation *)location
 {
     [FxAssert isNotNullArgument:location withName:@"location"];
     [FxAssert isValidArgument  :location withName:@"location" validation:[_availableLocations containsObject:location]];
@@ -490,10 +491,15 @@
 	
     self.currentLocation = location;
     
-    //[_connector updateProfileForPerson:[self currentUser]];
-
-    [self getDataWithEmail:[[self currentUser] email] password:[[self currentUser] password]];
-    [self _allignData];
+    [_connector updateProfileForPerson:[self currentUser] withLocation:location];
+    [self _refreshData];
+    [self performSelectorOnMainThread:@selector(_allignData) withObject:nil waitUntilDone:YES];
+}
+- (void) changeLocation:(SnaLocation *)location
+{
+    [self changeLocationInQueue:location];
+//    NSInvocationOperation * operation = [[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(changeLocationInQueue:) object:location] autorelease];
+//    [_queue addOperation:operation];
 }
 
 - (void) changeTargetingRange:(SnaTargetingRange *) targetingRange

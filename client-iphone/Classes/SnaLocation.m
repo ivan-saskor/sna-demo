@@ -18,8 +18,8 @@
 
 - (NSString  *) name      { @throw [FxException unsupportedMethodException]; }
 
-- (NSDecimal  ) latitude  { @throw [FxException unsupportedMethodException]; }
-- (NSDecimal  ) longitude { @throw [FxException unsupportedMethodException]; }
+- (NSDecimalNumber *) latitude  { @throw [FxException unsupportedMethodException]; }
+- (NSDecimalNumber *) longitude { @throw [FxException unsupportedMethodException]; }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Constructors
@@ -91,8 +91,8 @@
 
 - (NSString  *) name       { return _name     ; }
 
-- (NSDecimal  ) latitude   { return _latitude ; }
-- (NSDecimal  ) longitude  { return _longitude; }
+- (NSDecimalNumber *  ) latitude   { return _latitude ; }
+- (NSDecimalNumber *  ) longitude  { return _longitude; }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Constructors
@@ -100,8 +100,8 @@
 
 - (id) initWithName:(NSString  *)name
 
-           latitude:(NSDecimal  )latitude
-          longitude:(NSDecimal  )longitude
+           latitude:(NSDecimalNumber *  )latitude
+          longitude:(NSDecimalNumber *  )longitude
 {
     self = [super _init];
     
@@ -137,8 +137,8 @@
 
 - (NSString  *) name      { return _name     ; }
 
-- (NSDecimal  ) latitude  { return _latitude ; }
-- (NSDecimal  ) longitude { return _longitude; }
+- (NSDecimalNumber *  ) latitude  { return _latitude ; }
+- (NSDecimalNumber * ) longitude { return _longitude; }
 
 - (void) setName     :(NSString  *)value
 {
@@ -147,11 +147,11 @@
     _name = [value copy];
 }
 
-- (void) setLatitude :(NSDecimal  )value
+- (void) setLatitude :(NSDecimalNumber *  )value
 {
     _latitude = value;
 }
-- (void) setLongitude:(NSDecimal  )value
+- (void) setLongitude:(NSDecimalNumber *  )value
 {
     _longitude = value;
 }
@@ -164,12 +164,12 @@
 {
     return [self initWithName:nil
             
-                     latitude:[FxDecimalTools decimalFromMantisa:0 exponent:0 isNegative:FALSE]
-                    longitude:[FxDecimalTools decimalFromMantisa:0 exponent:0 isNegative:FALSE]];
+                     latitude:[NSDecimalNumber decimalNumberWithString:@"0"]
+                    longitude:[NSDecimalNumber decimalNumberWithString:@"0"]];
 }
 - (id) initWithName:(NSString  *)name
-           latitude:(NSDecimal  )latitude
-          longitude:(NSDecimal  )longitude
+           latitude:(NSDecimalNumber *  )latitude
+          longitude:(NSDecimalNumber *  )longitude
 {
     self = [super _init];
     

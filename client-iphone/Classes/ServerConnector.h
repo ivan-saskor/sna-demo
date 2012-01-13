@@ -32,6 +32,7 @@
 
 - (BOOL)createProfileForPerson:(SnaPerson *) person;
 - (BOOL)updateProfileForPerson:(SnaPerson *) person;
+- (BOOL)updateProfileForPerson:(SnaPerson *) person withLocation:(SnaLocation *)location;
 
 - (NSData *)sendGetRequestWithURL:(NSString *)url httpParams:(NSDictionary *)params;
 - (NSData *)sendPostRequestWithURL:(NSString *)url httpParams:(NSDictionary *)params httpBodyParams:(NSDictionary *) bodyParams;

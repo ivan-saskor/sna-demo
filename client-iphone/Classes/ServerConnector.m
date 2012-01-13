@@ -4,7 +4,7 @@
 #import "Constants.h"
 
 @interface ServerConnector()
-- (NSDictionary *)dictonarizePerson:(SnaPerson *) person;
+- (NSDictionary *)dictonarizePerson:(SnaPerson *) person withLocation:(SnaLocation *) location;
 
 - (BOOL)isRequestSuccessfulForData:(NSData *)data;
 - (NSDate *)dateFromRFC3339String:(NSString *)rfc3339DateTimeString withFormat:(NSString *) format;
@@ -579,7 +579,7 @@
 {
     NSString *url = [NSString stringWithFormat:@"%@/api/profile", _urlPrefix];
     
-    NSDictionary *personDict = [self dictonarizePerson:person];
+    NSDictionary *personDict = [self dictonarizePerson:person withLocation:nil];
     
     NSString *personJson = [SnaJsonWrapper stringFromJsonDictionary:personDict];
     
@@ -599,7 +599,12 @@
 
 - (BOOL)updateProfileForPerson:(SnaPerson *) person
 {
-    NSDictionary *personDict = [self dictonarizePerson:person];
+    return [self updateProfileForPerson:person withLocation:nil];
+}
+
+- (BOOL)updateProfileForPerson:(SnaPerson *) person withLocation:(SnaLocation *)location
+{
+    NSDictionary *personDict = [self dictonarizePerson:person withLocation:location];
     
     NSString *url = [NSString stringWithFormat:@"%@/api/profile", _urlPrefix];
     NSString *personJson = [SnaJsonWrapper stringFromJsonDictionary:personDict];
@@ -624,7 +629,7 @@
     return NO;
 }
 
-- (NSDictionary *)dictonarizePerson:(SnaPerson *) person
+- (NSDictionary *)dictonarizePerson:(SnaPerson *) person withLocation:(SnaLocation *) location
 {
     NSMutableDictionary *personDict = [[[NSMutableDictionary alloc] init] autorelease];
     
@@ -678,17 +683,32 @@
         }
         [personDict setValue:genders forKey:@"LookingForGenders"];
     }
+    if (location != nil)
+    {
+        NSString *longitude = [NSString stringWithFormat:@"%@", location.longitude];
+        NSString *latitude = [NSString stringWithFormat:@"%@", location.latitude];
+        
+        NSLog(@"NEW LOCATION: %@ %@", longitude, latitude);
+        
+        NSDictionary *location = [NSDictionary dictionaryWithObjectsAndKeys:longitude, @"Longitude", latitude, @"Latitude", nil];
+        [personDict setValue:location forKey:@"LastKnownLocation"];
+    }
+    else
+    {
+        if ([person lastKnownLocation] != nil){
+            NSMutableDictionary *location = [[NSMutableDictionary alloc] init];
+            [location setValue:[NSString stringWithFormat:@"%.4f", [[person lastKnownLocation] latitude]] forKey:@"Latitude"];
+            [location setValue:[NSString stringWithFormat:@"%.4f", [[person lastKnownLocation] longitude]] forKey:@"Longitude"];
+            [personDict setValue:location forKey:@"LastKnownLocation"];
+        }
+    }
+    
     if ([person phone] != nil)                      [personDict setValue:[person phone] forKey:@"Phone"];
     if ([person myDescription] != nil)              [personDict setValue:[person myDescription] forKey:@"Description"];
     if ([person occupation] != nil)                 [personDict setValue:[person occupation] forKey:@"Occupation"];
     if ([person hobby] != nil)                      [personDict setValue:[person hobby] forKey:@"Hobby"];
     if ([person mainLocation] != nil)               [personDict setValue:[person mainLocation] forKey:@"MainLocation"];
-    if ([person lastKnownLocation] != nil){
-        NSMutableDictionary *location = [[NSMutableDictionary alloc] init];
-        [location setValue:[NSString stringWithFormat:@"%.4f", [[person lastKnownLocation] latitude]] forKey:@"Latitude"];
-        [location setValue:[NSString stringWithFormat:@"%.4f", [[person lastKnownLocation] longitude]] forKey:@"Longitude"];
-        [personDict setValue:location forKey:@"LastKnownLocation"];
-    }
+    
     
     return [personDict copy];
 }
